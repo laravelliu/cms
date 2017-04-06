@@ -5,10 +5,31 @@
  * Date: 2017/4/6
  * Time: 14:48
  */
+
+
+if(YII_ENV_DEV){
+    return [
+        'class' => 'yii\swiftmailer\Mailer',
+        'useFileTransport' => false,
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => EMAIL_SERVICE,
+            'username' => EMAIL_USER,
+            'password' => EMAIL_PWD,
+            'port' => EMAIL_PORT,
+        ],
+    ];
+}
+
 return [
     'class' => 'yii\swiftmailer\Mailer',
-    // send all mails to a file by default. You have to set
-    // 'useFileTransport' to false and configure a transport
-    // for the mailer to send real emails.
-    'useFileTransport' => true,
+    'useFileTransport' => false,
+    'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => EMAIL_SERVICE,
+        'username' => EMAIL_USER,
+        'password' => EMAIL_PWD,
+        'port' => EMAIL_PORT,
+    ],
 ];
+

@@ -15,7 +15,7 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'ShhBKWzQwRFUTB9UwRkUP9vFxaDXI85O',
         ],
-        
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -44,10 +44,28 @@ $config = [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
+                //错误日志
+                'error' => [
+                    'class' => 'yii\log\EmailTarget',
                     'levels' => ['error', 'warning'],
+                    'message' => [
+                        'from' => [EMAIL_USER],
+                        'to' => $params['errorEmail'],
+                        'subject' => THEME_NAME . '错误邮件'
+                    ],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                        'yii\web\HttpException:400',
+                        'yii\base\ErrorException:32'
+                    ]
                 ],
+                //记录日志
+                'info' => [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['trace'],
+                    'logFile' => '@app/runtime/logs/info/'.date('Ymd',time()).'.log',
+                    'logVars' => [],
+                ]
             ],
         ],
         
@@ -58,7 +76,24 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/rules.php'),
         ],
+        
     ],
+
+    'modules' => [
+        //后台管理
+        'admin' => [
+            'class' => 'app\modules\admin\Module'
+        ],
+        //活动模块
+        'activity' => [
+            'class' => 'app\modules\activity\Module'
+        ],
+        //统计模块
+        'total' => [
+            'class' => 'app\modules\total\Module'
+        ]
+    ],
+
     'params' => $params,
 ];
 
@@ -77,6 +112,12 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+    ];
+    
+    //如果是测试环境日志保存在本地
+    $config['components']['log']['targets']['error'] = [
+        'class' => 'yii\log\FileTarget',
+        'levels' => ['error', 'warning'],
     ];
 }
 

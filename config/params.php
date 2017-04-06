@@ -4,6 +4,9 @@ $params = file_exists(__DIR__ . '/' . THEME_NAME . 'Params.php') ? include(__DIR
 
 $commonParams = [
     'adminEmail' => '56325162@qq.com',
+    'errorEmail' => [
+        '565325162@qq.com'
+    ],
 ];
 
 return array_merge($commonParams, $params);
