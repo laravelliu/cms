@@ -8,7 +8,25 @@
 
 
 if(YII_ENV_DEV){
-    return [
+    $emails = [
+        'basic' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => EMAIL_SERVICE,
+                'username' => EMAIL_USER,
+                'password' => EMAIL_PWD,
+                'port' => EMAIL_PORT,
+            ],
+        ]
+    ];
+
+    return isset($emails[THEME_NAME]) ? $emails[THEME_NAME] : [];
+}
+
+$emails = [
+    'basic' => [
         'class' => 'yii\swiftmailer\Mailer',
         'useFileTransport' => false,
         'transport' => [
@@ -18,18 +36,8 @@ if(YII_ENV_DEV){
             'password' => EMAIL_PWD,
             'port' => EMAIL_PORT,
         ],
-    ];
-}
-
-return [
-    'class' => 'yii\swiftmailer\Mailer',
-    'useFileTransport' => false,
-    'transport' => [
-        'class' => 'Swift_SmtpTransport',
-        'host' => EMAIL_SERVICE,
-        'username' => EMAIL_USER,
-        'password' => EMAIL_PWD,
-        'port' => EMAIL_PORT,
     ],
 ];
+
+return isset($emails[THEME_NAME]) ? $emails[THEME_NAME] : [];
 

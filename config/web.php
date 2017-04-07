@@ -1,6 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
+$email = require(__DIR__.'/mail.php');
 
 $config = [
     'id' => 'basic',
@@ -49,7 +50,7 @@ $config = [
                     'class' => 'yii\log\EmailTarget',
                     'levels' => ['error', 'warning'],
                     'message' => [
-                        'from' => [EMAIL_USER],
+                        'from' => ['565325162@qq.com'],
                         'to' => $params['errorEmail'],
                         'subject' => THEME_NAME . '错误邮件'
                     ],
@@ -119,6 +120,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\log\FileTarget',
         'levels' => ['error', 'warning'],
     ];
+    
 }
 
 /* 是否需要redis */
@@ -126,6 +128,11 @@ if (NEED_REDIS) {
     $config['components']['redis'] = [
         'class' => 'yii\redis\Connection',
     ];
+}
+
+//邮件
+if (!empty($email)) {
+    $config['components']['mailer'] = $email;
 }
 
 return $config;

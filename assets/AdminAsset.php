@@ -17,14 +17,20 @@ use yii\web\AssetBundle;
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '@web/admin';
     public $css = [
-        'css/site.css',
+        'css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.css',
+        'css/animate.css',
+        'css/style.css',
     ];
+    
     public $js = [
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'js/jquery-2.1.1.js',
+        'js/bootstrap.min.js',
+        'js/plugins/metisMenu/jquery.metisMenu.js',
+        'js/plugins/slimscroll/jquery.slimscroll.min.js',
+        'js/inspinia.js',
+        'js/plugins/pace/pace.min.js',
     ];
 }
