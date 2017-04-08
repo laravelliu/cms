@@ -6,7 +6,7 @@ $email = require(__DIR__.'/mail.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','admin'],
     'timeZone' => 'Asia/Chongqing', //时区
     'language' => 'zh-CN',//'zh-CN', //目标语言语言包
     //'sourceLanguage' => 'zh-CN',//源语言语言包(默认是英语)
@@ -75,7 +75,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => require(__DIR__ . '/rules.php'),
+            'rules' => require(__DIR__ . '/rules.php')
         ],
         
     ],

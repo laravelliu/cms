@@ -6,5 +6,5 @@
  * Time: 14:17
  */
 return [
-    'admin' => 'admin/default/index',
+    'hou' => 'admin/default/index',
 ];
