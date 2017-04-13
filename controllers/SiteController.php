@@ -4,12 +4,11 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * @inheritdoc
@@ -49,6 +48,10 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'height' => 50,
+                'width' => 80,
+                'minLength' => 4,
+                'maxLength' => 4
             ],
         ];
     }

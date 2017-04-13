@@ -19,10 +19,11 @@ if (YII_ENV_PROD) {
     $dbs = [
         'basic' =>[
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;dbname=basic',
+            'dsn' => 'mysql:host=127.0.0.1;dbname=lfscms',
             'username' => 'root',
-            'password' => '',
+            'password' => '1',
             'charset' => 'utf8',
+            'tablePrefix' => 'lfs_'
         ]
     ];
 

@@ -32,8 +32,13 @@ $config = [
         ],
         
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\UserAR',
             'enableAutoLogin' => true,
+            'enableSession' => true,
+            'identityCookie' => [
+                'name' => 'lfs',
+                'httpOnly' => false,
+            ]
         ],
         
         'errorHandler' => [
@@ -77,7 +82,7 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/rules.php')
         ],
-        
+
     ],
 
     'modules' => [
