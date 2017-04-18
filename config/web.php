@@ -82,6 +82,16 @@ $config = [
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/rules.php')
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => ['/admin/js/jquery-2.1.1.js']
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'js' => ['/admin/js/bootstrap.min.js']
+                ]
+            ],
+        ],
 
     ],
 

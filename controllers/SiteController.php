@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\RegisterForm;
 use Yii;
 use yii\base\Exception;
 use yii\filters\AccessControl;
@@ -182,10 +183,13 @@ class SiteController extends BaseController
     {
         $this->layout = 'public_main';
 
+        $model = new RegisterForm();
         if (Yii::$app->request->isPost) {
-
+            if ($model->load(Yii::$app->request->post()) && $model->register()) {
+                return $this->redirect(Url::to(['/login']));
+            }
         }
 
-        return $this->render('register');
+        return $this->render('register', ['model' => $model]);
     }
 }

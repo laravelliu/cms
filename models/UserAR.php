@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\support\helpers\UnitHelper;
 use Yii;
 
 /**
@@ -100,6 +101,19 @@ class UserAR extends BaseAR implements \yii\web\IdentityInterface
     }
 
     /**
+     * 计算password算法
+     * @param $password
+     * @return string
+     * @author: liuFangShuo
+     */
+    public function getPassword($password)
+    {
+        $salt = hash('sha256', md5($password));
+        return  md5($password . $salt);
+    }
+
+
+    /**
      * @inheritdoc
      */
     public function getId()
@@ -112,7 +126,7 @@ class UserAR extends BaseAR implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return 'lfslfs';
+        return UnitHelper::uuid();
     }
 
     /**
@@ -131,6 +145,6 @@ class UserAR extends BaseAR implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === md5($password);
+        return $this->password === $this->getPassword($password);
     }
 }
