@@ -6,5 +6,8 @@
  * Time: 14:17
  */
 return [
-    'hou' => 'admin/default/index',
+    'hou' => 'admin/index/index',
+    'login' => 'site/login',
+    'logout' => 'site/logout',
+    'register' => 'site/register'
 ];

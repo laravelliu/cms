@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use Yii;
+use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\helpers\Url;
 
 class SiteController extends BaseController
 {
@@ -30,7 +32,7 @@ class SiteController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -41,19 +43,20 @@ class SiteController extends BaseController
      */
     public function actions()
     {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
+        $actions = [];
+
+        if (YII_ENV_PROD) {
+            $actions['captcha'] = [
                 'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'height' => 50,
-                'width' => 80,
-                'minLength' => 4,
-                'maxLength' => 4
-            ],
-        ];
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,    //如果测试环境总是一个验证码
+                'height' => 34,
+                'width' => 120,
+                'minLength' => 6,
+                'maxLength' => 8
+            ];
+        }
+
+        return $actions;
     }
 
     /**
@@ -73,14 +76,27 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
+        $this->layout = 'public_main';
+
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(Url::to(['/hou']));
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+
+        if (Yii::$app->request->isPost) {
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                $re = Yii::$app->request->get('re',null);
+
+                if (!empty($re)) {
+                    return $this->redirect($re);
+                } else {
+                    return $this->goBack();
+
+                }
+            }
         }
+
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -124,5 +140,52 @@ class SiteController extends BaseController
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * 错误页面
+     * @author: liuFangShuo
+     */
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+
+        if ($exception instanceof Exception) {
+            $name = $exception->getName();
+        } else {
+            $name = Yii::t('yii', '出错了，出错了 :(');
+        }
+
+        $code = 0;
+
+        if ($exception) {
+            $message = Yii::t('yii', '肯定是哪个程序猿偷懒了。');
+            $code = $exception->statusCode;
+        }
+
+        if(in_array($code,['404','500'])){
+            return $this->renderPartial($code);
+        }
+
+        return $this->renderPartial('error', [
+            'name' => $name,
+            'message' => $message,
+            'exception' => $exception,
+        ]);
+    }
+
+    /**
+     * 登录页面
+     * @author: liuFangShuo
+     */
+    public function actionRegister()
+    {
+        $this->layout = 'public_main';
+
+        if (Yii::$app->request->isPost) {
+
+        }
+
+        return $this->render('register');
     }
 }

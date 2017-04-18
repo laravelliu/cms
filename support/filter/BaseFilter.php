@@ -57,7 +57,7 @@ class BaseFilter extends ActionFilter
 
         } else {
             $re = empty($re) ? \Yii::$app->request->getUrl() : $re;
-            \Yii::$app->getResponse()->redirect(Url::to([$this->failUrl, 're' => $re, 'c' => $msg], 302))->send();
+            \Yii::$app->getResponse()->redirect(Url::to([$this->failUrl, 're' => $re], 302))->send();
         }
     }
 }

@@ -5,7 +5,9 @@ namespace app\modules\admin\controllers;
 /**
  * Default controller for the `admin` module
  */
-class DefaultController extends BaseController
+use Yii;
+
+class IndexController extends BaseController
 {
     /**
      * Renders the index view for the module
@@ -13,6 +15,7 @@ class DefaultController extends BaseController
      */
     public function actionIndex()
     {
+        $user = Yii::$app->user->identity;
         return $this->render('index');
     }
 }

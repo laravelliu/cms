@@ -15,6 +15,7 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
+    public $verifyCode;
     public $rememberMe = true;
 
     private $_user = false;
@@ -25,7 +26,7 @@ class LoginForm extends Model
      */
     public function rules()
     {
-        return [
+        $rule =  [
             // username and password are both required
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
@@ -33,6 +34,14 @@ class LoginForm extends Model
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
+
+        if (YII_ENV_PROD) {
+            $rule[] = ['verifyCode', 'captcha', 'message'=>'验证码不正确！'];
+        }
+        
+        return $rule;
+        
+        
     }
 
     /**

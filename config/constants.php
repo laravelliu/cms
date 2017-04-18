@@ -16,3 +16,4 @@ define('EMAIL_PORT',1);
 define('STATUS_TRUE', 1);
 define('STATUS_FALSE', 0);
 define('LOGIN_COOKIE_TIME', 3600*24);   //登录cookie时间
+define('COMPANY_NAME', 'LFS');

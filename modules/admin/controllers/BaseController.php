@@ -2,6 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
+use app\support\filter\LoginFilter;
+
 class BaseController extends \app\controllers\BaseController
 {
     public function init()
@@ -28,7 +30,12 @@ class BaseController extends \app\controllers\BaseController
     public function behaviors()
     {
 
-        $default = [];
+        $default = [
+            'login' => [
+                'class' =>LoginFilter::className(),
+                'failUrl' => '/login'
+            ]
+        ];
         $append = $this->appendBehaviors();
 
         return array_merge($default,$append);

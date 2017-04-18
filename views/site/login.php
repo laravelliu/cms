@@ -1,47 +1,81 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
-
+/**
+ * Created by liuFangShuo.
+ * User: lfs
+ * Date: 2017/4/18
+ * Time: 15:06
+ */
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\captcha\Captcha;
 use yii\bootstrap\ActiveForm;
-
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<div class="loginColumns animated fadeInDown">
+    <div class="row">
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+        <div class="col-md-6">
+            <h2 class="font-bold">欢迎来到<?=COMPANY_NAME?>的后台</h2>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <p>
+                Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+            </p>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+            <p>
+                When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </p>
 
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+            <p>
+                <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
+            </p>
+
+        </div>
+        <div class="col-md-6">
+            <div class="ibox-content">
+
+                <?php $form = ActiveForm::begin([
+                    'id' => 'login-form',
+                    'options' => [
+                        'class' => 'm-t'
+                    ],
+                    'fieldConfig' => [
+                        'template' => "{input}{error}",
+                    ],
+                ]); ?>
+
+                <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder' => '用户名'])->label(false); ?>
+
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => '密码'])->label(false); ?>
+
+                <?php if(YII_ENV_PROD):?>
+                <?= $form->field($model, 'verifyCode')->label('验证码')->widget(Captcha::className(), [
+                    'options'=>['placeholder'=>'验证码', 'class' => 'form-control'],
+                    'captchaAction' => 'site/captcha',
+                    'template' => '<div class="row"><div class="col-lg-6">{input}</div><div class="col-lg-6" style="">{image}</div></div>',
+                ]) ?>
+                <?php endif;?>
+                <?= $form->field($model, 'rememberMe')->checkbox([
+                    'template' => "{input} {label}{error}",
+                ])->label('记住我') ?>
+
+                <?= Html::submitButton('登录', ['class' => 'btn btn-primary block full-width m-b']) ?>
+
+                <p class="text-muted text-center">
+                    <small>没有账户?</small>
+                </p>
+                <a class="btn btn-sm btn-white btn-block" href="<?=Url::to(['/register'])?>">创建账户</a>
+
+                <?php ActiveForm::end(); ?>
+                <p class="m-t">
+                    <small>技术支持 3 &copy; 2014</small>
+                </p>
+
             </div>
         </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
     </div>
 </div>
+

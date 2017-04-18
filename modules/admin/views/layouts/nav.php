@@ -14,14 +14,14 @@ use yii\helpers\Url;
             <li class="nav-header">
                 <div class="dropdown profile-element"> 
                     <span>
-                        <img alt="image" class="img-circle" src="/admin/img/profile_small.jpg" />
+                        <img alt="image" class="img-circle" src="<?=Yii::$app->user->identity->photo?>" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> 
                             <span class="block m-t-xs"> 
                                 <strong class="font-bold">admin</strong>
                             </span> 
-                            <span class="text-muted text-xs block">lfs<b class="caret"></b></span>
+                            <span class="text-muted text-xs block"><?=Yii::$app->user->identity->name?><b class="caret"></b></span>
                         </span> 
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -29,7 +29,7 @@ use yii\helpers\Url;
                         <li><a href="<?=Url::to(['/'])?>">Contacts</a></li>
                         <li><a href="<?=Url::to(['/'])?>">Mailbox</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?=Url::to(['/'])?>">退出</a></li>
+                        <li><a href="<?=Url::to(['/logout'])?>">退出</a></li>
                     </ul>
                 </div>
                 <div class="logo-element">

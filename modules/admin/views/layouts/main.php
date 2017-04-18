@@ -8,6 +8,7 @@
 use app\assets\AdminAsset;
 
 AdminAsset::register($this);
+use yii\helpers\Url;
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -34,28 +35,16 @@ AdminAsset::register($this);
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="#">
-                                <i class="fa fa-sign-out"></i> Log out
+                            <a href="<?=Url::to(['/logout'])?>">
+                                <i class="fa fa-sign-out"></i>退出
                             </a>
                         </li>
                     </ul>
 
                 </nav>
             </div>
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center m-t-lg">
-                            <h1>
-                                Welcome in INSPINIA Static SeedProject
-                            </h1>
-                            <small>
-                                It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects and dev environment for these projects.
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            <?=$content?>
             
             <?=$this->render('/layouts/footer')?>
             
