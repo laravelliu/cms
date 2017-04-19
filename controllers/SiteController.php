@@ -93,7 +93,6 @@ class SiteController extends BaseController
                     return $this->redirect($re);
                 } else {
                     return $this->goBack();
-
                 }
             }
         }
@@ -187,6 +186,8 @@ class SiteController extends BaseController
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post()) && $model->register()) {
                 return $this->redirect(Url::to(['/login']));
+            } else {
+                $model->getErrors();
             }
         }
 

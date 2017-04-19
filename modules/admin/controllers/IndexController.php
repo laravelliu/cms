@@ -15,7 +15,15 @@ class IndexController extends BaseController
      */
     public function actionIndex()
     {
-        $user = Yii::$app->user->identity;
         return $this->render('index');
+    }
+
+    /**
+     * 网站设置
+     * @author: liuFangShuo
+     */
+    public function actionSet()
+    {
+        
     }
 }

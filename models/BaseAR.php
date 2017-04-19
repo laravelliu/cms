@@ -37,6 +37,7 @@ class BaseAR extends  \yii\db\ActiveRecord
                     $this->update_time = time();
                 }
             }
+            return true;
         } else {
             return false;
         }

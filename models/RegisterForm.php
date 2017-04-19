@@ -25,7 +25,7 @@ class RegisterForm extends Model
             // password is validated by validatePassword()
             ['email', 'email', 'message' => '请输出正确的邮箱'],
             //用户存在
-            ['username', 'checkUserExist', 'message' => '此邮箱已注册'],
+            [['email','username'], 'checkUserExist']
         ];
 
         return $rule;
@@ -38,21 +38,47 @@ class RegisterForm extends Model
      */
     public function checkUserExist()
     {
-        if(UserAR::findByUsername($this->username)){
-            return true;
+        if (UserAR::findByEmail($this->email)) {
+            $this->addError('email','此邮箱已注册');
+            return false;
+        }
+
+        if (UserAR::findByUsername($this->username)) {
+            $this->addError('username','此用户已存在');
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 注册
+     * @return bool
+     * @author: liuFangShuo
+     */
+    public function register()
+    {
+        if ($this->validate()) {
+            $model = new UserAR();
+            $model->username = $this->username;
+            $model->name = $this->name;
+            $model->password = $model->getPassword($this->password);
+            $model->email = $this->email;
+            $model->role = ROLE_ADMIN;
+            $model->login_times = 0;
+            $model->photo = DEFAULT_PHOTO;
+
+            if ($model->save()) {
+                return true;
+            } else {
+                $this->addErrors($model->getErrors());
+                return false;
+            }
         } else {
             return false;
         }
-    }
-    
-    
-    public function register()
-    {
-        $model = new UserAR();
-        $model->username = $this->username;
-        $model->password = $model->getPassword($this->password);
-        $model->email = $this->email;
-        $model->save(false);
+
+
     }
 
 }

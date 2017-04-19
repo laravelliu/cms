@@ -32,7 +32,7 @@ class BaseController extends \app\controllers\BaseController
 
         $default = [
             'login' => [
-                'class' =>LoginFilter::className(),
+                'class' => LoginFilter::className(),
                 'failUrl' => '/login'
             ]
         ];

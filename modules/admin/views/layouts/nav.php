@@ -19,7 +19,7 @@ use yii\helpers\Url;
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> 
                             <span class="block m-t-xs"> 
-                                <strong class="font-bold">admin</strong>
+                                <strong class="font-bold"><?=Yii::$app->params['role'][Yii::$app->user->identity->role]?></strong>
                             </span> 
                             <span class="text-muted text-xs block"><?=Yii::$app->user->identity->name?><b class="caret"></b></span>
                         </span> 
@@ -33,7 +33,7 @@ use yii\helpers\Url;
                     </ul>
                 </div>
                 <div class="logo-element">
-                    admin
+                    <?=Yii::$app->params['role'][Yii::$app->user->identity->role]?>
                 </div>
             </li>
             <li class="active">

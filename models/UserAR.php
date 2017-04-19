@@ -38,7 +38,7 @@ class UserAR extends BaseAR implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'role', 'email', 'phone'], 'required'],
+            [['username', 'role', 'email'], 'required'],
             [['role', 'login_times', 'status'], 'integer'],
             [['username'], 'string', 'max' => 64],
             [['password', 'name'], 'string', 'max' => 32],
@@ -98,6 +98,18 @@ class UserAR extends BaseAR implements \yii\web\IdentityInterface
     {
         return self::findOne(['username' => $username, 'status' => STATUS_TRUE]);
         
+    }
+
+    /**
+     * 根据邮箱获取
+     * @param $email
+     * @return static
+     * @author: liuFangShuo
+     */
+    public static function findByEmail($email)
+    {
+        return self::findOne(['email' => $email, 'status' => STATUS_TRUE]);
+
     }
 
     /**
