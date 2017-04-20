@@ -39,6 +39,11 @@ use yii\helpers\Url;
                                 <i class="fa fa-sign-out"></i>退出
                             </a>
                         </li>
+                        <li>
+                            <a class="right-sidebar-toggle">
+                                <i class="fa fa-tasks"></i>
+                            </a>
+                        </li>
                     </ul>
 
                 </nav>
@@ -49,6 +54,9 @@ use yii\helpers\Url;
             <?=$this->render('/layouts/footer')?>
             
         </div>
+
+        <?=$this->render('/layouts/right_nav')?>
+
     </div>
 
     <?php $this->endBody() ?>

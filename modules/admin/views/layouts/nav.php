@@ -52,7 +52,6 @@ use yii\helpers\Url;
             <li>
                 <a href="<?=Url::to(['/admin/setting'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">网站设置</span></a>
             </li>
-
         </ul>
 
     </div>
