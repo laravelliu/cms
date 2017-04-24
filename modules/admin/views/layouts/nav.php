@@ -6,6 +6,7 @@
  * Time: 16:42
  */
 use yii\helpers\Url;
+$action = Yii::$app->request->getUrl();
 ?>
 
 <nav class="navbar-default navbar-static-side" role="navigation">
@@ -36,7 +37,7 @@ use yii\helpers\Url;
                     <?=Yii::$app->params['role'][Yii::$app->user->identity->role]?>
                 </div>
             </li>
-            <li class="active">
+            <li <?php if($action == '/hou'):?>class="active" <?php endif;?>>
                 <a href="<?=Url::to(['/hou'])?>"><i class="fa fa-th-large"></i> <span class="nav-label">控制台</span></a>
             </li>
             <li>
@@ -49,8 +50,8 @@ use yii\helpers\Url;
                     <li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>
                 </ul>
             </li>
-            <li>
-                <a href="<?=Url::to(['/admin/setting'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">网站设置</span></a>
+            <li <?php if($action == '/admin/index/setting'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/index/setting'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">网站设置</span></a>
             </li>
         </ul>
 

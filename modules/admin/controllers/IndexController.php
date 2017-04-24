@@ -22,8 +22,9 @@ class IndexController extends BaseController
      * 网站设置
      * @author: liuFangShuo
      */
-    public function actionSet()
+    public function actionSetting()
     {
-        
+        return $this->render('set');
+
     }
 }
