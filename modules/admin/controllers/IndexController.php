@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 /**
  * Default controller for the `admin` module
  */
+use app\models\ConfigAR;
 use Yii;
 
 class IndexController extends BaseController
@@ -24,7 +25,9 @@ class IndexController extends BaseController
      */
     public function actionSetting()
     {
-        return $this->render('set');
+        $model = new ConfigAR();
+        $this->_data['model'] = $model;
 
+        return $this->render('set',$this->_data);
     }
 }

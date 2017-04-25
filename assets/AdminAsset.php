@@ -30,6 +30,8 @@ class AdminAsset extends AssetBundle
         'js/bootstrap.min.js',
         'js/plugins/metisMenu/jquery.metisMenu.js',
         'js/plugins/slimscroll/jquery.slimscroll.min.js',
+        
+         //Custom and plugin javascript
         'js/inspinia.js',
         'js/plugins/pace/pace.min.js',
     ];
