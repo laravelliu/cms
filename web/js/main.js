@@ -20,7 +20,7 @@ var lfs = function () {
 
         return theRequest;
     };
-
+    
     var callBack = function (fn,data,error) {
         if (null !== error){
             console.log('error: '+error);
@@ -64,7 +64,7 @@ var lfs = function () {
 
         toastr[type](message,title);
     };
-
+    
     return {
         init : function (option) {
             initValue(option);
@@ -102,15 +102,6 @@ var lfs = function () {
     }
 }();
 
-//demo
 $(document).ready(function () {
     lfs.init();
-    var kak = new c();
-    console.log(kak.lsd);
 });
-
-
-function c() {
-    this.a= '123';
-}
-c.prototype.lsd = '123';
