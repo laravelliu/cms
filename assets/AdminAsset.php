@@ -10,10 +10,6 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-/**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
 class AdminAsset extends AssetBundle
 {
     public $basePath = '@webroot';
@@ -22,7 +18,12 @@ class AdminAsset extends AssetBundle
         'css/bootstrap.min.css',
         'font-awesome/css/font-awesome.css',
         'css/animate.css',
+
+        //提示框css
+        'css/plugins/toastr/toastr.min.css',
+        
         'css/style.css',
+
     ];
     
     public $js = [
@@ -34,5 +35,10 @@ class AdminAsset extends AssetBundle
          //Custom and plugin javascript
         'js/inspinia.js',
         'js/plugins/pace/pace.min.js',
+
+        //提示框
+        'js/plugins/toastr/toastr.min.js',
+        
+        '/js/main.js'
     ];
 }

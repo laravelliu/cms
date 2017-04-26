@@ -11,8 +11,12 @@ use yii\widgets\ActiveForm;
 
 $this->registerCssFile('/admin/css/plugins/iCheck/custom.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 $this->registerCssFile('/admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+$this->registerCssFile('/admin/css/plugins/switchery/switchery.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 
 $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+
+/*圆角选择*/
+$this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 ?>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -23,18 +27,6 @@ $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::cla
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
                         </a>
                     </div>
                 </div>
@@ -52,9 +44,15 @@ $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::cla
                                 <?=$form->field($model,'keywords')->textInput()->label('网站关键词');?>
                                 <?=$form->field($model,'description')->textInput()->label('网站描述');?>
                                 <?=$form->field($model,'email')->textInput()->label('网站联系Email');?>
+                                <?=$form->field($model,'footer')->textarea()->label('页脚');?>
+                                <?=$form->field($model,'logo')->hiddenInput()->label(false);?>
+                                <?php if(empty($model->open)){
+                                    $model->open = 0;
+                                }?>
+                                <?=$form->field($model,'open')->hiddenInput()->label(false);?>
                                 <div>
                                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>设置</strong></button>
-                                    <label> <input type="checkbox" class="i-checks">是否开启</label>
+                                    <input type="checkbox" class="js-switch" <?php if($model->open):?>checked<?php endif;?>/> <label>是否开启</label>
                                 </div>
                             <?php ActiveForm::end()?>
 
@@ -78,6 +76,18 @@ $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::cla
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
+
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, { color: '#1AB394', size: 'small'});
+
+        $('.switchery').on('click',function () {
+            if(switchery.isChecked()){
+                $('#configmodel-open').val('1');
+            } else {
+                $('#configmodel-open').val('0');
+            }
+        });
+
     });
 </script>
 <?php JsBlock::end()?>
