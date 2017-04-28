@@ -13,12 +13,12 @@
 
             <li class="active">
                 <a data-toggle="tab" href="#tab-1">
-                    Notes
+                    留言
                 </a>
             </li>
             <li>
                 <a data-toggle="tab" href="#tab-2">
-                    Projects
+                    文章统计
                 </a>
             </li>
             <li class="">
@@ -267,8 +267,8 @@
             <div id="tab-3" class="tab-pane">
 
                 <div class="sidebar-title">
-                    <h3><i class="fa fa-gears"></i> Settings</h3>
-                    <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+                    <h3><i class="fa fa-gears"></i>设置</h3>
+                    <small><i class="fa fa-tim"></i>您可以在这里快捷操作</small>
                 </div>
 
                 <div class="setings-item">
@@ -369,14 +369,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-content">
+               <!-- <div class="sidebar-content">
                     <h4>Settings</h4>
                     <div class="small">
                         I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         And typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
                         Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
