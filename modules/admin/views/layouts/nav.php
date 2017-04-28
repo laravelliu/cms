@@ -46,8 +46,6 @@ $action = Yii::$app->request->getUrl();
                     <li class="active"><a href="index.html">Dashboard v.1</a></li>
                     <li><a href="dashboard_2.html">Dashboard v.2</a></li>
                     <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                    <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                    <li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>
                 </ul>
             </li>
             <li <?php if($action == '/admin/index/setting'):?>class="active" <?php endif;?>>
@@ -55,23 +53,43 @@ $action = Yii::$app->request->getUrl();
             </li>
 
             <li <?php if($action == '/admin/category/index'):?>class="active" <?php endif;?>>
-                <a href="<?=Url::to(['/admin/category/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">分类管理</span></a>
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">分类管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="<?=Url::to(['/admin/category/index'])?>">分类列表</a></li>
+                    <li><a href="dashboard_2.html">添加分类</a></li>
+                </ul>
             </li>
 
             <li <?php if($action == '/admin/kefu/index'):?>class="active" <?php endif;?>>
-                <a href="<?=Url::to(['/admin/kefu/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">客服管理</span></a>
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">客服管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="<?=Url::to(['/admin/kefu/index'])?>">客服列表</a></li>
+                    <li><a href="dashboard_2.html">添加客服</a></li>
+                </ul>
             </li>
 
-            <li <?php if($action == '/admin/project/index'):?>class="active" <?php endif;?>>
-                <a href="<?=Url::to(['/admin/project/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">产品管理</span></a>
+            <li <?php if($action == '/admin/product/index'):?>class="active" <?php endif;?>>
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">产品管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="<?=Url::to(['/admin/product/index'])?>">产品列表</a></li>
+                    <li><a href="dashboard_2.html">添加产品<span class="label label-primary pull-right">NEW</span></a></li>
+                </ul>
             </li>
 
             <li <?php if($action == '/admin/link/index'):?>class="active" <?php endif;?>>
-                <a href="<?=Url::to(['/admin/link/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">友联管理</span></a>
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">友链管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="<?=Url::to(['/admin/link/index'])?>">友链列表</a></li>
+                    <li><a href="dashboard_5.html">添加友链<span class="label label-primary pull-right">NEW</span></a></li>
+                </ul>
             </li>
 
             <li <?php if($action == '/admin/acticle/index'):?>class="active" <?php endif;?>>
-                <a href="<?=Url::to(['/admin/acticle/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">文章管理</span></a>
+                <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">文章管理</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li class="active"><a href="<?=Url::to(['/admin/acticle/index'])?>">文章管理</a></li>
+                    <li><a href="dashboard_5.html">添加文章<span class="label label-primary pull-right">NEW</span></a></li>
+                </ul>
             </li>
         </ul>
 

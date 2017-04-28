@@ -2,6 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
-class KefuController extends \yii\web\Controller
+class KefuController extends BaseController
 {
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 }

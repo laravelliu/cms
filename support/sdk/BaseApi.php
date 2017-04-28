@@ -7,8 +7,9 @@
  * Time: 09:58
  */
 namespace  app\support\sdk;
+use yii\base\Component;
 
-abstract class BaseApi
+abstract class BaseApi extends Component
 {
     public $api_key = '';
     public $secret_key = '';

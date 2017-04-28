@@ -2,7 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-class ProductController extends \yii\web\Controller
+class ProductController extends BaseController
 {
     public function actionIndex()
     {
