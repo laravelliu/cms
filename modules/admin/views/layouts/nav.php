@@ -53,6 +53,26 @@ $action = Yii::$app->request->getUrl();
             <li <?php if($action == '/admin/index/setting'):?>class="active" <?php endif;?>>
                 <a href="<?=Url::to(['/admin/index/setting'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">网站设置</span></a>
             </li>
+
+            <li <?php if($action == '/admin/category/index'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/category/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">分类管理</span></a>
+            </li>
+
+            <li <?php if($action == '/admin/kefu/index'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/kefu/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">客服管理</span></a>
+            </li>
+
+            <li <?php if($action == '/admin/project/index'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/project/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">产品管理</span></a>
+            </li>
+
+            <li <?php if($action == '/admin/link/index'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/link/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">友联管理</span></a>
+            </li>
+
+            <li <?php if($action == '/admin/acticle/index'):?>class="active" <?php endif;?>>
+                <a href="<?=Url::to(['/admin/acticle/index'])?>"><i class="fa fa-diamond"></i> <span class="nav-label">文章管理</span></a>
+            </li>
         </ul>
 
     </div>

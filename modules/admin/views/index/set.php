@@ -59,26 +59,6 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                         </div>
                         <div class="col-sm-6">
                             <div class="ibox float-e-margins">
-                                <div class="ibox-title  back-change">
-                                    <h5>Image cropper <small>http://fengyuanchen.github.io/cropper/</small></h5>
-                                    <div class="ibox-tools">
-                                        <a class="collapse-link">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-user">
-                                            <li><a href="#">Config option 1</a>
-                                            </li>
-                                            <li><a href="#">Config option 2</a>
-                                            </li>
-                                        </ul>
-                                        <a class="close-link">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
                                 <div class="ibox-content">
                                     <p>
                                         A simple jQuery image cropping plugin.
@@ -86,7 +66,7 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="image-crop">
-                                                <img src="img/p3.jpg">
+                                                <img src="/admin/img/p3.jpg">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
