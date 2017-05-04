@@ -32,7 +32,7 @@ $this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAss
                     <div class="">
                         <a href="#" class="btn btn-primary ">Add a new row</a>
                     </div>
-                    <table class="table table-striped table-bordered table-hover " id="acticle" >
+                    <table class="table table-striped table-bordered table-hover " id="article" >
                         <thead>
                         <tr>
                             <th>文章名称</th>
@@ -74,9 +74,9 @@ $this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAss
     $(document).ready(function(){
 
         /* Init DataTables */
-        var oTable = $('#acticle').DataTable({
+        var oTable = $('#article').DataTable({
             'ajax':{
-                url : '/admin/acticle/list',
+                url : '/admin/article/list',
                 dataSrc : 'data'
             },
             /*'columns' : {

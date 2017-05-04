@@ -8,7 +8,7 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-class ActicleController extends BaseController
+class ArticleController extends BaseController
 {
     public function actionIndex()
     {
@@ -26,5 +26,13 @@ class ActicleController extends BaseController
         }
 
         return false;
+    }
+    
+    public function actionAddArticle()
+    {
+        if(Yii::$app->request->isPost){
+
+        }
+        return $this->render('add');
     }
 }

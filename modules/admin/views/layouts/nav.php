@@ -56,7 +56,7 @@ $action = Yii::$app->request->getUrl();
                 <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">分类管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li class="active"><a href="<?=Url::to(['/admin/category/index'])?>">分类列表</a></li>
-                    <li><a href="dashboard_2.html">添加分类</a></li>
+                    <li><a href="<?=Url::to(['/admin/category/add-category'])?>">添加分类</a></li>
                 </ul>
             </li>
 
@@ -84,11 +84,11 @@ $action = Yii::$app->request->getUrl();
                 </ul>
             </li>
 
-            <li <?php if($action == '/admin/acticle/index'):?>class="active" <?php endif;?>>
+            <li <?php if($action == '/admin/article/index'):?>class="active" <?php endif;?>>
                 <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">文章管理</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li class="active"><a href="<?=Url::to(['/admin/acticle/index'])?>">文章管理</a></li>
-                    <li><a href="dashboard_5.html">添加文章<span class="label label-primary pull-right">NEW</span></a></li>
+                    <li class="active"><a href="<?=Url::to(['/admin/article/index'])?>">文章管理</a></li>
+                    <li><a href="<?=Url::to(['/admin/article/add-article'])?>">添加文章<span class="label label-primary pull-right">NEW</span></a></li>
                 </ul>
             </li>
         </ul>
