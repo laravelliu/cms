@@ -15,6 +15,10 @@ $this->registerCssFile('/admin/css/plugins/switchery/switchery.css', [AdminAsset
 
 $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 
+//上传
+$this->registerCssFile('/admin/lib/webuploader/webuploader.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+$this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+
 /*圆角选择*/
 $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 ?>
@@ -61,36 +65,16 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                             <p>
                                 设置网站图标
                             </p>
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="image-crop">
-                                        <img src="/admin/img/p3.jpg">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <h4>Preview image</h4>
-                                    <div class="img-preview img-preview-sm"></div>
-                                    <h4>Comon method</h4>
-                                    <p>
-                                        You can upload new image to crop container and easy download new cropped image.
-                                    </p>
-                                    <div class="btn-group">
-                                        <label title="Upload image file" for="inputImage" class="btn btn-primary">
-                                            <input type="file" accept="image/*" name="file" id="inputImage" class="hide">
-                                            Upload new image
-                                        </label>
-                                        <label title="Donload image" id="download" class="btn btn-primary">Download</label>
-                                    </div>
-                                    <h4>Other method</h4>
-                                    <p>
-                                        You may set cropper options with <code>$(image}).cropper(options)</code>
-                                    </p>
-                                    <div class="btn-group">
-                                        <button class="btn btn-white" id="zoomIn" type="button">Zoom In</button>
-                                        <button class="btn btn-white" id="zoomOut" type="button">Zoom Out</button>
-                                        <button class="btn btn-white" id="rotateLeft" type="button">Rotate Left</button>
-                                        <button class="btn btn-white" id="rotateRight" type="button">Rotate Right</button>
-                                        <button class="btn btn-warning" id="setDrag" type="button">New crop</button>
+                                    <div id="uploader" class="wu-example">
+                                        <!--用来存放文件信息-->
+                                        <div id="thelist" class="uploader-list"></div>
+                                        <div class="btns">
+                                            <div id="picker">选择文件</div>
+                                            <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -120,6 +104,16 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                 $('#configmodel-open').val('0');
             }
         });
+
+        //上传
+        var uploader = WebUploader.create({
+            swf: 'admin/lib/webuploader/Uploader.swf',
+            //dnd:'image-crop',
+            pick: '#picker',
+            server: 'http://webuploader.duapp.com/server/fileupload.php',
+
+        });
+
 
     });
 </script>
