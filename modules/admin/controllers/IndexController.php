@@ -31,7 +31,6 @@ class IndexController extends BaseController
         if(Yii::$app->request->isPost){
             if($model->load($post = Yii::$app->request->post()) && $model->validate()){
 
-                var_dump($post);exit;
                 $model->saveConfig();
             } else {
                 $model->getErrors();
@@ -40,14 +39,5 @@ class IndexController extends BaseController
 
         $this->_data['model'] = $model;
         return $this->render('set',$this->_data);
-    }
-
-    /**
-     * 上传logo
-     * @author: liuFangShuo
-     */
-    public function actionUpload()
-    {
-
     }
 }

@@ -8,6 +8,7 @@
 use app\support\widgets\JsBlock;
 use app\assets\AdminAsset;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 $this->registerCssFile('/admin/css/plugins/iCheck/custom.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 $this->registerCssFile('/admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
@@ -22,6 +23,20 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
 /*圆角选择*/
 $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
 ?>
+
+<style>
+    .uploader-zone{
+        width: 220px;
+        height: 200px;
+        border: 1px dotted #ccc;
+        background: #fafafa;
+        margin: 0px auto 20px;
+        border-radius: 8px;
+    }
+    .uploader-btns{
+        text-align: center;
+    }
+</style>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -68,12 +83,12 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div id="uploader" class="wu-example">
+                                    <div id="uploader" class="uploader-content">
                                         <!--用来存放文件信息-->
-                                        <div id="thelist" class="uploader-list"></div>
-                                        <div class="btns">
-                                            <div id="picker">选择文件</div>
-                                            <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                                        <div id="autoUploader" class="uploader-zone"></div>
+                                        <div class="uploader-btns">
+                                            <span>拖拽到上面区域自动上传</span>
+                                            <div id="picker" class="uploader-btn"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -105,13 +120,82 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
             }
         });
 
+
         //上传
         var uploader = WebUploader.create({
+            disableGlobalDnd:false,
             swf: 'admin/lib/webuploader/Uploader.swf',
-            //dnd:'image-crop',
-            pick: '#picker',
-            server: 'http://webuploader.duapp.com/server/fileupload.php',
+            dnd:'#autoUploader',
+            pick: {
+                id:'#picker',
+                label:'选择图片',
+                multiple:false
+            },
+            server: '<?=Url::to(['/upLogo'])?>',
+            accept:{
+                title: '头像',
+                extensions: 'gif,jpg,jpeg,png',
+                //mimeTypes: 'image/*'
+            },
+            thumb:{
+                width: 220,
+                height: 200,
 
+                // 图片质量，只有type为`image/jpeg`的时候才有效。
+                quality: 70,
+
+                // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                allowMagnify: true,
+
+                // 是否允许裁剪。
+                crop: true,
+
+                // 为空的话则保留原有图片格式。
+                // 否则强制转换成指定的类型。
+                type: 'image/jpeg'
+            },
+            auto:true,
+            chunkRetry:3,
+            fileSingleSizeLimit:20*1024*1024
+
+        }).on('uploadBeforeSend',function (file, data) {
+            $.extend(data, {
+                _csrf:$('meta[name="csrf-token"]').attr("content")
+            });
+        }).on('fileQueued',function (file) {
+            var $pic = $("<img>");
+
+            uploader.makeThumb( file, function( error, src ) {
+                if ( error ) {
+                    lfs.waningTip('暂不能预览');
+                    return;
+                }
+
+                $pic.attr('src', src);
+                $('#autoUploader').append($pic);
+
+            });
+
+        }).on('uploadProgress',function () {
+            
+        }).on('uploadSuccess',function () {
+
+        }).on('uploadError',function () {
+
+        }).on('uploadComplete',function () {
+            
+        }).on('uploadError',function (file,reason) {
+            console.log(file);
+            console.log(reason);
+        }).on('error',function (type) {
+            if('F_EXCEED_SIZE' == type){
+                lfs.waningTip('图片最大为20M','图片过大');
+            } else if('Q_TYPE_DENIED' == type ) {
+                lfs.waningTip('仅支持gif,jpg,jpeg,png格式的图片','文件格式错误');
+            } else {
+                lfs.errorTip("上传出错！请检查后重新上传！错误代码"+type);
+
+            }
         });
 
 
