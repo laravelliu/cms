@@ -36,6 +36,10 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
     .uploader-btns{
         text-align: center;
     }
+    .uploader-image{
+        width: 100%;
+        height: 100%;
+    }
 </style>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -64,7 +68,6 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                                 <?=$form->field($model,'description')->textInput()->label('网站描述');?>
                                 <?=$form->field($model,'email')->textInput()->label('网站联系Email');?>
                                 <?=$form->field($model,'footer')->textarea()->label('页脚');?>
-                                <?=$form->field($model,'logo')->hiddenInput()->label(false);?>
                                 <?php if(empty($model->open)){
                                     $model->open = 0;
                                 }?>
@@ -85,7 +88,7 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                                 <div class="col-md-12">
                                     <div id="uploader" class="uploader-content">
                                         <!--用来存放文件信息-->
-                                        <div id="autoUploader" class="uploader-zone"></div>
+                                        <div id="autoUploader" class="uploader-zone"><?php if(!empty($model->logo)):?><img class="uploader-image" src="<?=$model->logo?>"><?php endif;?></div>
                                         <div class="uploader-btns">
                                             <span>拖拽到上面区域自动上传</span>
                                             <div id="picker" class="uploader-btn"></div>
@@ -172,6 +175,7 @@ $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::c
                 }
 
                 $pic.attr('src', src);
+                $('#autoUploader').empty();
                 $('#autoUploader').append($pic);
 
             });

@@ -116,4 +116,22 @@ class UnitHelper
         }
         return $id;
     }
+
+
+    /**
+     * 获取后缀
+     * @author: liuFangShuo
+     */
+    public static function getSuffix($name = '')
+    {
+        if ( empty($name) ) {
+            return '';
+        }
+
+        $tmparr = parse_url($name);
+        $pic = $tmparr['path'];
+        $suffix = strrchr($pic, '.');
+
+        return strtolower($suffix);
+    }
 }
