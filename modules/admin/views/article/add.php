@@ -6,10 +6,10 @@
  * Time: 14:09
  */
 use app\support\widgets\JsBlock;
-use app\assets\AdminAsset;
+use app\assets\admin\AdminAsset;
 
-$this->registerCssFile('/admin/lib/summernote/summernote.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
-$this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset'])
+$this->registerCssFile('/admin/lib/summernote/summernote.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset'])
 ?>
 
 <div class="wrapper wrapper-content">

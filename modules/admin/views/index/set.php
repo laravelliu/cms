@@ -17,8 +17,8 @@ $this->registerCssFile('/admin/css/plugins/switchery/switchery.css', [AdminAsset
 $this->registerJsFile('/admin/js/plugins/iCheck/icheck.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 
 //上传
-$this->registerCssFile('/admin/lib/webuploader/webuploader.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
-$this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+$this->registerCssFile('/admin/lib/webuploader/webuploader.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 
 /*圆角选择*/
 $this->registerJsFile('/admin/js/plugins/switchery/switchery.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
