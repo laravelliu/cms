@@ -5,12 +5,12 @@
  * Date: 2017/4/26
  * Time: 15:50
  */
-use app\assets\AdminAsset;
+use app\assets\admin\AdminAsset;
 use app\support\widgets\JsBlock;
 
-$this->registerCssFile('/admin/css/plugins/dataTables/datatables.min.css', [AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
-$this->registerJsFile('/admin/js/plugins/jeditable/jquery.jeditable.js',[AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
-$this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAsset::className(), 'depends' => 'app\assets\AdminAsset']);
+$this->registerCssFile('/admin/css/plugins/dataTables/datatables.min.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/js/plugins/jeditable/jquery.jeditable.js',[AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 ?>
 
 <div class="wrapper wrapper-content animated fadeInRight">

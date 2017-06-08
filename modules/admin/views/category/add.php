@@ -5,7 +5,7 @@
  * Date: 2017/5/4
  * Time: 14:42
  */
-use app\assets\AdminAsset;
+use app\assets\admin\AdminAsset;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Html;
 

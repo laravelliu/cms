@@ -6,7 +6,7 @@
  * Time: 16:24
  */
 
-namespace app\assets;
+namespace app\assets\admin;
 
 use yii\web\AssetBundle;
 
@@ -15,7 +15,7 @@ class AdminAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web/admin';
     public $css = [
-        'css/bootstrap.min.css',
+        /*'css/bootstrap.min.css',*/
         'font-awesome/css/font-awesome.css',
         'css/animate.css',
 
@@ -27,8 +27,8 @@ class AdminAsset extends AssetBundle
     ];
     
     public $js = [
-        'js/jquery-2.1.1.js',
-        'js/bootstrap.min.js',
+        /*'js/jquery-2.1.1.js',
+        'js/bootstrap.min.js',*/
         'js/plugins/metisMenu/jquery.metisMenu.js',
         'js/plugins/slimscroll/jquery.slimscroll.min.js',
         
@@ -40,5 +40,9 @@ class AdminAsset extends AssetBundle
         'js/plugins/toastr/toastr.min.js',
         
         '/js/main.js'
+    ];
+    
+    public $depends = [
+        'app\assets\BaseAsset'
     ];
 }

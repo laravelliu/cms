@@ -5,7 +5,7 @@
  * Date: 2017/4/6
  * Time: 16:41
  */
-use app\assets\AdminAsset;
+use app\assets\admin\AdminAsset;
 
 AdminAsset::register($this);
 use yii\helpers\Url;

@@ -85,10 +85,13 @@ $config = [
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'js' => ['/admin/js/jquery-2.1.1.js']
+                    'js' => ['//code.jquery.com/jquery-2.2.4.min.js']
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
-                    'js' => ['/admin/js/bootstrap.min.js']
+                    'css' => ['//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => ['//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js']
                 ]
             ],
         ],

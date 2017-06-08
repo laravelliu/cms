@@ -1,4 +1,6 @@
 <?php
+ini_set('session.cookie_path', '/');    //子域名共享session
+ini_set('session.cookie_domain', '.lfs.cc');
 
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);

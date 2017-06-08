@@ -15,7 +15,7 @@ $action = Yii::$app->request->getUrl();
             <li class="nav-header">
                 <div class="dropdown profile-element"> 
                     <span>
-                        <img alt="image" class="img-circle" src="<?=Yii::$app->user->identity->photo?>" />
+                        <img alt="image" class="img-circle" src="<?= !empty(Yii::$app->user->identity->photo)?Yii::$app->user->identity->photo:DEFAULT_PHOTO?>" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> 
