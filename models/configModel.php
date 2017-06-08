@@ -64,7 +64,12 @@ class ConfigModel extends Model
         $model->load($this->attributes,'');
         return $model->save(false);
     }
-    
+
+    /**
+     * 加载设置
+     * @return bool
+     * @author: liuFangShuo
+     */
     public function selfLoad(){
         if(!empty($this->getConfig(['id' => 1]))){
             return $this->load($this->config->toArray(),'');

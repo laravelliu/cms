@@ -30,6 +30,7 @@ class IndexController extends BaseController
         $model->selfLoad();
         if(Yii::$app->request->isPost){
             if($model->load($post = Yii::$app->request->post()) && $model->validate()){
+
                 $model->saveConfig();
             } else {
                 $model->getErrors();

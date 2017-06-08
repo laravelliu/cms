@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\support\filter\LoginFilter;
+use yii\web\Response;
 
 class BaseController extends \app\controllers\BaseController
 {
@@ -42,5 +43,18 @@ class BaseController extends \app\controllers\BaseController
     }
 
 
+    protected function ajaxReturn($data = array(), $code = 0, $message = '')
+    {
+        $data = array(
+            'data' => $data,
+            'code' => $code,
+            'message' => $message
+        );
 
+        return \Yii::createObject([
+            'class' => 'yii\web\Response',
+            'format' => Response::FORMAT_JSON,
+            'data' => $data
+        ]);
+    }
 }

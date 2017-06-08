@@ -7,6 +7,7 @@
  */
 return [
     'hou' => 'admin/index/index',
+    'upLogo' => 'admin/uploader/web-logo',
     'login' => 'site/login',
     'logout' => 'site/logout',
     'register' => 'site/register'

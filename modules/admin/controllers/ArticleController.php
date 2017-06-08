@@ -27,7 +27,12 @@ class ArticleController extends BaseController
 
         return false;
     }
-    
+
+    /**
+     * 添加文章
+     * @return string
+     * @author: liuFangShuo
+     */
     public function actionAddArticle()
     {
         if(Yii::$app->request->isPost){
