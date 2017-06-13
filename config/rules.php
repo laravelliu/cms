@@ -6,6 +6,8 @@
  * Time: 14:17
  */
 return [
+    'contact' => 'site/contact',
+    'about' => 'site/about',
     'hou' => 'admin/index/index',
     'upLogo' => 'admin/uploader/web-logo',
     'login' => 'site/login',

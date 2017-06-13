@@ -49,7 +49,7 @@ use yii\helpers\Url;
 
             <div class="nav-wrap">
                 <nav id="mainnav" class="mainnav">
-                    <div class="menu-extra">
+                   <!-- <div class="menu-extra">
                         <ul>
                             <li id ="s" class="search-box">
                                 <a href="#search" class="flat-search"><i class="fa fa-search"></i></a>
@@ -72,12 +72,12 @@ use yii\helpers\Url;
                                         <ul class="cart_list product_list_widget">
                                             <li class="mini_cart_item">
                                                 <a href="#" class="remove" >x</a>
-                                                <a href="#"><img src="<?=$this->theme->baseUrl?>/images/products/1.jpg" alt="images">Boskke Cube</a>
+                                                <a href="#"><img src="<?/*=$this->theme->baseUrl*/?>/images/products/1.jpg" alt="images">Boskke Cube</a>
                                                 <p><span class="quantity">1 × <span class="amount">$39.00</span></span></p>
                                             </li>
                                             <li class="mini_cart_item">
                                                 <a href="#" class="remove" >x</a>
-                                                <a href="#"><img src="<?=$this->theme->baseUrl?>/images/products/2.jpg" alt="images">Cast Iron Casserole</a>
+                                                <a href="#"><img src="<?/*=$this->theme->baseUrl*/?>/images/products/2.jpg" alt="images">Cast Iron Casserole</a>
                                                 <p><span class="quantity">1 × <span class="amount">$230.00</span></span></p>
                                             </li>
                                         </ul>
@@ -93,15 +93,16 @@ use yii\helpers\Url;
                             </li>
                         </ul>
 
-                    </div><!-- /.menu-extra -->
+                    </div>--><!-- /.menu-extra -->
+
                     <ul class="menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">Company</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="portfolio.html">Gallery</a></li>
-                        <li><a href="blog.html">News</a> </li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="<?=Url::to(['/'])?>">首页</a></li>
+                        <li><a href="<?=Url::to(['/about'])?>">公司</a></li>
+                        <li><a href="services.html">服务</a></li>
+                        <li><a href="portfolio.html">运输线路</a></li>
+                        <li><a href="blog.html">新闻</a> </li>
+                        <li><a href="shop.html">购物</a></li>
+                        <li><a href="<?=Url::to(['/contact'])?>">联系我们</a></li>
                     </ul><!-- /.menu -->
                 </nav><!-- /.mainnav -->
             </div><!-- /.nav-wrap -->
