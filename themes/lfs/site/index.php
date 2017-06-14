@@ -1,4 +1,11 @@
 <?php
+use app\assets\lfs\IndexAsset;
+
+$this->registerJsFile($this->theme->baseUrl . '/js/owl.carousel.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery-validate.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery.themepunch.tools.min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery.themepunch.revolution.min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/slider.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 
 ?>
 

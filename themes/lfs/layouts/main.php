@@ -39,18 +39,6 @@ IndexAsset::register($this);
     <a class="go-top">
         <i class="fa fa-chevron-up"></i>
     </a>
-
-    <?php JsBlock::begin()?>
-    <script type="application/javascript">
-        jQuery.extend( jQuery.easing,
-            {
-                easeOutExpo: function (x, t, b, c, d) {
-                    return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
-                }
-            });
-    </script>
-
-    <?php JsBlock::end()?>
     
     <!-- Footer -->
     <?=$this->render('/layouts/footer');?>

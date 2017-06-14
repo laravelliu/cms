@@ -5,6 +5,12 @@
  * Date: 2017/6/13
  * Time: 15:28
  */
+use app\assets\lfs\IndexAsset;
+
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery.flexslider-min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery.magnific-popup.min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+
 ?>
 
 <!-- Page title -->
@@ -44,13 +50,13 @@
                     <div class="flexslider">
                         <ul class="slides">
                             <li>
-                                <a class="popup-gallery" href="images/about/1.jpg"><img src="images/about/1.jpg" alt="images"></a>
+                                <a class="popup-gallery" href="<?=$this->theme->baseUrl?>/images/about/1.jpg"><img src="<?=$this->theme->baseUrl?>/images/about/1.jpg" alt="images"></a>
                             </li>
                             <li>
-                                <a class="popup-gallery" href="images/about/2.jpg"><img src="images/about/2.jpg" alt="images"></a>
+                                <a class="popup-gallery" href="<?=$this->theme->baseUrl?>/images/about/2.jpg"><img src="<?=$this->theme->baseUrl?>/images/about/2.jpg" alt="images"></a>
                             </li>
                             <li>
-                                <a class="popup-gallery" href="images/about/3.jpg"><img src="images/about/3.jpg" alt="images"></a>
+                                <a class="popup-gallery" href="<?=$this->theme->baseUrl?>/images/about/3.jpg"><img src="<?=$this->theme->baseUrl?>/images/about/3.jpg" alt="images"></a>
                             </li>
                         </ul>
                     </div>
@@ -95,9 +101,9 @@
                     </div><!-- /.col-md-6 -->
 
                     <div class="col-md-6">
-                        <img src="images/img-single/1.jpg" alt="images">
+                        <img src="<?=$this->theme->baseUrl?>/images/img-single/1.jpg" alt="images">
                         <div class="flat-divider d30px"></div>
-                        <img src="images/img-single/2.jpg" alt="images">
+                        <img src="<?=$this->theme->baseUrl?>/images/img-single/2.jpg" alt="images">
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
             </div><!-- /.general -->

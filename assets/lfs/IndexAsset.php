@@ -20,15 +20,11 @@ class IndexAsset extends AssetBundle{
     ];
 
     public $js = [
-        'js/owl.carousel.js',
+        'js/jquery.easing.js',
         'js/jquery-waypoints.js',
         'js/jquery-countTo.js',
         'js/jquery.cookie.js',
-        'js/jquery-validate.js',
-        'js/main.js',
-        'js/jquery.themepunch.tools.min.js',
-        'js/jquery.themepunch.revolution.min.js',
-        'js/slider.js',
+        'js/main.js'
     ];
     
     public $depends = [

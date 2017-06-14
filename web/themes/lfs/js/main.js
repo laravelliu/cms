@@ -140,7 +140,7 @@
                         headerHeight = 0;
                    }                   
                    var target = $('#'+anchor).offset().top - headerHeight;
-                   $('html,body').animate({scrollTop: target}, 1000, 'easeInOutExpo');
+                   $('html,body').animate({scrollTop: target}, 1000, 'easeOutExpo');
                 }
             }
             return false;

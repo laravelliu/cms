@@ -5,6 +5,11 @@
  * Date: 2017/6/13
  * Time: 15:05
  */
+use app\assets\lfs\IndexAsset;
+
+$this->registerJsFile($this->theme->baseUrl . '/js/jquery-validate.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+$this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+
 ?>
 
 <!-- Page title -->
