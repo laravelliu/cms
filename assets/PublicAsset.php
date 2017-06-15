@@ -15,14 +15,16 @@ class PublicAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web/admin';
     public $css = [
-        'css/bootstrap.min.css',
         'font-awesome/css/font-awesome.css',
         'css/animate.css',
         'css/style.css',
     ];
-    
+
     public $js = [
-        "js/jquery-2.1.1.js",
-        "js/bootstrap.min.js"
+
+    ];
+    
+    public $depends = [
+        'app\assets\BaseAsset'
     ];
 }

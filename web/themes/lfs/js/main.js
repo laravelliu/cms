@@ -438,6 +438,19 @@
         }
     };           
 
+    var baiduMap = function () {
+        if(document.getElementById("flat-map")){
+            var map = new BMap.Map("flat-map");            // 创建Map实例
+            map.centerAndZoom(new BMap.Point(116.4035,39.915),8);  //初始化时，即可设置中心点和地图缩放级别。
+            map.enableScrollWheelZoom(true);
+            map.disableDragging();     //禁止拖拽
+            setTimeout(function(){
+                map.enableDragging();   //两秒后开启拖拽
+                //map.enableInertialDragging();   //两秒后开启惯性拖拽
+            }, 2000);
+        }
+    };
+
     var swClick = function () {
         function activeLayout () {
             $(".switcher-container" ).on( "click", "a.sw-light", function() {
@@ -599,9 +612,9 @@
     };
 
     var retinaLogos = function() {
-      var retina = window.devicePixelRatio > 1 ? true : false;
+        var retina = window.devicePixelRatio > 1 ? true : false;
         if( retina ) {
-            $( '.header .logo' ).find('img').attr( {src:'./themes/lfs/images/logo.png',width:'246',height:'60'} );
+            $( '.header .logo' ).find('img').attr( {src:'/themes/lfs/images/logo.png',width:'246',height:'60'} );
         }
     };   
 
@@ -652,7 +665,8 @@
         
        /* flatSearch(); */
         onepage_nav();     
-        googleMap();
+        //googleMap();
+        baiduMap();
         goTop();        
         swClick();
         popupGallery();

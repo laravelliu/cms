@@ -6,9 +6,7 @@
  * Time: 16:38
  */
 use app\assets\lfs\IndexAsset;
-use app\support\widgets\JsBlock;
 use yii\helpers\Html;
-$this->title='主题lfs';
 
 IndexAsset::register($this);
 ?>
@@ -19,7 +17,7 @@ IndexAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(THEME_NAME.'-'.$this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="header-sticky page-loading">

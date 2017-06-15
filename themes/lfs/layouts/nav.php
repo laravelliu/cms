@@ -6,6 +6,9 @@
  * Time: 19:54
  */
 use yii\helpers\Url;
+
+$categorys = $this->params['category'];
+
 ?>
 <div class="site-header header-v2">
     <div class="flat-top">
@@ -39,7 +42,7 @@ use yii\helpers\Url;
     <header id="header" class="header">
         <div class="header-wrap">
             <div id="logo" class="logo">
-                <a href="index.html">
+                <a href="<?=Url::to(['/'])?>">
                     <img src="<?=$this->theme->baseUrl?>/images/logo.png" alt="images">
                 </a>
             </div><!-- /.logo -->
@@ -94,15 +97,14 @@ use yii\helpers\Url;
                         </ul>
 
                     </div>--><!-- /.menu-extra -->
-
                     <ul class="menu">
                         <li><a href="<?=Url::to(['/'])?>">首页</a></li>
-                        <li><a href="<?=Url::to(['/about'])?>">公司</a></li>
-                        <li><a href="services.html">服务</a></li>
-                        <li><a href="portfolio.html">运输线路</a></li>
-                        <li><a href="blog.html">新闻</a> </li>
-                        <li><a href="shop.html">购物</a></li>
-                        <li><a href="<?=Url::to(['/contact'])?>">联系我们</a></li>
+                            <?php if(!empty($categorys)):?>
+                                <?php foreach ($categorys as $category):?>
+                                <li><a href="<?=Url::to([empty($category->url) ? '/' : $category->url])?>"><?=$category->name?></a></li>
+                            <?php endforeach;?>
+                        <?php endif;?>
+
                     </ul><!-- /.menu -->
                 </nav><!-- /.mainnav -->
             </div><!-- /.nav-wrap -->

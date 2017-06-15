@@ -18,9 +18,9 @@ use yii\helpers\Url;
                                 <div class="col-md-4">
                                     <div class="counter">
                                         <div class="counter-image"><i class="fa fa-building-o"></i></div>
-                                        <div class="numb-count" data-to="23" data-speed="3000" data-waypoint-active="yes">23</div>
+                                        <div class="numb-count" data-to="7310" data-speed="3000" data-waypoint-active="yes">7310</div>天
                                         <div class="counter-title">
-                                            Offices worldwide
+                                            经营时间
                                         </div>
                                     </div>
                                 </div><!-- /.col-md-4 -->
@@ -28,9 +28,9 @@ use yii\helpers\Url;
                                 <div class="col-md-4">
                                     <div class="counter ft-style1">
                                         <div class="counter-image"><i class="fa fa-group"></i></div>
-                                        <div class="numb-count" data-to="14" data-speed="3000" data-waypoint-active="yes">14</div>
+                                        <div class="numb-count" data-to="29248" data-speed="3000" data-waypoint-active="yes">29248</div>次
                                         <div class="counter-title">
-                                            Hardworking people
+                                            服务次数
                                         </div>
                                     </div>
                                 </div><!-- /.col-md-4 -->
@@ -38,9 +38,9 @@ use yii\helpers\Url;
                                 <div class="col-md-4">
                                     <div class="counter ft-style2">
                                         <div class="counter-image"><i class="fa fa-globe"></i></div>
-                                        <div class="numb-count" data-to="15" data-speed="3000" data-waypoint-active="yes">15</div>
+                                        <div class="numb-count" data-to="258" data-speed="3000" data-waypoint-active="yes">258</div>
                                         <div class="counter-title">
-                                            Countries covered
+                                            覆盖省市
                                         </div>
                                     </div>
                                 </div><!-- /.col-md-4 -->
@@ -72,7 +72,7 @@ use yii\helpers\Url;
                 <div class="col-md-3">
                     <div class="widge widget_text">
                         <div class="textwidget">
-                            <h2>canava - business, transport, logistic &amp; warehouse.</h2>
+                            <h2>唐山老六货栈 - 业务,短途运输,长途运输,搬家.</h2>
                         </div>
                     </div><!-- /.widget_text -->
                 </div><!-- /.col-md-3 -->

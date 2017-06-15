@@ -26,7 +26,7 @@ $config = [
                 'basePath' => '@app/themes/' . THEME_NAME,
                 'baseUrl' => '@web/themes/' . THEME_NAME,
                 'pathMap' => [
-                    '@app/views' => '@app/themes/' . THEME_NAME,
+                    '@app/views' => '@app/themes/' . THEME_NAME
                 ],
             ],
         ],

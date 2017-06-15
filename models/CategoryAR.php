@@ -12,7 +12,9 @@ use Yii;
  * @property string $desc
  * @property string $logo
  * @property integer $sort
+ * @property string $url
  * @property integer $target
+ * @property integer $type
  * @property string $name
  * @property integer $is_deleted
  * @property integer $create_time
@@ -39,10 +41,10 @@ class CategoryAR extends \app\models\BaseAR
             ['name', 'validateName'],
             ['sort', 'required', 'message'=>'排序不能为空'],
             ['sort', 'number', 'message' => '不能为非数字'],
-            [['pid', 'sort', 'target', 'is_deleted'], 'integer'],
+            [['pid', 'sort', 'type', 'target', 'is_deleted'], 'integer'],
             [['desc'], 'string', 'max' => 64],
             [['logo'], 'string', 'max' => 255],
-            [['name'], 'string', 'max' => 32],
+            [['url', 'name'], 'string', 'max' => 32],
         ];
     }
 
@@ -57,7 +59,9 @@ class CategoryAR extends \app\models\BaseAR
             'desc' => 'Desc',
             'logo' => 'Logo',
             'sort' => 'Sort',
+            'url' => 'Url',
             'target' => 'Target',
+            'type' => 'Type',
             'name' => 'Name',
             'is_deleted' => 'Is Deleted',
             'create_time' => 'Create Time',
@@ -95,10 +99,11 @@ class CategoryAR extends \app\models\BaseAR
     /**
      * 获取分类列表
      * @param bool $level
+     * @param array $order
      * @return array|\yii\db\ActiveRecord[]
      * @author: liuFangShuo
      */
-    public function getCategoryList($level = false)
+    public function getCategoryList($level = false, $order = ['update_time' => SORT_DESC])
     {
         $sql = $this->find()->where(['is_deleted' => STATUS_FALSE]);
 
@@ -106,7 +111,7 @@ class CategoryAR extends \app\models\BaseAR
             $sql->andWhere(['pid' => $level]);
         }
 
-        return $sql->orderBy(['update_time' => SORT_DESC])->all();
+        return $sql->orderBy($order)->all();
 
     }
 }

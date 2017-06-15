@@ -57,4 +57,5 @@ class ConfigAR extends \app\models\BaseAR
             'footer' => 'Footer',
         ];
     }
+    
 }

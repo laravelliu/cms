@@ -1,5 +1,4 @@
 <?php
-var_dump('等待测试');exit;
 ini_set('session.cookie_path', '/');    //子域名共享session
 ini_set('session.cookie_domain', '.lfs.cc');
 

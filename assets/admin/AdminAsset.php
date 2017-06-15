@@ -38,7 +38,7 @@ class AdminAsset extends AssetBundle
         
         '/js/main.js'
     ];
-    
+
     public $depends = [
         'app\assets\BaseAsset'
     ];
