@@ -9,7 +9,7 @@
 namespace app\controllers;
 
 use yii\web\Response;
-use yii\base\Controller;
+use yii\web\Controller;
 
 class BasicController extends Controller
 {

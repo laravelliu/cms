@@ -8,8 +8,8 @@ use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use yii\helpers\Url;
+use app\controllers\BaseController;
 
 class SiteController extends BaseController
 {
@@ -132,16 +132,7 @@ class SiteController extends BaseController
             'model' => $model,
         ]);*/
     }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+    
 
     /**
      * 错误页面

@@ -7,6 +7,8 @@
  */
 use app\assets\lfs\IndexAsset;
 
+$this->title = $cateInfo->name;
+$this->params['breadcrumbs'][] = $cateInfo->name;
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery-validate.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
@@ -20,28 +22,14 @@ $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h2>联系我们</h2>
+                    <h2><?=$cateInfo->name?></h2>
                 </div><!-- /.page-title-heading -->
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
-<div class="page-breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="flat-wrapper">
-                <div class="breadcrumbs">
-                    <h2 class="trail-browse">You are here:</h2>
-                    <ul class="trail-items">
-                        <li class="trail-item"><a href="index-v2.html">Home</a></li>
-                        <li>联系我们</li>
-                    </ul>
-                </div><!-- /.breadcrumbs -->
-            </div><!-- /.flat-wrapper -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.page-breadcrumbs -->
+<?=$this->render('/layouts/breadcrumbs');?>
 
 <div class="flat-row">
     <div class="container">

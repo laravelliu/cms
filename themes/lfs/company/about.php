@@ -6,6 +6,9 @@
  * Time: 15:28
  */
 use app\assets\lfs\IndexAsset;
+use yii\helpers\Url;
+$this->title = $cateInfo->name;
+$this->params['breadcrumbs'][] = $cateInfo->name;
 
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery.flexslider-min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
@@ -19,28 +22,14 @@ $this->registerJsFile($this->theme->baseUrl . '/js/jquery.magnific-popup.min.js'
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h2>About us</h2>
+                    <h2><?=$cateInfo->name?></h2>
                 </div><!-- /.page-title-heading -->
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
-<div class="page-breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="flat-wrapper">
-                <div class="breadcrumbs">
-                    <h2 class="trail-browse">You are here:</h2>
-                    <ul class="trail-items">
-                        <li class="trail-item"><a href="index-v2.html">Home</a></li>
-                        <li>About us</li>
-                    </ul>
-                </div><!-- /.breadcrumbs -->
-            </div><!-- /.flat-wrapper -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.page-breadcrumbs -->
+<?=$this->render('/layouts/breadcrumbs');?>
 
 <div class="flat-row flat-general sidebar-right pad-bottom75px">
     <div class="container">
@@ -114,31 +103,28 @@ $this->registerJsFile($this->theme->baseUrl . '/js/jquery.magnific-popup.min.js'
                         <div class="widget widget_nav_menu">
                             <ul class="nav_menu">
                                 <li class="menu-item">
-                                    <a class="active" href="about.html">About us</a>
+                                    <a class="active" href="about.html">关于我们</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="company-history.html">Company history</a>
+                                    <a href="company-history.html">公司历史</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="our-people.html">our people</a>
+                                    <a href="our-people.html">我们团队</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="partners.html">Partners</a>
+                                    <a href="partners.html">合作伙伴</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="careers.html">Careers</a>
+                                    <a href="careers.html">荣誉</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="faq.html">faq</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="testimonials.html">Testimonials</a>
+                                    <a href="testimonials.html">公司安全</a>
                                 </li>
                             </ul>
                         </div><!-- /.widget_nav_menu -->
 
                         <div class="widget widget_recent_entries">
-                            <h4 class="widget-title">Company news</h4>
+                            <h4 class="widget-title">公司新闻</h4>
                             <ul>
                                 <li>
                                     <a href="blog-single.html">Raising productivity &amp; morale in the warehouse</a>
@@ -158,9 +144,9 @@ $this->registerJsFile($this->theme->baseUrl . '/js/jquery.magnific-popup.min.js'
                         <div class="widget widget_text">
                             <div class="textwidget">
                                 <div class="content-text">
-                                    <h4 class="title">How can we help you?</h4>
+                                    <h4 class="title">我们怎样帮到你?</h4>
                                     <p>Our customer service standards provide information on how we will handle your enquiry. There is also compliments and complaints information to help you when you lodge feedback with us.</p>
-                                    <a class="button white" href="#">Contact Us<i class="fa fa-chevron-right"></i></a>
+                                    <a class="button white" href="<?=Url::to(['/contact','cid'=>5])?>">联系我们<i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div><!-- /.textwidget -->
                         </div><!-- /.widget_text -->

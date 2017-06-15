@@ -101,7 +101,7 @@ $categorys = $this->params['category'];
                         <li><a href="<?=Url::to(['/'])?>">首页</a></li>
                             <?php if(!empty($categorys)):?>
                                 <?php foreach ($categorys as $category):?>
-                                <li><a href="<?=Url::to([empty($category->url) ? '/' : $category->url])?>"><?=$category->name?></a></li>
+                                <li><a href="<?=Url::to([empty($category->url) ? '/' : $category->url,'cid' => $category->id])?>"><?=$category->name?></a></li>
                             <?php endforeach;?>
                         <?php endif;?>
 

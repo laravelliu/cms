@@ -79,6 +79,16 @@ class CategoryAR extends \app\models\BaseAR
        return $this->findOne(['name' => $name, 'is_deleted' => STATUS_FALSE]);
     }
 
+    /**
+     * 根据ID获取分类
+     * @return static
+     * @author: liuFangShuo
+     */
+    public function getCategoryById($id)
+    {
+        return $this->findOne(['id' => $id, 'is_deleted' => STATUS_FALSE]);
+    }
+
 
     /**
      * 检查名称是否重复

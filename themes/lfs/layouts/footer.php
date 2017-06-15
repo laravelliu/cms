@@ -6,6 +6,7 @@
  * Time: 19:51
  */
 use yii\helpers\Url;
+$config = $this->params['config'];
 ?>
 <footer class="footer">
     <div class="content-bottom-widgets">
@@ -79,7 +80,7 @@ use yii\helpers\Url;
 
                 <div class="col-md-3">
                     <div class="widget widget_recent_entries">
-                        <h4 class="widget-title">Recent News</h4>
+                        <h4 class="widget-title">近期新闻</h4>
                         <ul>
                             <li>
                                 <a href="blog-single.html">Raising productivity &amp; morale in the warehouse</a>
@@ -95,7 +96,7 @@ use yii\helpers\Url;
 
                 <div class="col-md-3">
                     <div class="widget widget_nav_menu">
-                        <h3 class="widget-title">Information</h3>
+                        <h3 class="widget-title">导航</h3>
                         <div class="menu-footer-menu-container">
                             <ul class="menu-footer-menu">
                                 <li><a href="#">Home</a></li>
@@ -119,7 +120,7 @@ use yii\helpers\Url;
 
                 <div class="col-md-3">
                     <div class="widget widget_text information">
-                        <h3 class="widget-title">Contact Us</h3>
+                        <h3 class="widget-title">联系我们</h3>
                         <div class="textwidget">
                             <p><strong>66 Nicholson Street Buffalo New York US 14214</strong></p>
                             <p>
@@ -150,7 +151,7 @@ use yii\helpers\Url;
                         </div>
                         <div class="copyright">
                             <div class="copyright-content">
-                                Copyright &copy; 2017.Company name All rights reserved.<a href="<?=Url::to(['/'])?>">老刘配货</a>
+                                <a href="<?=Url::to(['/'])?>"><?=$config->name?></a> 拥有最终所有权 <?=$config->footer?>
                             </div>
                         </div>
                     </div><!-- /.ft-wrap -->

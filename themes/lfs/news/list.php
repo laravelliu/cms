@@ -6,7 +6,7 @@
  * Time: 14:17
  */
 use app\assets\lfs\IndexAsset;
-use yii\widgets\Breadcrumbs;
+
 $this->title = '新闻';
 $this->params['breadcrumbs'][] = '新闻';
 $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
@@ -27,27 +27,7 @@ $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::cla
     </div><!-- /.container -->
 </div><!-- /.page-title -->
 
-<div class="page-breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="flat-wrapper">
-                <div class="breadcrumbs">
-                    <h2 class="trail-browse">You are here:</h2>
-                    <?= Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        'options' => ['class' => 'trail-items'],
-                        'itemTemplate' => '<li class="trail-item">{link}</li>'
-                    ]) ?>
-
-                    <!--<ul class="trail-items">
-                        <li class="trail-item"><a href="index-v2.html">Home</a></li>
-                        <li>News</li>
-                    </ul>-->
-                </div><!-- /.breadcrumbs -->
-            </div><!-- /.flat-wrapper -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.page-breadcrumbs -->
+<?=$this->render('/layouts/breadcrumbs');?>
 
 <div class="blog">
     <div class="container">
