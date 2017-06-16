@@ -60,10 +60,10 @@ $this->registerJsFile($this->theme->baseUrl . '/js/jquery.magnific-popup.min.js'
                 <p>From our experienced drivers to our knowledgeable office staff, Canava Transport has the desire and commitment to work hand-in-hand to develop transportation solution that is truly customized to your needs.</p>
 
                 <div class="promobox">
-                    <h5 class="promobox-title mag-top0px">We will take care of your cargo or your passenger and deliver them safe and on time.</h5>
+                    <h5 class="promobox-title mag-top0px">我们会照顾好您的货物或乘客，并按时交付。</h5>
                     <div class="group-btn">
-                        <a class="button black" href="contact.html">contact us <i class="fa fa-chevron-right"></i></a>
-                        <a class="button outline" href="services.html">view services <i class="fa fa-chevron-right"></i></a>
+                        <a class="button black" href="<?=Url::to(['/contact'])?>">联系我们<i class="fa fa-chevron-right"></i></a>
+                        <a class="button outline" href="<?=Url::to(['/service'])?>">了解服务<i class="fa fa-chevron-right"></i></a>
                     </div>
                 </div><!-- /.promobox -->
 

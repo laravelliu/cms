@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\CategoryAR;
+use app\models\CompanyModel;
 use Yii;
 
 class CompanyController extends BaseController
@@ -23,7 +24,8 @@ class CompanyController extends BaseController
         if($cateId === 0){
             return $this->goHome();
         }
-        
+
+        //获取此分类
         $model = new CategoryAR();
         $categoryInfo = $model->getCategoryById($cateId);
         
@@ -32,7 +34,12 @@ class CompanyController extends BaseController
         } else {
           $this->_data['cateInfo'] =  $categoryInfo;
         }
-        
+
+        //获取公司信息
+        $model = new CompanyModel();
+        $companyInfo = $model->getCompanyList(4);
+
+        $this->_data['companyInfo'] = $companyInfo;
         return $this->render('contact', $this->_data);
     }
 

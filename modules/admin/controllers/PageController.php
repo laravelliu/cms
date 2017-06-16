@@ -8,5 +8,10 @@ class PageController extends \yii\web\Controller
     {
         return $this->render('index');
     }
+    
+    public function actionAdd()
+    {
+        return $this->render('add');
+    }
 
 }

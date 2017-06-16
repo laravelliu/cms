@@ -34,49 +34,21 @@ $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1
 <div class="flat-row">
     <div class="container">
         <div class="row">
+            <?php foreach ($companyInfo as $company):?>
             <div class="col-md-3">
-                <h5 class="mag-top0px">Headquarters</h5>
+                <h5 class="mag-top0px"><?=$company['name']?></h5>
                 <p>
-                    <strong>Global Transport, New York</strong><br>
-                    66 Nicholson St. New York US<br>
-                    Tel: +012 222 989888<br>
-                    Fax: +012 222 989899<br>
-                    Email: <a class="scheme" href="mailto:info@yourdomain.com">info@yourdomain.com</a>
+                    <strong><?=$company['description']?> (<?=$company['city']?>)</strong><br>
+                    <?=$company['address']?><br>
+                    电话: <?=$company['phone']?><br>
+                    QQ: <?=$company['qq']?><br>
+                    <?php if(!empty($company['email'])):?>
+                    邮箱: <a class="scheme" href="mailto:<?=$company['email']?>"><?=$company['email']?></a>
+                    <?php endif;?>
                 </p>
             </div><!-- /.col-md-3 -->
+            <?php endforeach;?>
 
-            <div class="col-md-3">
-                <h5 class="mag-top0px">canava<span class="scheme">england</span></h5>
-                <p>
-                    <strong>Headquarters (London Office)</strong><br>
-                    6-8 Spring St, London<br>
-                    Tel: +012 222 989888<br>
-                    Fax: +012 222 989899<br>
-                    Email: <a class="scheme" href="mailto:info@yourdomain.com">info@yourdomain.com</a>
-                </p>
-            </div><!-- /.col-md-3 -->
-
-            <div class="col-md-3">
-                <h5 class="mag-top0px">canava<span class="scheme">italy</span></h5>
-                <p>
-                    <strong>Headquarters (Rome Office)</strong><br>
-                    7 Mario Der Rossi, Roma<br>
-                    Tel: +012 222 989888<br>
-                    Fax: +012 222 989899<br>
-                    Email: <a class="scheme" href="mailto:info@yourdomain.com">info@yourdomain.com</a>
-                </p>
-            </div><!-- /.col-md-3 -->
-
-            <div class="col-md-3">
-                <h5 class="mag-top0px">canava<span class="scheme">germany</span></h5>
-                <p>
-                    <strong>Headquarters (Munich Office)</strong><br>
-                    Schwanthaler Straße 75a<br>
-                    Tel: +012 222 989888<br>
-                    Fax: +012 222 989899<br>
-                    Email: <a class="scheme" href="mailto:info@yourdomain.com">info@yourdomain.com</a>
-                </p>
-            </div><!-- /.col-md-3 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.flat-row -->
@@ -96,17 +68,17 @@ $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1
         <div class="row">
             <div class="col-md-4">
                 <div class="flat-contact-us">
-                    <h4 class="flat-title-section style mag-top0px">Opening <span>hours</span></h4>
-                    <p>Find out opening hours and information for Canava Transport. Thank you !</p>
+                    <h4 class="flat-title-section style mag-top0px">工作 <span>时间</span></h4>
+                    <p>我们将7 X 24小时竭诚为您服务!</p>
                 </div>
                 <div class="flat-divider d20px"></div>
                 <ul class="iconlist">
-                    <li><i class="fa fa-clock-o"></i> <strong>Monday:</strong> 08:00 a.m – 06:00 p.m</li>
-                    <li><i class="fa fa-clock-o"></i> <strong>Tuesday:</strong> 08:00 a.m – 06:00 p.m</li>
-                    <li><i class="fa fa-clock-o"></i> <strong>Wednesday:</strong> 08:00 a.m – 06:00 p.m</li>
-                    <li><i class="fa fa-clock-o"></i> <strong>Thursday:</strong> 08:00 a.m – 06:00 p.m</li>
-                    <li><i class="fa fa-clock-o"></i> <strong>Friday:</strong> 08:00 a.m – 06:00 p.m</li>
-                    <li><i class="fa fa-clock-o"></i> <strong>Saturday – Sunday:</strong> Closed</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期一:</strong> 06:00 a.m – 10:00 p.m</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期二:</strong> 06:00 a.m – 10:00 p.m</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期三:</strong> 06:00 a.m – 10:00 p.m</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期四:</strong> 06:00 a.m – 10:00 p.m</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期五:</strong> 06:00 a.m – 10:00 p.m</li>
+                    <li><i class="fa fa-clock-o"></i> <strong>星期六／星期日:</strong> 06:00 a.m – 6:00 p.m(开个小差)</li>
                 </ul>
 
                 <div class="flat-divider d20px"></div>
