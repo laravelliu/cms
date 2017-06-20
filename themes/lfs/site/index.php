@@ -1,12 +1,15 @@
 <?php
 use app\assets\lfs\IndexAsset;
-
+use app\support\widgets\JsBlock;
 $this->registerJsFile($this->theme->baseUrl . '/js/owl.carousel.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery-validate.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery.themepunch.tools.min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery.themepunch.revolution.min.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/slider.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
+
+$mainAddress = $this->params['mainAddress'];
+$location = explode(',',$mainAddress['localtion']);
 
 ?>
 
@@ -597,3 +600,6 @@ $this->registerJsFile('//api.map.baidu.com/api?v=2.0&ak=eVjvzAbpMnEFSq2L8fYbNiz1
     </div><!-- /.container -->
 </div><!-- /.flat-row -->
 
+<?php JsBlock::begin()?>
+        var local = {'h':<?=$location[0]?>,'w':<?=$location[1]?>};
+<?php JsBlock::end()?>

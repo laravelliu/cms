@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 use app\models\CategoryAR;
+use app\models\CompanyModel;
 use app\models\ConfigModel;
 use yii\base\Exception;
 
@@ -32,8 +33,12 @@ class BaseController extends BasicController
         $categoryModel = new CategoryAR();
         $categoryList = $categoryModel->getCategoryList(0, ['sort' => SORT_ASC]);
         $this->view->params['category'] = $categoryList;
-        
-        
+
+        //获取主要公司地址
+        $addressModel = new CompanyModel();
+        $adress = $addressModel->getMainCompany();
+        $this->view->params['mainAddress'] = $adress;
+
     }
 
     /**

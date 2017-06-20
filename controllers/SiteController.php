@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\CompanyModel;
 use app\models\RegisterForm;
 use Yii;
 use yii\base\Exception;
@@ -9,7 +10,6 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use yii\helpers\Url;
-use app\controllers\BaseController;
 
 class SiteController extends BaseController
 {

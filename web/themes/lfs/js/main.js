@@ -441,13 +441,25 @@
     var baiduMap = function () {
         if(document.getElementById("flat-map")){
             var map = new BMap.Map("flat-map");            // 创建Map实例
-            map.centerAndZoom(new BMap.Point(116.4035,39.915),8);  //初始化时，即可设置中心点和地图缩放级别。
-            map.enableScrollWheelZoom(true);
-            map.disableDragging();     //禁止拖拽
-            setTimeout(function(){
-                map.enableDragging();   //两秒后开启拖拽
-                //map.enableInertialDragging();   //两秒后开启惯性拖拽
-            }, 2000);
+            map.centerAndZoom(new BMap.Point(local.h,local.w),16);  //初始化时，即可设置中心点和地图缩放级别。
+
+            //创建控件
+            var navigationControl = new BMap.NavigationControl({
+                // 靠左上角位置
+                anchor: BMAP_ANCHOR_TOP_LEFT,
+                // LARGE类型
+                type: BMAP_NAVIGATION_CONTROL_LARGE,
+                // 启用显示定位
+                enableGeolocation: true
+            });
+
+            map.addControl(navigationControl);
+
+            map.disableScrollWheelZoom();//禁止滚轮放大
+            map.disableDoubleClickZoom();//禁止双击放大
+            map.disableInertialDragging();
+            //map.enableContinuousZoom();
+            //map.disableDragging();     //禁止拖拽
         }
     };
 

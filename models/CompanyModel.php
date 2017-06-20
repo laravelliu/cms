@@ -73,5 +73,19 @@ class CompanyModel extends Model
 
         return $sql->asArray()->all();
     }
+
+    /**
+     * 获取主要的地址
+     * @author: liuFangShuo
+     */
+    public function getMainCompany()
+    {
+        $address =  $this->getCompanyList(1);
+        if(!empty($address)){
+            $address = $address[0];
+        }
+
+        return $address;
+    }
     
 }

@@ -8,6 +8,7 @@
 use yii\helpers\Url;
 
 $categorys = $this->params['category'];
+$mainAddress = $this->params['mainAddress'];
 
 ?>
 <div class="site-header header-v2">
@@ -17,9 +18,13 @@ $categorys = $this->params['category'];
                 <div class="flat-wrapper">
                     <div class="custom-info">
                         <span>联系我们?</span>
-                        <span><i class="fa fa-reply"></i>565325162@qq.com</span>
-                        <span><i class="fa fa-map-marker"></i>唐山市胜利桥南200米老六配货</span>
-                        <span><i class="fa fa-phone"></i>13731512960</span>
+                        <?php if(empty($mainAddress['email'])): ?>
+                        <span><i class="fa fa-reply"></i><?=$mainAddress['qq']?></span>
+                        <?php else:?>
+                            <span><i class="fa fa-reply"></i><?=$mainAddress['email']?></span>
+                        <?php endif;?>
+                        <span><i class="fa fa-map-marker"></i><?=$mainAddress['city']?><?=$mainAddress['address']?></span>
+                        <span><i class="fa fa-phone"></i><?=$mainAddress['phone']?></span>
                     </div>
 
                     <div class="social-links">

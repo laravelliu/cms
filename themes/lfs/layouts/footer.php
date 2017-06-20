@@ -7,6 +7,8 @@
  */
 use yii\helpers\Url;
 $config = $this->params['config'];
+$mainAddress = $this->params['mainAddress'];
+
 ?>
 <footer class="footer">
     <div class="content-bottom-widgets">
@@ -122,14 +124,11 @@ $config = $this->params['config'];
                     <div class="widget widget_text information">
                         <h3 class="widget-title">联系我们</h3>
                         <div class="textwidget">
-                            <p><strong>66 Nicholson Street Buffalo New York US 14214</strong></p>
+                            <p><strong><?=$mainAddress['city']?><?=$mainAddress['address']?></strong></p>
                             <p>
-                                <i class="fa fa-phone"></i>  001-123-456-7890<br>
-                                <i class="fa fa-envelope"></i>themesflat@gmail.com
-                            </p>
-                            <p>
-                                <i class="fa fa-phone"></i>  007-123-456-7890<br>
-                                <i class="fa fa-envelope"></i>themesflat@gmail.com
+                                <i class="fa fa-phone"></i><?=$mainAddress['phone']?><br>
+                                <i class="fa fa-envelope"></i><?=$mainAddress['email']?><br>
+                                <i class="fa fa-envelope"></i><?=$mainAddress['qq']?>
                             </p>
                         </div>
                     </div>
