@@ -113,25 +113,6 @@ class SiteController extends BaseController
 
         return $this->goHome();
     }
-
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
-        return $this->render('contact');
-       /* $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);*/
-    }
     
 
     /**
@@ -153,13 +134,14 @@ class SiteController extends BaseController
         if ($exception) {
             $message = Yii::t('yii', '肯定是哪个程序猿偷懒了。');
             $code = $exception->statusCode;
+        } else {
+            $message = Yii::t('yii','测试');
         }
-
         if(in_array($code,['404','500'])){
-            return $this->renderPartial($code);
+            return $this->render($code);
         }
 
-        return $this->renderPartial('error', [
+        return $this->render('error', [
             'name' => $name,
             'message' => $message,
             'exception' => $exception,
@@ -185,4 +167,5 @@ class SiteController extends BaseController
 
         return $this->render('register', ['model' => $model]);
     }
+
 }
