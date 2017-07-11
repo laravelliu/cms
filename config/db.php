@@ -5,8 +5,8 @@ if (YII_ENV_PROD) {
     $db = [
         'class' => 'yii\db\Connection',
         'dsn' => 'mysql:host=127.0.0.1;dbname=lfscms',
-        'username' => 'root',
-        'password' => 'Lfs@qq.com',
+        'username' => 'lfs',
+        'password' => 'lfs@laoliu',
         'charset' => 'utf8',
     ];
     
