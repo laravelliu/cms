@@ -31,7 +31,19 @@ class BaseController extends BasicController
 
         //获取分类
         $categoryModel = new CategoryAR();
-        $categoryList = $categoryModel->getCategoryList(0, ['sort' => SORT_ASC]);
+        $categoryListArr = $categoryModel->getCategoryList(false, ['pid'=>SORT_ASC, 'sort' => SORT_ASC]);
+        $categoryList = [];
+
+        if(!empty($categoryListArr)){
+            foreach ($categoryListArr as $key => $value) {
+                if($value->pid == 0){
+                    $categoryList[$value->id] = $value->toArray();
+                } else {
+                    $categoryList[$value->pid]['son'][$value->id] =$value->toArray();
+                }
+            }
+        }
+
         $this->view->params['category'] = $categoryList;
 
         //获取主要公司地址

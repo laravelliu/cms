@@ -20,4 +20,9 @@ class ServiceController extends BaseController
     {
         return $this->render('list');
     }
+    
+    public function actionDetail()
+    {
+        return $this->render('detail');
+    }
 }

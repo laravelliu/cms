@@ -106,7 +106,17 @@ $mainAddress = $this->params['mainAddress'];
                         <li><a href="<?=Url::to(['/'])?>">首页</a></li>
                             <?php if(!empty($categorys)):?>
                                 <?php foreach ($categorys as $category):?>
-                                <li><a href="<?=Url::to([empty($category->url) ? '/' : $category->url,'cid' => $category->id])?>"><?=$category->name?></a></li>
+                                <li>
+                                    <a href="<?=Url::to([empty($category['url']) ? '/' : $category['url'],'cid' => $category['id']])?>"><?=$category['name']?></a>
+
+                                    <?php if(isset($category['son'])):?>
+                                    <ul class="submenu">
+                                        <?php foreach ($category['son'] as $subCategory):?>
+                                        <li><a href="<?=$subCategory['url']?>"><?=$subCategory['name']?></a></li>
+                                        <?php endforeach;?>
+                                    </ul><!-- /.submenu -->
+                                    <?php endif;?>
+                                </li>
                             <?php endforeach;?>
                         <?php endif;?>
 

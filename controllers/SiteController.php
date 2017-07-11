@@ -10,6 +10,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 class SiteController extends BaseController
 {
@@ -166,6 +167,20 @@ class SiteController extends BaseController
         }
 
         return $this->render('register', ['model' => $model]);
+    }
+
+    /**
+     * 搜索
+     * @author: liuFangShuo
+     */
+    public function actionSearch()
+    {
+        /*$keyword = Html::encode(Yii::$app->request->get('keyword',null));
+        if(empty($keyword)){
+            return $this->redirect(Url::to(['/']));
+        }*/
+        
+        return $this->render('search');
     }
 
 }
