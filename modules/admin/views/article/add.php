@@ -8,8 +8,11 @@
 use app\support\widgets\JsBlock;
 use app\assets\admin\AdminAsset;
 
+$this->registerCssFile('/admin/css/plugins/select2/select2.min.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerCssFile('/admin/lib/summernote/summernote.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
-$this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset'])
+$this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/js/plugins/select2/select2.full.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
+$this->registerJsFile('/admin/js/plugins/validate/jquery-validate.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 ?>
 
 <div class="wrapper wrapper-content">
@@ -25,25 +28,49 @@ $this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::cl
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" class="form-horizontal">
+                    <form method="post" class="form-horizontal" id="article">
                         <div class="form-group">
                             <label class="col-sm-1 control-label">标题</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="title" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label">作者</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="auth" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-1 control-label">分类</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <select class="select-category form-control" data-placeholder="选择分类" data-allow-clear="true" name="category" required>
+                                    <?php foreach ($categoryList as $category):?>
+                                    <option value="<?=$category->id?>"><?=$category->name?></option>
+                                    <?php endforeach;?>
+                                </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">排序</label>
+                            <div class="col-sm-9">
+                                <select class="select-sort form-control" name="sort" required>
+                                    <option value="0">顺序增加</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">图片上传</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control" name="pic" required>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-1 control-label">内容</label>
                             <div class="col-sm-9">
@@ -51,9 +78,9 @@ $this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::cl
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">排序</label>
+                            <label class="col-sm-1 control-label"></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <button class="btn" type="button">添加文章</button>
                             </div>
                         </div>
                     </form>
@@ -138,7 +165,81 @@ $this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::cl
             }
         });
 
+        //seslect2
+        $(".select-category").select2();
+        
+        $('#article').validate({
+            onKeyup : false,
+            onBlur : true,
+            sendForm : false,
+            eachValidField : function() {
 
+            },
+            eachInvalidField : function() {
+
+            },
+            valid: function(){
+
+            },
+            conditional : {
+                title : function(value) {
+                    //当邮箱地址为空时
+                    if (!value.length){
+                        return false;
+                    }
+
+                    return validateField({
+                        user_email: value
+                    });
+                },
+                auth : function(value) {
+                    //当手机号码为空时
+                    if (!value.length){
+                        return false;
+                    }
+
+                    var $result = validateField({
+                        staff_phone: value
+                    });
+
+                    if (!$result) {
+                        T_Countdown.stop(T_Countdown.i);
+                    }
+
+                    return $result;
+                },
+                sort : function () {
+
+                },
+                category : function () {
+
+                },
+                pic : function () {
+
+                }
+            },
+            description : {
+                title : {
+                    required : '请输入您的姓名'
+                },
+                auth : {
+                    required : '请输入您的qq'
+                },
+                sort : {
+                    required : '请输入您的手机号',
+                    pattern : '请输入正确的手机号',
+                    conditional : '该手机号已经绑定其他账号，请重新输入或者去反馈',
+                },
+                category : {
+                    required : '请输入语音验证码',
+                    pattern : '请输入收到的语音验证码',
+                    conditional : '请输入正确的验证码',
+                },
+                pic : {
+
+                }
+            }
+        })
     });
 </script>
 <?php JsBlock::end()?>

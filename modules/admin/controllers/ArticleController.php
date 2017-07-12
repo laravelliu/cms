@@ -7,6 +7,7 @@
  */
 namespace app\modules\admin\controllers;
 
+use app\models\CategoryAR;
 use Yii;
 class ArticleController extends BaseController
 {
@@ -35,9 +36,20 @@ class ArticleController extends BaseController
      */
     public function actionAddArticle()
     {
+        
+        if(Yii::$app->request->isGet){
+            //获取分类
+            $categoryModel =  new CategoryAR();
+            $category = $categoryModel->getAllCategoryList();
+
+            $this->_data['categoryList'] = $category;
+            return $this->render('add',$this->_data);
+        }
+        
+       
+
         if(Yii::$app->request->isPost){
 
         }
-        return $this->render('add');
     }
 }

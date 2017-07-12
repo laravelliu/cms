@@ -106,14 +106,15 @@ class CategoryAR extends \app\models\BaseAR
         return true;
     }
 
+
     /**
-     * 获取分类列表
+     * 获取所有分类列表
      * @param bool $level
      * @param array $order
      * @return array|\yii\db\ActiveRecord[]
      * @author: liuFangShuo
      */
-    public function getCategoryList($level = false, $order = ['update_time' => SORT_DESC])
+    public function getAllCategoryList($level = false, $order = ['update_time' => SORT_DESC])
     {
         $sql = $this->find()->where(['is_deleted' => STATUS_FALSE]);
 
@@ -124,4 +125,11 @@ class CategoryAR extends \app\models\BaseAR
         return $sql->orderBy($order)->all();
 
     }
+
+
+    public function getSortCategory()
+    {
+        
+    }
+    
 }
