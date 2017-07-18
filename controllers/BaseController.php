@@ -31,7 +31,7 @@ class BaseController extends BasicController
 
         //获取分类
         $categoryModel = new CategoryAR();
-        $categoryListArr = $categoryModel->getCategoryList(false, ['pid'=>SORT_ASC, 'sort' => SORT_ASC]);
+        $categoryListArr = $categoryModel->getAllCategoryList(false, ['pid'=>SORT_ASC, 'sort' => SORT_ASC]);
         $categoryList = [];
 
         if(!empty($categoryListArr)){

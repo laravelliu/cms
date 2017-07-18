@@ -25,7 +25,7 @@ class CategoryController extends BaseController
     {
         $model = new CategoryAR();
 
-        $categoryListObj = $model->getCategoryList();
+        $categoryListObj = $model->getAllCategoryList();
         $categoryList[0] = '无';
 
         if (!empty($categoryListObj)) {
