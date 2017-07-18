@@ -7,7 +7,7 @@
  */
 
 
-if(YII_ENV_DEV){
+if (YII_ENV_DEV) {
     $email= [
         'class' => 'yii\swiftmailer\Mailer',
         'useFileTransport' => false,

@@ -132,6 +132,14 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+
+    //test模块
+    $config['bootstrap'][] = 'test';
+    $config['modules']['test'] = [
+        'class' => 'app\modules\test\Module',
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        /*'allowedIPs' => ['127.0.0.1', '::1'],*/
+    ];
     
     //如果是测试环境日志保存在本地
     $config['components']['log']['targets']['error'] = [
