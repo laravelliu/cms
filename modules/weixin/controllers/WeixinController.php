@@ -17,13 +17,19 @@ class WeixinController extends Controller
     {
         $get = Yii::$app->request->get();
         $signature = $get['signature'];
+
+        $token = 'lfszuoceshi';
+        $timestamp = $get['timestamp'];
+        $notice = $get['nonce'];
+
         $echostr = $get['echostr'];
         
         if(empty($echostr)){
             return false;
         }
-        
-        $sort = sort($get,SORT_STRING);
+        $arr = [$token,$timestamp,$notice];
+
+        $sort = sort($arr,SORT_STRING);
         $str = '';
         foreach ($sort as $k => $v){
             $str .=$v;
