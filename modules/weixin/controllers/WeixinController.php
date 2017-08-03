@@ -15,6 +15,7 @@ class WeixinController extends Controller
 {
     public function actionToken()
     {
+        return false;
         $get = Yii::$app->request->get();
         $signature = $get['signature'];
 
