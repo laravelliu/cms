@@ -6,7 +6,7 @@ $email = require(__DIR__.'/mail.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','admin'],
+    'bootstrap' => ['log','admin','weixin'],
     'timeZone' => 'Asia/Chongqing', //时区
     'language' => 'zh-CN',//'zh-CN', //目标语言语言包
     //'sourceLanguage' => 'zh-CN',//源语言语言包(默认是英语)
@@ -110,6 +110,9 @@ $config = [
         //统计模块
         'total' => [
             'class' => 'app\modules\total\Module'
+        ],
+        'weixin' => [
+            'class' => 'app\modules\weixin\Module'
         ]
     ],
 
