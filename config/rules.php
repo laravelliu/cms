@@ -15,5 +15,4 @@ return [
     'logout' => 'site/logout',
     'register' => 'site/register',
     'wx' => 'weixin/weixin/token',
-    
 ];

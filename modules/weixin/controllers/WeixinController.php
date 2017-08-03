@@ -23,17 +23,18 @@ class WeixinController extends Controller
         $notice = $get['nonce'];
 
         $echostr = $get['echostr'];
-        
+
         if(empty($echostr)){
             return false;
         }
         $arr = [$token,$timestamp,$notice];
 
-        $sort = sort($arr,SORT_STRING);
+        sort($arr,SORT_STRING);
         $str = '';
-        foreach ($sort as $k => $v){
+        foreach ($arr as $k => $v){
             $str .=$v;
         }
+
         $sig =sha1($str);
 
         if($sig == $signature){
