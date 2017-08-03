@@ -32,16 +32,27 @@ class UploaderController extends BaseController
 
         return false;
     }
-    
-    public function actionArticlePic()
+
+    /**
+     * 上传
+     * @return bool|object
+     * @author: liuFangShuo
+     */
+    public function actionUpload()
     {
         if (Yii::$app->request->isPost) {
             $count = Yii::$app->request->post('count',1);
-            $res = $this->saveFile('article',$count);
+            $type = Yii::$app->request->post('type',null);
+            
+            if (empty($type)) {
+                return $this->ajaxReturn([],1,'请指定类别');
+            }
+            
+            $res = $this->saveFile($type,$count);
 
             if (!empty($res)) {
                 $data = $res;
-                return $this->ajaxReturn($data,0,'设置成功');
+                return $this->ajaxReturn($data,0,'上传成功');
             } else {
                 return $this->ajaxReturn([],1,'文件保存失败，稍后重试');
             }
