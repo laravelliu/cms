@@ -8,6 +8,7 @@
 
 namespace app\modules\weixin\controllers;
 use yii\web\Controller;
+use app\support\weixin\wxBase;
 use Yii;
 
 
@@ -43,6 +44,14 @@ class WeixinController extends Controller
         }else{
             return false;
         }
+    }
+    
+    public function actionTest()
+    {
+        $model = new wxBase();
+        $token = $model->getToken();
+        
+        var_dump($token);
     }
 
 }

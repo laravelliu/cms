@@ -23,3 +23,8 @@ define('COMPANY_NAME', 'LFS');
 define('DEFAULT_PHOTO', '/upload/portrait/c4ca4238a0b923820dcc509a6f75849b.jpg');
 
 define('ROLE_ADMIN', 1);
+
+//微信
+define('WX_URL', 'https://api.weixin.qq.com');
+define('WX_TOKEN', 'weixinToken');
+define('WX_TOKEN_TIME', 'weixinTokenTime');
