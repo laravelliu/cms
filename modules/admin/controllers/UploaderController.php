@@ -43,12 +43,13 @@ class UploaderController extends BaseController
         if (Yii::$app->request->isPost) {
             $count = Yii::$app->request->post('count',1);
             $type = Yii::$app->request->post('type',null);
-            
+            $complete = Yii::$app->request->post('complete',false);
+
             if (empty($type)) {
                 return $this->ajaxReturn([],1,'请指定类别');
             }
             
-            $res = $this->saveFile($type,$count);
+            $res = $this->saveFile($type,$count,$complete);
 
             if (!empty($res)) {
                 $data = $res;
@@ -66,10 +67,11 @@ class UploaderController extends BaseController
      * 保存
      * @param $type
      * @param int $count
+     * @param int $complete
      * @return bool|object
      * @author: liuFangShuo
      */
-    protected function saveFile($type, $count = 1)
+    protected function saveFile($type, $count = 1,$complete = false)
     {
         $fileAdd = [];
         
@@ -118,7 +120,11 @@ class UploaderController extends BaseController
             $realName = $realPath.'/'.$fileName;
 
             if($fileInfo->saveAs($realName)){
-                $fileAdd[]['address'] = $picPath.'/'.$fileName;
+                if(!$complete){
+                    $fileAdd[]['address'] = $picPath.'/'.$fileName;
+                } else {
+                    $fileAdd[]['address'] = Yii::$app->request->hostInfo . $picPath.'/'.$fileName;
+                }
             } else {
                 return null;
             }

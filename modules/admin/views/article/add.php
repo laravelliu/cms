@@ -8,12 +8,13 @@
 use app\support\widgets\JsBlock;
 use app\assets\admin\AdminAsset;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Html;
 
 $this->registerCssFile('/admin/css/plugins/select2/select2.min.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerCssFile('/admin/lib/summernote/summernote.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerJsFile('/admin/lib/summernote/summernote.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerJsFile('/admin/js/plugins/select2/select2.full.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
-$this->registerJsFile('/admin/js/plugins/validate/jquery-validate.min.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerCssFile('/admin/lib/webuploader/webuploader.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 
@@ -32,71 +33,35 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" class="form-horizontal" id="article" action="<?=Url::to(['/admin/article/add-article'])?>">
-                        <input type="hidden" name="<?= \Yii::$app->request->csrfParam; ?>" value="<?= \Yii::$app->request->getCsrfToken();?>" />
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">标题</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="title" data-required  data-describedby="title-description" data-description="title">
-                                <div class="error-info" id="title-description"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">作者</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="auth" data-required data-describedby="auth-description" data-description="auth">
-                                <div class="error-info" id="auth-description"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">分类</label>
-                            <div class="col-sm-9">
-                                <select class="select-category form-control" data-placeholder="选择分类" data-allow-clear="true" name="category" data-required data-describedby="category-description" data-description="category">
-                                    <?php foreach ($categoryList as $category):?>
-                                    <option value="<?=$category->id?>"><?=$category->name?></option>
-                                    <?php endforeach;?>
-                                </select>
-                                <div class="error-info" id="category-description"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">排序</label>
-                            <div class="col-sm-9">
-                                <select class="select-sort form-control" name="sort" data-required data-describedby="sort-description" data-description="sort">
-                                    <option value="0">顺序增加</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <div class="error-info" id="sort-description"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">图片上传</label>
-                            <div class="col-sm-9">
-                                <input type="hidden" name="picture" />
-                                <div id="picker" class="uploader-btn"></div>
-                                <div id="autoUploader" class="uploader-zone"></div>
-                            </div>
-                        </div>
+                    <?php $form = ActiveForm::begin([
+                        'options' => [
+                            'id'=>'article',
+                            'class' => 'form-horizontal'
+                        ],
+                        'fieldConfig' => [
+                            'labelOptions' => [
+                                'class' => "col-sm-1 control-label"
+                            ],
+                            'template' => "{label}<div class='col-sm-9'>{input}{error}</div>",
+                        ]
 
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">内容</label>
-                            <div class="col-sm-9">
-                                <input name="content" type="hidden" data-required data-describedby="content-description" data-description="content">
-                                <div class="summernote" id="summernote"></div>
-                                <div class="error-info" id="content-description"></div>
-                            </div>
+                    ])?>
+                    <?=$form->field($model,'name')->textInput()->label('标题');?>
+                    <?=$form->field($model,'author')->textInput()->label('作者');?>
+                    <?=$form->field($model,'category_id')->dropDownList($categoryList,['class' => 'select-category form-control','data-placeholder'=>"选择分类",'data-allow-clear'=>"true"])->label('分类');?>
+                    <?=$form->field($model,'sort')->dropDownList($sort,['class' => 'form-control'])->label('排序');?>
+                    <?=$form->field($model,'images',['template'=>"{label}<div class=\"col-sm-9\">{input}<div id=\"picker\" class=\"uploader-btn\"></div><div id=\"autoUploader\" class=\"uploader-zone\"></div>{error}</div>"])->hiddenInput()->label('上传缩略图');?>
+                    <?=$form->field($model,'content',['template'=>"{label}<div class=\"col-sm-9\">{input} <div class=\"summernote\" id=\"summernote\"></div><div class=\"error-info\" id=\"content-description\"></div>{error}</div>"])->hiddenInput()->label('内容');?>
+
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label"></label>
+                        <div class="col-sm-9">
+                            <?=Html::button('添加文章',['class' => 'btn btn-primary','type' => 'submit'])?>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label"></label>
-                            <div class="col-sm-9">
-                                <button  class="btn btn-primary" type="submit">添加文章</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+
+                    <?php ActiveForm::end()?>
+
                 </div>
             </div>
         </div>
@@ -128,14 +93,15 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
             disableDragAndDrop:true,
             callbacks:{
                 onInit: function() {
-                    console.log('Summernote is launched');
+                    //初始化
+                    //console.log('Summernote is launched');
                 },
                 onEnter: function() {
-                    console.log('Enter/Return key pressed');
+                    //console.log('Enter/Return key pressed');
                 },
 
                 onPaste: function(e) {
-                    console.log('Called event paste');
+                    //console.log('Called event paste');
                 },
                 onImageUpload: function(files) {
                     var data = new FormData();
@@ -156,7 +122,7 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
                         data: data,
                         dataType: 'json',
                         type: "post",
-                        url: "/admin/uploader/uploader",
+                        url: "<?=Url::to(['/uploader'])?>",
                         cache: false,
                         contentType: false,
                         processData: false,
@@ -174,71 +140,13 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
                     });
                 },
                 onChange: function(contents, $editable) {
-                   $("input[name='content']").val(summernote.summernote('code'));
+                   $("input[name='NewsAR[content]']").val(summernote.summernote('code'));
                 }
             }
         });
 
         //seslect2
         $(".select-category").select2();
-        
-        $('#article').validate({
-            onKeyup : false,
-            onBlur : true,
-            sendForm : true,
-            eachValidField : function() {
-                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-            },
-            eachInvalidField : function() {
-                $(this).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            valid: function(){
-
-            },
-            conditional : {
-                title : function(value) {
-
-                    if (value.length >= 32 ) {
-                        return false;
-                    }
-
-                    return true;
-
-                },
-                auth : function(value) {
-                    if (value.length >= 32 ) {
-                        return false;
-                    }
-                    return true;
-                },
-                category:function (value) {
-
-                    if(value.length == 0){
-                        return false;
-                    }
-
-                    return true;
-                }
-            },
-            description : {
-                title : {
-                    required : '请输入文章标题',
-                    conditional: '请输入少于32个汉字',
-                },
-                auth : {
-                    required : '请输入作者'
-                },
-                sort : {
-                    required : '请选择排序'
-                },
-                category : {
-                    required : '请选择分类'
-                },
-                content : {
-                    required : '请填写文章内容'
-                }
-            }
-        });
 
         /**
          * 上传
@@ -283,6 +191,7 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
             $.extend(data, {
                 _csrf:$('meta[name="csrf-token"]').attr("content"),
                 type:'article',
+                complete:true
             });
         }).on('fileQueued',function (file) {
             var $pic = $("<img>");
@@ -303,7 +212,7 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
 
         }).on('uploadSuccess',function (data,res) {
             if( res.code == 0 ){
-                $("input[name='picture']").val(res.data[0].address);
+                $("input[name='NewsAR[images]']").val(res.data[0].address);
                 lfs.successTip('上传成功');
             } else {
                 lfs.errorTip(res.message);

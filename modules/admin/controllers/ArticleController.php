@@ -8,6 +8,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\CategoryAR;
+use app\models\NewsAR;
 use Yii;
 class ArticleController extends BaseController
 {
@@ -36,18 +37,34 @@ class ArticleController extends BaseController
      */
     public function actionAddArticle()
     {
-        if(Yii::$app->request->isGet){
-            //获取分类
-            $categoryModel =  new CategoryAR();
-            $category = $categoryModel->getAllCategoryList();
+        $newsModel = new NewsAR();
 
-            $this->_data['categoryList'] = $category;
-            return $this->render('add',$this->_data);
-        }
-        
+        //获取分类
+        $categoryModel =  new CategoryAR();
+        $categoryList = $categoryModel->getAllCategoryList();
+        $category = [];
 
-        if(Yii::$app->request->isPost){
-            var_dump(Yii::$app->request->post());exit;
+        foreach ($categoryList as $k => $v){
+            $category[$v->id] = $v->name;
         }
+
+        $this->_data['categoryList'] = $category;
+        $this->_data['sort'] = [ 0 => '顺序增加', 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5'];
+
+
+        if (Yii::$app->request->isPost) {
+
+            if ($newsModel->load($post = Yii::$app->request->post()) && $newsModel->validate()) {
+                if($newsModel->save()){
+                    return $this->redirect(['article/index']);
+                }
+            } else {
+                $newsModel->getErrors();
+            }
+        }
+
+        $this->_data['model'] = $newsModel;
+        return $this->render('add',$this->_data);
+
     }
 }
