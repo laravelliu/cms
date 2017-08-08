@@ -10,7 +10,9 @@ return [
     'about' => 'company/about',
     'hou' => 'admin/index/index',
     'upLogo' => 'admin/uploader/web-logo',
+    'uploader' => 'admin/uploader/upload',
     'login' => 'site/login',
     'logout' => 'site/logout',
-    'register' => 'site/register'
+    'register' => 'site/register',
+    'wx' => 'weixin/weixin/token',
 ];

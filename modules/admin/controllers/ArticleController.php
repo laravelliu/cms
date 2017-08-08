@@ -36,7 +36,6 @@ class ArticleController extends BaseController
      */
     public function actionAddArticle()
     {
-        
         if(Yii::$app->request->isGet){
             //获取分类
             $categoryModel =  new CategoryAR();
@@ -46,10 +45,9 @@ class ArticleController extends BaseController
             return $this->render('add',$this->_data);
         }
         
-       
 
         if(Yii::$app->request->isPost){
-
+            var_dump(Yii::$app->request->post());exit;
         }
     }
 }
