@@ -29,8 +29,13 @@ phpunit.phar
 tests/_output/*
 tests/_support/_generated
 
+#网站logo
 /web/upload/logo/*
+#头像
 /web/upload/portrait/*
+#文章缩略图
 /web/upload/article/*
+#文章内图片
+/web/upload/ac/*
 
 
