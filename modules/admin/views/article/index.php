@@ -7,6 +7,7 @@
  */
 use app\assets\admin\AdminAsset;
 use app\support\widgets\JsBlock;
+use yii\helpers\Url;
 
 $this->registerCssFile('/admin/css/plugins/dataTables/datatables.min.css', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 $this->registerJsFile('/admin/js/plugins/jeditable/jquery.jeditable.js',[AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
@@ -30,7 +31,7 @@ $this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAss
                 </div>
                 <div class="ibox-content">
                     <div class="">
-                        <a href="#" class="btn btn-primary ">Add a new row</a>
+                        <a href="<?=Url::to(['/admin/article/add-article'])?>" class="btn btn-primary ">添加文章</a>
                     </div>
                     <table class="table table-striped table-bordered table-hover " id="article" >
                         <thead>
@@ -105,15 +106,6 @@ $this->registerJsFile('/admin/js/plugins/dataTables/datatables.min.js',[AdminAss
 
 
     });
-
-    /*function fnClickAddRow() {
-        $('#editable').dataTable().fnAddData( [
-            "Custom row",
-            "New row",
-            "New row",
-            "New row",
-            "New row" ] );
-
-    }*/
+    
 </script>
 <?php JsBlock::end()?>

@@ -1,7 +1,9 @@
 <?php
+use yii\helpers\ArrayHelper;
 
-$params = require(__DIR__ . '/params.php');
-$email = require(__DIR__.'/mail.php');
+$params = require (__DIR__ . '/params.php');
+$email = require (__DIR__.'/mail.php');
+$vhost = require (__DIR__.'/vhost.php');
 
 $config = [
     'id' => 'basic',
@@ -152,6 +154,7 @@ if (YII_ENV_DEV) {
     
 }
 
+
 /* 是否需要redis */
 if (NEED_REDIS) {
     $config['components']['redis'] = [
@@ -163,5 +166,8 @@ if (NEED_REDIS) {
 if (!empty($email)) {
     $config['components']['mailer'] = $email;
 }
+
+$config = ArrayHelper::merge($config,$vhost);
+
 
 return $config;

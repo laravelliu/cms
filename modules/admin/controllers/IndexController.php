@@ -40,4 +40,13 @@ class IndexController extends BaseController
         $this->_data['model'] = $model;
         return $this->render('set',$this->_data);
     }
+
+    /**
+     * 轮播图
+     * @author: liuFangShuo
+     */
+    public function actionHomeImage()
+    {
+        return $this->render('images');
+    }
 }

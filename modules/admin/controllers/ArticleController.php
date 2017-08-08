@@ -20,11 +20,7 @@ class ArticleController extends BaseController
     public function actionList()
     {
         if (Yii::$app->request->isAjax) {
-            $data =[ 'data' =>[
-                0=>['a','b','c','c','s']
-            ]];
-
-            return json_encode($data);
+           var_dump(Yii::$app->request->post());exit;
         }
 
         return false;
