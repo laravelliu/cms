@@ -19,7 +19,7 @@ $config = [
             'cookieValidationKey' => 'ShhBKWzQwRFUTB9UwRkUP9vFxaDXI85O',
         ],
 
-        'cache' => [
+        'fileCache' => [
             'class' => 'yii\caching\FileCache',
         ],
         

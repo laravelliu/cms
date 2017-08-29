@@ -1,5 +1,7 @@
 <?php
 namespace  app\controllers;
+use app\models\NewsAR;
+
 /**
  * Created by liuFangShuo.
  * User: lfs
@@ -10,7 +12,12 @@ class NewsController extends BaseController
 {
     public function actionList()
     {
-        return $this->render('list');
+        $model = new NewsAR();
+        $list = $model->getNewsList(['category_id' => 4]);
+
+        $this->_data['news'] = $list;
+        
+        return $this->render('list',$this->_data);
     }
     
     public function actionDetail()

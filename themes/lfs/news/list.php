@@ -6,6 +6,7 @@
  * Time: 14:17
  */
 use app\assets\lfs\IndexAsset;
+use yii\helpers\Url;
 
 $this->title = '新闻';
 $this->params['breadcrumbs'][] = '新闻';
@@ -36,11 +37,13 @@ $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::cla
                 <div class="main-content">
                     <div class="main-content-wrap">
                         <div class="content-inner">
+
+                            <?php foreach ($news as $k=>$v):?>
                             <article class="blog-post">
                                 <div class="entry-wrapper">
                                     <div class="entry-cover">
-                                        <a href="blog-single.html">
-                                            <img src="<?=$this->theme->baseUrl?>/images/blog/1.jpg" alt="images">
+                                        <a href="<?=Url::to(['news/detail','id' => $v->id])?>">
+                                            <img src="<?=empty($v->images)?$this->theme->baseUrl.'/images/blog/2.jpg':$v->images?>" alt="images">
                                         </a>
                                     </div><!-- /.entry-cover -->
                                     <h4 class="entry-time">
@@ -51,166 +54,25 @@ $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::cla
                                     <div class="entry-header">
                                         <div class="entry-header-content">
                                             <h4 class="entry-title">
-                                                <a href="blog-single.html">Raising productivity &amp; morale in the warehouse</a>
+                                                <a href="blog-single.html"><?=$v->name?></a>
                                             </h4>
                                             <div class="entry-meta">
                                                 <i class="fa fa-user"></i>
-                                                <span class="entry-author"><a href="#">admin</a></span>
+                                                <span class="entry-author"><a href="#"><?=$v->author?></a></span>
                                                 <i class="fa fa-folder-open"></i>
                                                 <span class="entry-categories"><a href="#">Warehouse</a></span>
                                                 <i class="fa fa-comment"></i>
-                                                <span class="entry-comments-link"><a href="#">0 Comment</a></span>
+                                                <span class="entry-comments-link"><a href="#"><?=$v->read_times?> 阅读</a></span>
                                             </div>
                                         </div><!-- /.entry-header-content -->
                                     </div><!-- /.entry-header -->
 
                                     <div class="entry-content">
-                                        <p>It’s a well-known fact that happy and motivated workers produce better results. A recent study found that happier workers were 12% more productive than their counterparts. It underlines staff morale and wellbeing is not just an HR goal: it’s fundamen...</p>
-                                        <div class="readmore"><a href="blog-single.html" class="more-link">Read more</a></div>
+                                        <div class="readmore"><a href="<?=Url::to(['news/detail','id' => $v->id])?>" class="more-link">阅读</a></div>
                                     </div><!-- /.entry-content -->
                                 </div><!-- /.entry-wrapper -->
                             </article><!-- /.blog-post -->
-
-                            <article class="blog-post">
-                                <div class="entry-wrapper">
-                                    <div class="entry-cover">
-                                        <a href="blog-single.html">
-                                            <img src="<?=$this->theme->baseUrl?>/images/blog/2.jpg" alt="images">
-                                        </a>
-                                    </div><!-- /.entry-cover -->
-                                    <h4 class="entry-time">
-                                        <span class="entry-month">Mar</span>
-                                        <span class="entry-day">25</span>
-                                    </h4>
-
-                                    <div class="entry-header">
-                                        <div class="entry-header-content">
-                                            <h4 class="entry-title">
-                                                <a href="blog-single.html">Seafield logistics goes into administration</a>
-                                            </h4>
-                                            <div class="entry-meta">
-                                                <i class="fa fa-user"></i>
-                                                <span class="entry-author"><a href="#">admin</a></span>
-                                                <i class="fa fa-folder-open"></i>
-                                                <span class="entry-categories"><a href="#">Jobs</a></span>
-                                                <i class="fa fa-comment"></i>
-                                                <span class="entry-comments-link"><a href="#">0 Comment</a></span>
-                                            </div>
-                                        </div><!-- /.entry-header-content -->
-                                    </div><!-- /.entry-header -->
-
-                                    <div class="entry-content">
-                                        <p>Seafield Logistics has gone into administration and two of its operational units have been sold. David Riley, Les Ross and Joe McLean of Grant Thornton UK LLP were appointed joint administrators of Seafield Logistics Limited on 11 June. Tthe bu...</p>
-                                        <div class="readmore"><a href="blog-single.html" class="more-link">Read more</a></div>
-                                    </div><!-- /.entry-content -->
-                                </div><!-- /.entry-wrapper -->
-                            </article><!-- /.blog-post -->
-
-                            <article class="blog-post">
-                                <div class="entry-wrapper">
-                                    <div class="entry-cover">
-                                        <a href="blog-single.html">
-                                            <img src="<?=$this->theme->baseUrl?>/images/blog/3.jpg" alt="images">
-                                        </a>
-                                    </div><!-- /.entry-cover -->
-                                    <h4 class="entry-time">
-                                        <span class="entry-month">Mar</span>
-                                        <span class="entry-day">25</span>
-                                    </h4>
-
-                                    <div class="entry-header">
-                                        <div class="entry-header-content">
-                                            <h4 class="entry-title">
-                                                <a href="blog-single.html">Transport managers grow scarce</a>
-                                            </h4>
-                                            <div class="entry-meta">
-                                                <i class="fa fa-user"></i>
-                                                <span class="entry-author"><a href="#">admin</a></span>
-                                                <i class="fa fa-folder-open"></i>
-                                                <span class="entry-categories"><a href="#">Transport</a></span>
-                                                <i class="fa fa-comment"></i>
-                                                <span class="entry-comments-link"><a href="#">0 Comment</a></span>
-                                            </div>
-                                        </div><!-- /.entry-header-content -->
-                                    </div><!-- /.entry-header -->
-
-                                    <div class="entry-content">
-                                        <p>Welcome to the Logistics Job Shop Newsletter; your need-to-know digest and analysis of the events of the past fortnight in the road transport industry. INDUSTRY NEWS Around 34% of transport managers intend to quit within five years, a new surve...</p>
-                                        <div class="readmore"><a href="blog-single.html" class="more-link">Read more</a></div>
-                                    </div><!-- /.entry-content -->
-                                </div><!-- /.entry-wrapper -->
-                            </article><!-- /.blog-post -->
-
-                            <article class="blog-post">
-                                <div class="entry-wrapper">
-                                    <div class="entry-cover">
-                                        <a href="blog-single.html">
-                                            <img src="<?=$this->theme->baseUrl?>/images/blog/4.jpg" alt="images">
-                                        </a>
-                                    </div><!-- /.entry-cover -->
-                                    <h4 class="entry-time">
-                                        <span class="entry-month">Mar</span>
-                                        <span class="entry-day">25</span>
-                                    </h4>
-
-                                    <div class="entry-header">
-                                        <div class="entry-header-content">
-                                            <h4 class="entry-title">
-                                                <a href="blog-single.html">How do recruit specialist logistics talent?</a>
-                                            </h4>
-                                            <div class="entry-meta">
-                                                <i class="fa fa-user"></i>
-                                                <span class="entry-author"><a href="#">admin</a></span>
-                                                <i class="fa fa-folder-open"></i>
-                                                <span class="entry-categories"><a href="#">Logistics,</a></span>
-                                                <span class="entry-categories"><a href="#">Tip &amp; Trick</a></span>
-                                                <i class="fa fa-comment"></i>
-                                                <span class="entry-comments-link"><a href="#">0 Comment</a></span>
-                                            </div>
-                                        </div><!-- /.entry-header-content -->
-                                    </div><!-- /.entry-header -->
-
-                                    <div class="entry-content">
-                                        <p>It’s a well-known fact that happy and motivated workers produce better results. A recent study found that happier workers were 12% more productive than their counterparts. It underlines staff morale and wellbeing is not just an HR goal: it’s fundamen...</p>
-                                        <div class="readmore"><a href="blog-single.html" class="more-link">Read more</a></div>
-                                    </div><!-- /.entry-content -->
-                                </div><!-- /.entry-wrapper -->
-                            </article><!-- /.blog-post -->
-
-                            <article class="blog-post">
-                                <div class="entry-wrapper">
-                                    <div class="entry-cover">
-                                        <a href="blog-single.html">
-                                            <img src="<?=$this->theme->baseUrl?>/images/blog/5.jpg" alt="images">
-                                        </a>
-                                    </div><!-- /.entry-cover -->
-                                    <h4 class="entry-time">
-                                        <span class="entry-month">Mar</span>
-                                        <span class="entry-day">25</span>
-                                    </h4>
-
-                                    <div class="entry-header">
-                                        <div class="entry-header-content">
-                                            <h4 class="entry-title">
-                                                <a href="blog-single.html">Transport select committee review of LT</a>
-                                            </h4>
-                                            <div class="entry-meta">
-                                                <i class="fa fa-user"></i>
-                                                <span class="entry-author"><a href="#">admin</a></span>
-                                                <i class="fa fa-folder-open"></i>
-                                                <span class="entry-categories"><a href="#">Transport    </a></span>
-                                                <i class="fa fa-comment"></i>
-                                                <span class="entry-comments-link"><a href="#">0 Comment</a></span>
-                                            </div>
-                                        </div><!-- /.entry-header-content -->
-                                    </div><!-- /.entry-header -->
-
-                                    <div class="entry-content">
-                                        <p>Many of you will be aware that the Transport Select Committee is conducting an inquiry into the skills and workforce planning of the road haulage sector.  In particular the Committee is investigating what action Government has taken to address concer...</p>
-                                        <div class="readmore"><a href="blog-single.html" class="more-link">Read more</a></div>
-                                    </div><!-- /.entry-content -->
-                                </div><!-- /.entry-wrapper -->
-                            </article><!-- /.blog-post -->
+                            <?php endforeach;?>
 
                             <div class="navigation paging-navigation numeric">
                                 <div class="flat-pagination loop-pagination">
@@ -226,23 +88,8 @@ $this->registerJsFile($this->theme->baseUrl . '/js/parallax.js',[IndexAsset::cla
                 <div class="sidebars">
                     <div class="sidebars-wrap">
                         <div class="sidebar">
-                            <div class="widget widget_recent_entries">
-                                <h4 class="widget-title">Recent news</h4>
-                                <ul>
-                                    <li>
-                                        <a href="blog-single.html">Raising productivity &amp; morale in the warehouse</a>
-                                        <span class="post-date">March 25, 2017</span>
-                                    </li>
-                                    <li>
-                                        <a href="blog-single.html">Seafield logistics goes into administration</a>
-                                        <span class="post-date">March 25, 2017</span>
-                                    </li>
-                                    <li>
-                                        <a href="blog-single.html">Transport managers grow scarce</a>
-                                        <span class="post-date">March 25, 2017</span>
-                                    </li>
-                                </ul>
-                            </div><!-- /.widget_recent_entries -->
+                            
+                            <?=$this->render('/news/recent');?>
 
                             <div class="widget widget_categories">
                                 <h4 class="widget-title">Categories</h4>

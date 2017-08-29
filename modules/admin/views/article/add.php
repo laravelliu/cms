@@ -19,7 +19,6 @@ $this->registerCssFile('/admin/lib/webuploader/webuploader.css', [AdminAsset::cl
 $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::className(), 'depends' => 'app\assets\admin\AdminAsset']);
 
 ?>
-
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
@@ -50,6 +49,24 @@ $this->registerJsFile('/admin/lib/webuploader/webuploader.js', [AdminAsset::clas
                     <?=$form->field($model,'author')->textInput()->label('作者');?>
                     <?=$form->field($model,'category_id')->dropDownList($categoryList,['class' => 'select-category form-control','data-placeholder'=>"选择分类",'data-allow-clear'=>"true"])->label('分类');?>
                     <?=$form->field($model,'sort')->dropDownList($sort,['class' => 'form-control'])->label('排序');?>
+                    <?=$form->field($model,'is_index')->radioList([0 => '否', 1 => '是'],['item'=>function($index, $label, $name, $checked, $value){
+                        $options = array_merge(['label' => $label, 'value' => $value]);
+                        if(0 == $value){
+                            return '<div class="radio" style="float: left;margin-right: 10px;">' . Html::radio($name, true, $options) . '</div>';
+                        }else{
+                            return '<div class="radio" style="float: left;margin-right: 10px;">' . Html::radio($name, $checked, $options) . '</div>';
+                        }
+                    }])->label('是否首页')?>
+
+                    <?=$form->field($model,'is_hot')->radioList([0 => '否', 1 => '是'],['item'=>function($index, $label, $name, $checked, $value){
+                        $options = array_merge(['label' => $label, 'value' => $value]);
+                        if(0 == $value){
+                            return '<div class="radio" style="float: left;margin-right: 10px;">' . Html::radio($name, true, $options) . '</div>';
+                        }else{
+                            return '<div class="radio" style="float: left;margin-right: 10px;">' . Html::radio($name, $checked, $options) . '</div>';
+                        }
+                    }])->label('是否热门')?>
+
                     <?=$form->field($model,'images',['template'=>"{label}<div class=\"col-sm-9\">{input}<div id=\"picker\" class=\"uploader-btn\"></div><div id=\"autoUploader\" class=\"uploader-zone\"></div>{error}</div>"])->hiddenInput()->label('上传缩略图');?>
                     <?=$form->field($model,'content',['template'=>"{label}<div class=\"col-sm-9\">{input} <div class=\"summernote\" id=\"summernote\"></div><div class=\"error-info\" id=\"content-description\"></div>{error}</div>"])->hiddenInput()->label('内容');?>
 

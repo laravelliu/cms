@@ -12,10 +12,13 @@ use Yii;
  * @property string $name
  * @property string $author
  * @property string $content
+ * @property integer $is_hot
+ * @property integer $is_index
+ * @property integer $read_times
  * @property integer $sort
  * @property integer $category_id
- * @property integer $read_times
  * @property string $images
+ * @property integer $is_deleted
  * @property integer $update_time
  * @property integer $create_time
  */
@@ -40,7 +43,7 @@ class NewsAR extends \app\models\BaseAR
     public function rules()
     {
         return [
-            [['content', 'category_id','name','sort', 'author'], 'required','message' => '此选项不能为空'],
+            [['content', 'category_id','name','sort', 'author', 'is_hot', 'is_index'], 'required','message' => '此选项不能为空'],
             [['content'], 'string'],
             ['read_times','default', 'value' => 0],
             [['sort', 'category_id', 'read_times'], 'integer'],
@@ -49,6 +52,7 @@ class NewsAR extends \app\models\BaseAR
             [['author'], 'string', 'max' => 16, 'message' => '作者长度最长为16位长度'],
             [['images'], 'string', 'max' => 255, 'message'=>'url长度过长'],
             [['images'], 'url', 'message'=>'url不正确'],
+            [['is_hot', 'is_index','is_deleted'], 'default', 'value' => 0],
         ];
     }
 
@@ -63,12 +67,20 @@ class NewsAR extends \app\models\BaseAR
             'name' => 'Name',
             'author' => 'Author',
             'content' => 'Content',
+            'is_hot' => 'Is Hot',
+            'is_index' => 'Is Index',
             'sort' => 'Sort',
-            'category_id' => 'Category ID',
             'read_times' => 'Read Times',
+            'category_id' => 'Category ID',
             'images' => 'Images',
+            'is_deleted' => 'Is Deleted',
             'update_time' => 'Update Time',
             'create_time' => 'Create Time',
         ];
+    }
+
+    public function getNewsList($where)
+    {
+        return $this->find()->where($where)->orderBy(['sort' => SORT_DESC, 'update_time' => SORT_DESC])->all();
     }
 }

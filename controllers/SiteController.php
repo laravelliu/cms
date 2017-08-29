@@ -10,7 +10,6 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use yii\helpers\Url;
-use yii\helpers\Html;
 
 class SiteController extends BaseController
 {
