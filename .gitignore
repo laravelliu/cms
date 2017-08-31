@@ -38,4 +38,11 @@ tests/_support/_generated
 #文章内图片
 /web/upload/ac/*
 
-
+modules/weixin/views/
+web/cache/
+web/test/css/
+web/test/images/
+web/upload/ac/
+web/upload/article/
+web/upload/logo/
+web/upload/test/
