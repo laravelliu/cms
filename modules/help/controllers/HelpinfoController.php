@@ -18,8 +18,9 @@ class HelpinfoController extends BaseController
     public $enableCsrfValidation = false;
 
 
-    public function behaviors(){
-
+    public function behaviors()
+    {
+        return parent::behaviors();
     }
 
     /**
@@ -449,11 +450,10 @@ class HelpinfoController extends BaseController
             if (move_uploaded_file($tmp_name, $file_path) === false) {
                 echo "上传文件失败。";
             }
+
             @chmod($file_path, 0644);
             $file_url = $save_url . $new_file_name;
-            //var_dump($_SERVER['SERVER_NAME']);
             header('Content-type: text/html; charset=UTF-8');
-            //return $file_url;
             return json_encode(array('success' => true,'file_path' => $file_url));
             exit;
         }

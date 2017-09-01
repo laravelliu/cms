@@ -12,9 +12,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        $this->layoutPath = '@app/modules/help/views/layouts/';
-
-        $this->layout = "main.php";
+        require_once(__DIR__ . '/config/constants.php');
 
         \Yii::configure($this->module, require(__DIR__ . '/config/config.php'));
     }

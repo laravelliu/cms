@@ -53,7 +53,7 @@ use yii\helpers\Url;
             'label' => '操作',
             'format' => 'raw',
             'value' => function($data) {
-                return  html::a('<span class="label label-primary"  title="修改">修改 </span>', Url::to(['helpinfo/addclassify', 'id' => $data->id]));
+                return  Html::a('<span class="label label-primary"  title="修改">修改</span>', Url::to(['helpinfo/addclassify', 'id' => $data->id])) . ' ' . Html::a('<span class="label label-primary"  title="查看内容">查看内容</span>',['helpinfo/showcontent', 'page' => 1,'id' => $data->id]);
             }
         ]
     ],

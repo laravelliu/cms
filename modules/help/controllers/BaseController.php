@@ -17,19 +17,11 @@ use common\models\api\ServiceApiModel;
  */
 class BaseController extends \yii\web\Controller
 {
-
-    protected $user_info; // 用户信息数组
-
     /**
      * @inheritdoc
      */
     public $enableCsrfValidation = false;
 
-    /**
-     * 请求对象
-     * @var \yii\web\Request
-     */
-    public $request = null;
 
     /**
      * 响应对象
@@ -84,8 +76,6 @@ class BaseController extends \yii\web\Controller
      */
     private function _init()
     {
-        $this->request = Yii::$app->request;
-        $this->response = Yii::$app->response;
         Yii::$app->session->open();
         $this->_user = Yii::$app->user;
 
@@ -141,27 +131,6 @@ class BaseController extends \yii\web\Controller
         return $data;
     }
 
-
-    /**
-     * 显示一个提示页面，然后重定向浏览器到新地址
-     *
-     * @param string $message 信息
-     * @param string $caption 标题
-     * @param string $url 链接地址
-     *
-     * @return string
-     */
-    public function redirectMessage($message, $caption = '提示', $url = '', $viewname = '/site/message')
-    {
-        $url = $this->getUserHomeUrl();
-        $data = array(
-            'caption' => $caption,
-            'message' => $message,
-            'url' => empty($url) ? '/' : $url,
-        );
-        $response = $this->render($viewname, $data);
-        return $response;
-    }
 
     /**
      * 校验是否登陆
