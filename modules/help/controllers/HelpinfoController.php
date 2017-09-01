@@ -16,15 +16,16 @@ use yii\web\NotFoundHttpException;
 class HelpinfoController extends BaseController
 {
     public $enableCsrfValidation = false;
-    
-    public function beforeAction($action)
-    {
-        return parent::beforeAction($action);
+
+
+    public function behaviors(){
+
     }
 
     /**
      * 帮助中心首页
      * @return string
+     * @author: liuFangShuo
      */
     public function actionHelpall()
     {
@@ -101,6 +102,7 @@ class HelpinfoController extends BaseController
     /**
      * 各业务线展示
      * @return string
+     * @author: liuFangShuo
      */
     public function actionShow()
     {
@@ -123,11 +125,10 @@ class HelpinfoController extends BaseController
     }
 
 
-
     /**
-     * 添加修改分类
+     * 修改分类
      * @return string
-     * @throws \Exception
+     * @author: liuFangShuo
      */
     public function actionAddclassify()
     {

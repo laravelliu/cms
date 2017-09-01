@@ -92,16 +92,6 @@ class BaseController extends \yii\web\Controller
     }
 
 
-    /**
-     * 当前请求的 url
-     *
-     * @return string
-     */
-    public function getCurrentUrl()
-    {
-        return Yii::$app->request->getUrl();
-    }
-
 
     /**
      * 获取当前用户信息
@@ -112,16 +102,6 @@ class BaseController extends \yii\web\Controller
         return $this->_user;
     }
 
-    /**
-     * 获取一个指定的参数
-     * @param string $key 参数名称
-     * @param string $default 如果参数不存在的默认值
-     * @return mixd
-     */
-    public function post($key = null, $default = null)
-    {
-        return $this->request->post($key, $default);
-    }
 
     /**
      * 获取多个指定的参数

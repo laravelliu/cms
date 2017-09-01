@@ -20,7 +20,6 @@ AppAsset::register($this);
 </div>
     
 <?= $this->render('/layouts/footer') ?>
-<?= $this->render('/layouts/public_footer_js') ?>
 <?php $this->endBody() ?>
 </body>
 </html>

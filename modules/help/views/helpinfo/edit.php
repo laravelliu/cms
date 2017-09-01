@@ -1,43 +1,39 @@
 <?php
-use yii\helpers\Url;
+
+use app\assets\help\AppAsset;
+use app\support\widgets\JsBlock;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use \yii\helpers\ArrayHelper;
-use app\modules\help\models\HelpInfo;
+
+AppAsset::addCss($this,'/help/simditor/styles/simditor.css');
+AppAsset::addCss($this,'/help/simditor/styles/simditor-html.css');
+AppAsset::addCss($this,'/help/simditor/styles/help-content.css');
+AppAsset::addCss($this,'/help/simditor/styles/simditor-markdown.css');
+
+AppAsset::addJs($this,'/help/simditor/scripts/module.js');
+AppAsset::addJs($this,'/help/simditor/scripts/hotkeys.js');
+AppAsset::addJs($this,'/help/simditor/scripts/uploader.js');
+AppAsset::addJs($this,'/help/simditor/scripts/simditor.js');
+AppAsset::addJs($this,'/help/simditor/scripts/beautify-html.js');
+AppAsset::addJs($this,'/help/simditor/scripts/simditor-html.js');
+AppAsset::addJs($this,'/help/simditor/scripts/marked.js');
+AppAsset::addJs($this,'/help/simditor/scripts/to-markdown.js');
+AppAsset::addJs($this,'/help/simditor/scripts/simditor-markdown.js');
+AppAsset::addJs($this,'/help/simditor/scripts/simditor-marked.js');
+AppAsset::addJs($this,'/help/simditor/scripts/simditor-dropzone.js');
+
 ?>
-<script type="text/javascript" src="/simditor/scripts/jquery-3.0.0.js"></script>
-<link rel="stylesheet" type="text/css" href="/simditor/styles/simditor.css" />
 
-<script type="text/javascript" src="/simditor/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="/simditor/scripts/module.js"></script>
-<script type="text/javascript" src="/simditor/scripts/hotkeys.js"></script>
-<script type="text/javascript" src="/simditor/scripts/uploader.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor.js"></script>
-
-<script type="text/javascript" src="/simditor/scripts/beautify-html.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-html.js"></script>
-<link rel="stylesheet" href="/simditor/styles/simditor-html.css" media="screen" charset="utf-8" />
-
-<script type="text/javascript" src="/simditor/scripts/marked.js"></script>
-<script type="text/javascript" src="/simditor/scripts/to-markdown.js"></script>
-
-<link rel="stylesheet" href="/simditor/styles/simditor-markdown.css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="/simditor/styles/help-content.css" />
-
-<script type="text/javascript" src="/simditor/scripts/simditor-markdown.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-marked.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-dropzone.js"></script>
-
-
-    <div class="page-header">
-        <?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary btn-lg']) ?>
-    </div>
-<?php 
-    $form = ActiveForm::begin(['id' => 'login-form',
-                               'options' => [
-                                    'enctype' => 'multipart/form-data'
-                                ],
-                        ]); 
+<div class="container content" style="margin-top: 50px;">
+<div class="page-header">
+    <?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary']) ?>
+</div>
+<?php $form = ActiveForm::begin(
+                ['id' => 'login-form',
+                    'options' => [
+                    'enctype' => 'multipart/form-data'
+                ],
+            ]);
 ?>
     <input type="hidden" name="id" value="<?= $model->id?>">
 
@@ -64,13 +60,14 @@ use app\modules\help\models\HelpInfo;
 
 <?= $form->field($model, 'sort')->textInput(['placeholder' => '排序'])->label(false) ?>
 
+<?= $form->field($model, 'content')->textarea(['id' => 'editor'])->label(false); ?>
 
-<?php echo $form->field($model, 'content')->textarea(['id' => 'editor'])->label(false); ?>
+<div class="form-group login0623">
+    <?= Html::submitButton('添加', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+</div>
+<?php ActiveForm::end(); ?>
 
-
-    <div class="form-group login0623">
-        <?= Html::submitButton('添加', ['class' => 'btn btn-primary btn-lg', 'name' => 'login-button']) ?>
-    </div>
+<?php JsBlock::begin();?>
 <script type="text/javascript">
     var editor = new Simditor({
       textarea: $('#editor'),
@@ -91,5 +88,5 @@ use app\modules\help\models\HelpInfo;
     
     $('.simditor-body').addClass('help-content');
 </script>
-
-<?php ActiveForm::end(); ?>
+<?php JsBlock::end()?>
+</div>
