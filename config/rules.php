@@ -15,4 +15,9 @@ return [
     'logout' => 'site/logout',
     'register' => 'site/register',
     'wx' => 'weixin/weixin/token',
+
+    //帮助
+    'docs' => 'help/helpinfo/helpall',
+    'docs/<show:\w+>'=>'help/helpinfo/show',    //<show:\w+>(\/?)变量将变成help/show
+    'docs/<show:\w+>/<id:\d+>'=>'help/helpinfo/show',
 ];

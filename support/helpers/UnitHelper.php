@@ -134,4 +134,16 @@ class UnitHelper
 
         return strtolower($suffix);
     }
+
+    /**
+     * 获取指定key的值
+     * @param array $array
+     * @param array $keys
+     * @return array
+     * @author: liuFangShuo
+     */
+    public static function onlyValue(array $array,array $keys)
+    {
+        return array_intersect_key($array, array_flip( $keys));
+    }
 }

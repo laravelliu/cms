@@ -8,7 +8,7 @@ $vhost = require (__DIR__.'/vhost.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log','admin','weixin'],
+    'bootstrap' => ['log','admin','weixin','help'],
     'timeZone' => 'Asia/Chongqing', //时区
     'language' => 'zh-CN',//'zh-CN', //目标语言语言包
     //'sourceLanguage' => 'zh-CN',//源语言语言包(默认是英语)
@@ -115,6 +115,9 @@ $config = [
         ],
         'weixin' => [
             'class' => 'app\modules\weixin\Module'
+        ],
+        'help' => [
+            'class' => 'app\modules\help\Module'
         ]
     ],
 

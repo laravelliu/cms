@@ -1,0 +1,202 @@
+@import url(http://fonts.googleapis.com/css?family=Exo+2:500);
+body {
+    font-family:'Exo 2', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color:#64676c;
+}
+a{
+    outline: none;
+}
+#wrapper {
+    padding-left: 250px;
+    transition: all 0.4s ease 0s;
+    margin-top:30px;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family:'Exo 2', sans-serif;
+    font-weight: 500;
+}
+.help-wrapper #sidebar-wrapper {
+    width: 250px;
+	float:left;
+	margin-bottom:20px;
+    transition: all 0.4s ease 0s;
+}
+.help-model-right{ float:left; width:860px; margin-left:20px;}
+#page-content-wrapper {
+    width: 100%;
+}
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    -webkit-border-radius:4px;
+    background-color: #fff;
+    border-radius:4px;
+    border:1px solid #ccc;
+}
+.sidebar-nav>li {
+    line-height: 40px;
+    text-indent: 20px;
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, .12);
+}
+.sidebar-nav li > a {
+    color: #666;
+    display: block;
+    font-weight: normal;
+    text-decoration: none;
+    border-bottom:1px solid #ccc;
+}
+.sidebar-nav li > .active{
+    background-color: #337ab7;
+    color:#fff;
+}
+.sidebar-nav li > .active:hover{
+    background-color: #337ab7;
+    color:#fff;
+}
+.sidebar-nav > li > a:hover {
+    color: #666;
+    background: #f5f5f5;
+    text-decoration: none;
+}
+.sidebar-nav li li a {
+    color: #eee;
+}
+.sidebar-nav li li a:hover {
+    color: #ccc;
+    text-decoration: underline;
+}
+.sidebar-nav > li li {
+    line-height: 25px;
+    color: #eee;
+
+    text-indent: 0;
+    list-style-position: inside;
+
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+.sidebar-nav > .sidebar-brand {
+    height: 80px;
+    line-height: 80px;
+    font-size: 18px;
+}
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.content-header {
+    height: 65px;
+    line-height: 65px;
+}
+.content-header h1 {
+    margin: 0;
+    margin-left: 20px;
+    display: inline-block;
+}
+#menu-toggle {
+    display: none;
+}
+.inset {
+    padding: 20px;
+}
+@media (max-width:767px) {
+    #wrapper {
+        padding-left: 0;
+    }
+    #sidebar-wrapper {
+        left: 0;
+    }
+    #wrapper.active {
+        position: relative;
+        left: 250px;
+    }
+    #wrapper.active #sidebar-wrapper {
+        left: 250px;
+        width: 250px;
+        transition: all 0.4s ease 0s;
+    }
+    #menu-toggle {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+    }
+    #menu-toggle.btn-default {
+        border:none;
+        border-radius: 0;
+    }
+    .inset {
+        padding: 15px;
+    }
+}
+.main-search {
+    padding: 0;
+    line-height: 25px;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+.main-search .form-control {
+    border-radius: 0;
+    background: #444;
+    border:none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    font-family:'Exo 2', sans-serif;
+    display:none;
+}
+.main-search span {
+    float: right;
+    margin-top: -25px;
+    margin-right: 30px;
+    color: #999;
+    display:none;
+}
+.carousel-control .icon-prev:before {
+    font-family:'FontAwesome';
+    content:'\f104';
+}
+.carousel-control .icon-next:before {
+    font-family:'FontAwesome';
+    content:'\f105';
+}
+.copy-rights {
+    font-size: 11px;
+    color: #eee;
+    position: absolute;
+    bottom: 3px;
+    left:15px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.copy-rights a {
+    font-size: 11px;
+    color: #eee;
+}
+.sidebar-nav > li > ul {
+    display: none;
+    list-style-type: none;
+    -webkit-padding-start: 0px;
+    background-color: #eee;
+}
+.sidebar-nav > li > ul li a {
+    border-bottom: none;
+    box-shadow: none;
+    font-size: 13px;
+    color:#666;
+    line-height:24px;
+    padding:5px 0;
+    border-bottom:1px solid #ccc;
+    padding:6px 20px;
+    background-color: #f5f5f5;
+}
+.sidebar-nav > li > ul li a:hover{
+    color:#fff;
+    text-decoration: none;
+    background-color: #44b5f6;
+}
