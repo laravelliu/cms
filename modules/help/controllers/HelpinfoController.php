@@ -23,229 +23,6 @@ class HelpinfoController extends BaseController
     }
 
     /**
-     * 添加修改分类
-     * @return string
-     * @throws \Exception
-     */
-    public function actionAddclassify()
-    {
-        $this->checklogin();
-
-        $model = new HelpInfo();
-        $hidden = Yii::$app->request->post('id', null);
-
-        if (!empty($hidden)) {
-            $model = $model->findOne(['id' => $hidden]);
-            if($model->load(Yii::$app->request->post()) && $model->validate())
-            {
-                $model->create_time = time();
-                if($model->update())
-                {
-                    $this->redirect(['helpinfo/list']);
-                }
-            }
-        }  else {
-            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $model->create_time = time();
-
-                if ($model->insert()) {
-                    $this->redirect(['helpinfo/addinfo']);
-                }
-            }
-        }
-
-
-        if(Yii::$app->request->get('id')) {
-            $data = HelpInfo::findOne(['id' => Yii::$app->request->get('id')]);
-            $model->id = $data->id;
-            $model->classify = $data->classify;
-            $model->status = $data->status;
-            $model->sort = $data->sort;
-            $model->platform = $data->platform;
-            return $this->render('index',[
-                'model' => $model,
-                'hidden' => true
-            ]);
-        }
-
-        return $this->render('index', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * 添加信息
-     * @return string
-     * @throws \Exception
-     */
-    public function actionAddinfo()
-    {
-        $this->checklogin();
-
-        $data = HelpInfo::find()->orderBy('sort asc')->all();
-        $data = ArrayHelper::map($data,'id','classify');
-        $model = new HelpContent();
-
-        if ( $model->load(Yii::$app->request->post()) ) {
-            $post = Yii::$app->request->post();
-            $model->cid = $post['HelpContent']['cid'][1];
-            $model->title = $post['HelpContent']['title'];
-            $model->status = $post['HelpContent']['status'];
-            $model->sort = $post['HelpContent']['sort'];
-            $model->content = $post['HelpContent']['content'];
-            if ($model->validate()) {
-                $model->create_time = time();
-                if ($model->insert()) {
-                    $this->redirect(['helpinfo/list']);
-                }
-            }
-        } else {
-            return $this->render('content', [
-                'model' => $model,
-                'data' => $data
-            ]);
-        }
-    }
-
-    /**
-     * 修改文章内容
-     * @return string
-     * @throws \Exception
-     */
-    public function actionEdit()
-    {
-        $this->checklogin();
-
-        $model = new HelpContent();
-        $hidden = Yii::$app->request->post('id');
-
-        if ($hidden) {
-            $model = $model->findOne(['id' => $hidden]);
-
-            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                $post = Yii::$app->request->post();
-                $model->cid = $post['HelpContent']['cid'];
-                $model->content = $post['HelpContent']['content'];
-                $model->create_time = time();
-                if ($model->update()) {
-                    $this->redirect(['helpinfo/list']);
-                }
-            }
-        } else {
-            $data = HelpInfo::find()->orderBy('sort asc')->all();
-            $data = ArrayHelper::map($data,'id','classify');
-            $content = HelpContent::findOne(['id' => Yii::$app->request->get('id')]);
-            $model->id = $content->id;
-            $cid = $content->cid;
-            
-            $cate = HelpInfo::findOne(['id' => $cid]);
-            $platform = HelpInfo::findAll(['platform' => $cate->platform]);
-            $platformname = $cate->platform;
-            $model->cid = $content->cid;
-            $model->title = $content->title;
-            $model->status = $content->status;
-            $model->sort = $content->sort;
-            $model->content = $content->content;
-            return $this->render('edit',[
-                'model' => $model,
-                'platform' => $platform,
-                'platformname' => $platformname,
-                'hidden' => true,
-                'data' => $data
-            ]);
-        }
-    }
-
-    /**
-     * 帮助列表
-     * @return string
-     */
-    public function actionList()
-    {
-        $this->checklogin();
-
-        $model = new HelpInfo();
-        $dataProvider = new ActiveDataProvider([
-            'query' => HelpInfo::find(),
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC
-                ]
-            ],
-        ]);
-
-        return $this->render('list', [
-            'model' => $model,
-            'dataProvider' => $dataProvider
-        ]);
-    }
-
-    /**
-     * 各业务线展示
-     * @return string
-     */
-    public function actionShow()
-    {
-        $id = Yii::$app->request->get('id',null);
-        $platform = Yii::$app->request->get('show', 'pre');
-
-        if('crash' == $platform){
-            $platform = 'apm';
-        }
-        $model = new HelpInfo();
-        $data = $model->find()->where(['status' => 1, 'platform' => $platform])->orderBy(['sort'=>SORT_ASC])->all();
-
-
-        return $this->render('show', [
-            'model' => $model,
-            'data' => $data,
-            'id' => (empty($id) || is_array($id)) ? 0 : intval($id),
-            'platform' => $platform,
-        ]);
-    }
-
-    /**
-     * 内容列表
-     * @return string
-     */
-    public function actionShowcontent()
-    {
-        $this->checklogin();
-
-        $id = Yii::$app->request->get('id');
-        $model = new HelpContent();
-        $dataProvider = new ActiveDataProvider([
-            'query' => HelpContent::find()->where('cid='.$id),
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC
-                ]
-            ],
-        ]);
-
-        return $this->render('listcontent', [
-            'model' => $model,
-            'dataProvider' => $dataProvider
-        ]);
-    }
-
-    /**
-     * 二级分类
-     */
-    public function actionSelplat()
-    {
-        $plat = Yii::$app->request->get('id');
-        $data = HelpInfo::findAll(['platform' => $plat]);
-        $html = '';
-
-        foreach($data as $v)
-        {
-            $html .= '<option value="'.$v->id.'">'.$v->classify.'</option>';
-        }
-        print($html);
-    }
-
-    /**
      * 帮助中心首页
      * @return string
      */
@@ -309,15 +86,241 @@ class HelpinfoController extends BaseController
         }
 
         return $this->render('helpall',[
-                'contentModel'=>$contentModel,
-                'infoModel' => $InfoModel,
-                'pre' => $pre,
-                'apm' => $apm,
-                'cts' => $cts,
-                'itestin' => $itestin,
-                'fn' => $fn,
-                'ab' => $ab,
+            'contentModel'=>$contentModel,
+            'infoModel' => $InfoModel,
+            'pre' => $pre,
+            'apm' => $apm,
+            'cts' => $cts,
+            'itestin' => $itestin,
+            'fn' => $fn,
+            'ab' => $ab,
+        ]);
+    }
+
+
+    /**
+     * 各业务线展示
+     * @return string
+     */
+    public function actionShow()
+    {
+        $id = Yii::$app->request->get('id',null);
+        $platform = Yii::$app->request->get('show', 'pre');
+
+        if('crash' == $platform){
+            $platform = 'apm';
+        }
+        $model = new HelpInfo();
+        $data = $model->find()->where(['status' => 1, 'platform' => $platform])->orderBy(['sort'=>SORT_ASC])->all();
+
+
+        return $this->render('show', [
+            'model' => $model,
+            'data' => $data,
+            'id' => (empty($id) || is_array($id)) ? 0 : intval($id),
+            'platform' => $platform,
+        ]);
+    }
+
+
+
+    /**
+     * 添加修改分类
+     * @return string
+     * @throws \Exception
+     */
+    public function actionAddclassify()
+    {
+        //$this->checklogin();
+
+        $model = new HelpInfo();
+        $hidden = Yii::$app->request->post('id', null);
+
+        if (!empty($hidden)) {
+            $model = $model->findOne(['id' => $hidden]);
+            if($model->load(Yii::$app->request->post()) && $model->validate())
+            {
+                $model->create_time = time();
+                if($model->update())
+                {
+                    $this->redirect(['helpinfo/list']);
+                }
+            }
+        }  else {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $model->create_time = time();
+
+                if ($model->insert()) {
+                    $this->redirect(['helpinfo/addinfo']);
+                }
+            }
+        }
+
+
+        if(Yii::$app->request->get('id')) {
+            $data = HelpInfo::findOne(['id' => Yii::$app->request->get('id')]);
+            $model->id = $data->id;
+            $model->classify = $data->classify;
+            $model->status = $data->status;
+            $model->sort = $data->sort;
+            $model->platform = $data->platform;
+            return $this->render('index',[
+                'model' => $model,
+                'hidden' => true
             ]);
+        }
+
+        return $this->render('index', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * 添加信息
+     * @return string
+     * @throws \Exception
+     */
+    public function actionAddinfo()
+    {
+        //$this->checklogin();
+
+        $data = HelpInfo::find()->orderBy('sort asc')->all();
+        $data = ArrayHelper::map($data,'id','classify');
+        $model = new HelpContent();
+
+        if ( $model->load(Yii::$app->request->post()) ) {
+            $post = Yii::$app->request->post();
+            $model->cid = $post['HelpContent']['cid'][1];
+            $model->title = $post['HelpContent']['title'];
+            $model->status = $post['HelpContent']['status'];
+            $model->sort = $post['HelpContent']['sort'];
+            $model->content = $post['HelpContent']['content'];
+            if ($model->validate()) {
+                $model->create_time = time();
+                if ($model->insert()) {
+                    $this->redirect(['helpinfo/list']);
+                }
+            }
+        } else {
+            return $this->render('content', [
+                'model' => $model,
+                'data' => $data
+            ]);
+        }
+    }
+
+    /**
+     * 修改文章内容
+     * @return string
+     * @throws \Exception
+     */
+    public function actionEdit()
+    {
+        //$this->checklogin();
+
+        $model = new HelpContent();
+        $hidden = Yii::$app->request->post('id');
+
+        if ($hidden) {
+            $model = $model->findOne(['id' => $hidden]);
+
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $post = Yii::$app->request->post();
+                $model->cid = $post['HelpContent']['cid'];
+                $model->content = $post['HelpContent']['content'];
+                $model->create_time = time();
+                if ($model->update()) {
+                    $this->redirect(['helpinfo/list']);
+                }
+            }
+        } else {
+            $data = HelpInfo::find()->orderBy('sort asc')->all();
+            $data = ArrayHelper::map($data,'id','classify');
+            $content = HelpContent::findOne(['id' => Yii::$app->request->get('id')]);
+            $model->id = $content->id;
+            $cid = $content->cid;
+            
+            $cate = HelpInfo::findOne(['id' => $cid]);
+            $platform = HelpInfo::findAll(['platform' => $cate->platform]);
+            $platformname = $cate->platform;
+            $model->cid = $content->cid;
+            $model->title = $content->title;
+            $model->status = $content->status;
+            $model->sort = $content->sort;
+            $model->content = $content->content;
+            return $this->render('edit',[
+                'model' => $model,
+                'platform' => $platform,
+                'platformname' => $platformname,
+                'hidden' => true,
+                'data' => $data
+            ]);
+        }
+    }
+
+    /**
+     * 帮助列表
+     * @return string
+     */
+    public function actionList()
+    {
+        //$this->checklogin();
+
+        $model = new HelpInfo();
+        $dataProvider = new ActiveDataProvider([
+            'query' => HelpInfo::find(),
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
+        ]);
+
+        return $this->render('list', [
+            'model' => $model,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    /**
+     * 内容列表
+     * @return string
+     */
+    public function actionShowcontent()
+    {
+        //$this->checklogin();
+
+        $id = Yii::$app->request->get('id');
+        $model = new HelpContent();
+        $dataProvider = new ActiveDataProvider([
+            'query' => HelpContent::find()->where('cid='.$id),
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
+        ]);
+
+        return $this->render('listcontent', [
+            'model' => $model,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    /**
+     * 二级分类
+     */
+    public function actionSelplat()
+    {
+        $plat = Yii::$app->request->get('id');
+        $data = HelpInfo::findAll(['platform' => $plat]);
+        $html = '';
+
+        foreach($data as $v)
+        {
+            $html .= '<option value="'.$v->id.'">'.$v->classify.'</option>';
+        }
+        print($html);
     }
 
     /**
@@ -326,11 +329,11 @@ class HelpinfoController extends BaseController
      */
     public function actionUpload()
     {
-        $this->checkLogin();
+        //$this->checkLogin();
 
-        $save_path = dirname(dirname(dirname(dirname(__FILE__)))) . '/web/simditor/attached/';
+        $save_path = dirname(dirname(dirname(dirname(__FILE__)))) . '/web/help/simditor/attached/';
         //$save_url = dirname($_SERVER['PHP_SELF']).'Web/kindeditor/attached/';
-        $save_url = SITE_CDN . '/simditor/attached/';
+        $save_url = Yii::$app->request->hostInfo . '/help/simditor/attached/';
         //$save_path = realpath($save_path) . '/';
 
         //最大文件大小

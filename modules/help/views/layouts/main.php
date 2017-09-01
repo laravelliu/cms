@@ -15,7 +15,7 @@ AppAsset::register($this);
 
 <?= $this->render('/layouts/public_nav'); ?>
 
-<div class="wrapper">
+<div class="wrapper" style="min-height: 600px;">
     <?= $content ?>
 </div>
     

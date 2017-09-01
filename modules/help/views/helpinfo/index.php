@@ -3,9 +3,10 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 ?>
+<div class="container" style="margin-top: 50px;">
 <?php if (isset($_SERVER["HTTP_REFERER"])): ?>
 	<div class="page-header">
-		<?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary btn-lg']) ?>
+		<?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary']) ?>
 	</div>
 <?php endif; ?>
 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
@@ -15,6 +16,7 @@ use yii\bootstrap\ActiveForm;
 	<?= $form->field($model, 'sort')->textInput(['placeholder' => '排序'])->label(false) ?>
 <?= $form->field($model, 'platform')->dropDownList(['pre' => 'pre', 'apm' => 'APM', 'fn' => '众测', 'cts' => '云测', 'itestin' => 'itestin', 'abtest' => 'abtest'])->label(false); ?>
     <div class="form-group login0623">
-        <?= Html::submitButton('确定', ['class' => 'btn btn-primary btn-lg', 'name' => 'login-button']) ?>
+        <?= Html::submitButton('确定', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
     </div>
 <?php ActiveForm::end(); ?>
+</div>

@@ -4,10 +4,12 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 $page = Yii::$app->request->get('page',1);
 ?>
-    <div class="page-header">
-        <?= Html::a('添加内容', ['addinfo'], ['class' => 'btn btn-primary btn-lg']) ?>
-        <?= Html::a('返回',["list?page=$page"],['class' => 'btn btn-primary btn-lg']) ?>
-    </div>
+
+<div class="container content" style="margin-top: 50px;">
+<div class="page-header">
+    <?= Html::a('添加内容', ['addinfo'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('返回',["list?page=$page"],['class' => 'btn btn-primary']) ?>
+</div>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -62,3 +64,4 @@ $page = Yii::$app->request->get('page',1);
         ]
     ],
 ]); ?>
+</div>

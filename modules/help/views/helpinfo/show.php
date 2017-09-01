@@ -2,14 +2,13 @@
 
 use app\assets\help\AppAsset;
 use yii\helpers\Url;
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
 use app\modules\help\models\HelpContent;
 use \app\support\widgets\JsBlock;
 
 $this->registerJsFile('/help/js/common.js', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+$this->registerCssFile('/help/css/help-content.css', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
 ?>
-<link rel="stylesheet" href="/simditor/styles/help-content.css" />
+<div class="container content" style="margin-top: 50px;">
 
 <div id="wrapper" class="help-wrapper clearfix" style="padding-left:0px;">
 	<!-- Sidebar -->
@@ -26,15 +25,15 @@ $this->registerJsFile('/help/js/common.js', [AppAsset::className(), 'depends' =>
 					<?php foreach($content as $s):?>
 						<?php if($platform == 'pre'): ?>
 							<li>
-								<a id="c<?=$s->id?>" href="<?= Url::to(["/help/pre/{$s->id}"])?>"><?= $s->title?></a>
+								<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/pre/{$s->id}"])?>"><?= $s->title?></a>
 							</li>
 						<?php elseif($platform == 'apm'): ?>
 							<li>
-								<a id="c<?=$s->id?>" href="<?= Url::to(["/help/crash/{$s->id}"])?>"><?= $s->title?></a>
+								<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/crash/{$s->id}"])?>"><?= $s->title?></a>
 							</li>
 						<?php else:?>
 	                        <li>
-	                        	<a id="c<?=$s->id?>" href="<?= Url::to(["/help/{$platform}/{$s->id}"])?>"><?= $s->title?></a>
+	                        	<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/{$platform}/{$s->id}"])?>"><?= $s->title?></a>
 	                        </li>
 	                    <?php endif;?>
 					<?php endforeach;?>
@@ -96,12 +95,15 @@ $this->registerJsFile('/help/js/common.js', [AppAsset::className(), 'depends' =>
 		</div>
 	<?php endif;?>
 </div>
+
+</div>
 <?php JsBlock::begin()?>
 <script>
     $(document).ready(function(){
         DocMaster.treeMenu();
         DocMaster.sideToggle();
         DocMaster.scrollToElement();
+
 		<?php if(!$id && isset($data[0]) && isset($content)):?>
 	        $('#s<?= $data[0]->id?>').css('display','block');
 	        $('#c<?= $content->id?>').css({'background-color':'#44b5f6','color':'#fff'});

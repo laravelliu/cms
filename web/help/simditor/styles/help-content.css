@@ -1,0 +1,37 @@
+/*.simditor .help-content *{margin:0;padding:0;}*/
+.simditor .help-content {font-family:"PingFang SC","Helvetica Neue",Helvetica,"Hiragino Sans GB",STHeitiSC-Light,"Microsoft YaHei","Source Han Sans",Arial,sans-serif;color:#000;line-height:1.4em;background-color:#fff;font-size: 14px;font-weight: normal;}
+.simditor .help-content p{margin:1em 0;line-height:1.5em;font-weight: normal}
+.simditor .help-content table{font-size:inherit;font:100%;margin:1em}
+.simditor .help-content table th{border-bottom:1px solid #bbb;padding:.2em 1em}
+.simditor .help-content table td{border-bottom:1px solid #ddd;padding:.2em 1em}
+.simditor .help-content input[type=image],.simditor .help-content input[type=password],.simditor .help-content input[type=text],.simditor .help-content textarea{font:99% helvetica,arial,freesans,sans-serif}
+.simditor .help-content option,.simditor .help-content select{padding:0 .25em}
+.simditor .help-content optgroup{margin-top:.5em}
+.simditor .help-content code,.simditor .help-content pre{font:12px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace}
+.simditor .help-content pre{margin:1em 0;font-size:12px;background-color:#f7f7f7;border:1px solid #eee;padding:5px;line-height:1.5em;color:#444;overflow:auto;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+.simditor .help-content pre code{padding:0;font-size:12px;background-color:#f7f7f7;color:#444;border:none}
+.simditor .help-content code{font-size:12px;background-color:#e0f5ff;color:#31708f;padding:0 .2em;border:1px solid #bce8f1}
+.simditor .help-content img{border:0;max-width:100%}
+.simditor .help-content abbr{border-bottom:none}
+.simditor .help-content a{color:#4183c4;text-decoration:none}
+.simditor .help-content a:hover{text-decoration:underline}
+.simditor .help-content a code,.simditor .help-content a:link code,.simditor .help-content a:visited code{color:#4183c4}
+.simditor .help-content h2,.simditor .help-content h3{margin:1em 0}
+.simditor .help-content h1,.simditor .help-content h2,.simditor .help-content h3,.simditor .help-content h4,.simditor .help-content h5,.simditor .help-content h6{border:0;font-weight: normal}
+.simditor .help-content h1{font-size:170%;padding-top:.5em;margin-top:1.5em}
+.simditor .help-content h1:first-child{margin-top:0;padding-top:.25em;border-top:none}
+.simditor .help-content h2{font-size:150%;margin-top:1.5em;padding-top:.5em}
+.simditor .help-content h3{font-size:120%;margin-top:1em}
+.simditor .help-content h4{font-size:110%;margin-top:0.5em}
+.simditor .help-content h5{font-size:105%;margin-top:0.5em}
+.simditor .help-content h6{font-size:100%;font-weight: 500}
+.simditor .help-content hr{border:1px solid #ddd}
+.simditor .help-content ul{margin:1em 0 1em 2em; padding:0;}
+.simditor .help-content ol{margin:1em 0 1em 2em}
+.simditor .help-content ol li,.simditor .help-content ul li{margin-top:.5em;margin-bottom:.5em;list-style-type:disc;}
+.simditor .help-content ol ol,.simditor .help-content ol ul,.simditor .help-content ul ol,.simditor .help-content ul ul{margin-top:0;margin-bottom:0}
+.simditor .help-content blockquote {margin: 0;border-left:5px solid #ddd;padding-left:.6em;}
+.simditor .help-content blockquote  p{margin-top: 0;margin-bottom: 0;color:#999;font-size: 14px;}
+.simditor .help-content dt{font-weight:700;margin-left:1em}
+.simditor .help-content dd{margin-left:2em;margin-bottom:1em}
+.simditor .help-content sup{font-size:.83em;vertical-align:super;line-height:0}

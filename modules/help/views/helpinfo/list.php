@@ -3,8 +3,9 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
+<div class="container content" style="margin-top: 50px;">
 <div class="page-header">
-	<?= Html::a('添加分类', ['addclassify'], ['class' => 'btn btn-primary btn-lg']) ?>
+	<?= Html::a('添加分类', ['addclassify'], ['class' => 'btn btn-primary']) ?>
 </div>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -58,3 +59,4 @@ use yii\helpers\Url;
     ],
 ]); 
 ?>
+</div>

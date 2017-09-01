@@ -28,8 +28,19 @@ class AppAsset extends AssetBundle
     public $js = [
         'help/js/nav.js',
     ];
+
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+    //加载js
+    public static function addJs($view, $jsfile) {
+        $view->registerJsFile($jsfile, [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+    }
+
+    //加载css
+    public static function addCss($view, $cssfile) {
+        $view->registerCssFile($cssfile, [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+    }
 }
