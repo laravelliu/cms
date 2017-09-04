@@ -85,6 +85,7 @@ $config = [
             'rules' => require(__DIR__ . '/rules.php')
         ],
         'assetManager' => [
+            'appendTimestamp' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => ['//code.jquery.com/jquery-2.2.4.min.js']
