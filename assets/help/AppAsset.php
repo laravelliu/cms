@@ -8,7 +8,6 @@
 namespace app\assets\help;
 
 use yii\web\AssetBundle;
-
 /**
  * @author lfs
  * @since 2.0
@@ -30,8 +29,7 @@ class AppAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'app\assets\BaseAsset'
     ];
 
     //加载js

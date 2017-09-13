@@ -11,7 +11,9 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
 <div class="banner-support">
     <h4>常见问题</h4>
     <div class="search">
-        <?php $form = ActiveForm::begin()?>
+        <?php $form = ActiveForm::begin([
+                'enableClientScript' => false
+        ])?>
         <?= $form->field($contentModel, 'title')->textInput(['placeholder' => '请输入您的搜索内容，如“应用上传"', 'class' =>'sh-text', 'aria-describedby'=>'basic-addon2', 'name'=>'keyword'])->label(false) ?>
         <?= Html::submitButton(' ', ['class' => 'btn-sh']) ?>
         <?php ActiveForm::end()?>

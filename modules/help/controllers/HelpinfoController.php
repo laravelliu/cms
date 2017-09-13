@@ -43,7 +43,7 @@ class HelpinfoController extends BaseController
                 ->limit(20)
                 ->all();
 
-            return $this->renderPartial('helpall', [
+            return $this->render('helpall', [
                 'contentModel' => $contentModel,
                 'resultInfo' => $resultInfo,
             ]);

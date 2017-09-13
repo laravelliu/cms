@@ -15,11 +15,11 @@ class BaseAsset extends AssetBundle
     public $sourcePath = null;
     
     public $css=[
-        '//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css',
+        YII_ENV_DEV ? 'lib/bootstrap/css/bootstrap.css':'lib/bootstrap/css/bootstrap.min.css',
     ];
 
     public $js=[
-        '//code.jquery.com/jquery-2.2.4.min.js',
-        '//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js',
+        YII_ENV_DEV ? 'lib/jquery/jquery.js':'lib/jquery/jquery.min.js',
+        YII_ENV_DEV ? 'lib/bootstrap/js/bootstrap.js':'lib/bootstrap/js/bootstrap.min.js',
     ];
 }

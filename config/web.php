@@ -88,13 +88,13 @@ $config = [
             'appendTimestamp' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'js' => ['//code.jquery.com/jquery-2.2.4.min.js']
+                    'js' => ['lib/jquery/jquery.min.js']
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
-                    'css' => ['//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css'],
+                    'css' => ['lib/bootstrap/css/bootstrap.min.css'],
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => ['//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js']
+                    'js' => ['lib/bootstrap/js/bootstrap.min.js']
                 ]
             ],
         ],
