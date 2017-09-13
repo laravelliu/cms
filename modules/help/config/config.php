@@ -9,9 +9,9 @@
 
 $db = [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=121.41.17.172;dbname=testin_help',
-    'username' => 'testin_mysql',
-    'password' => 'X9kgVen1gb',
+    'dsn' => 'mysql:host=127.0.0.1;dbname=help',
+    'username' => 'root',
+    'password' => '1',
     'charset' => 'utf8',
 ];
 
