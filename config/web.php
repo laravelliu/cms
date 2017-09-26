@@ -88,13 +88,16 @@ $config = [
             'appendTimestamp' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'js' => ['lib/jquery/jquery.min.js']
+                    'sourcePath' => null,
+                    'js' => [YII_ENV_DEV ? 'lib/jquery/jquery.js': 'lib/jquery/jquery.min.js']
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
-                    'css' => ['lib/bootstrap/css/bootstrap.min.css'],
+                    'sourcePath' => null,
+                    'css' => [YII_ENV_DEV ? 'lib/bootstrap/css/bootstrap.css' : 'lib/bootstrap/css/bootstrap.min.css'],
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => ['lib/bootstrap/js/bootstrap.min.js']
+                    'sourcePath' => null,
+                    'js' => [YII_ENV_DEV ? 'lib/bootstrap/js/bootstrap.js' : 'lib/bootstrap/js/bootstrap.min.js']
                 ]
             ],
         ],
