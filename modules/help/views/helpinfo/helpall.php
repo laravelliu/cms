@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 $this->title = '支持 - Testin';
 
-$this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+$this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
 ?>
 
 <div class="banner-support">
@@ -20,18 +20,18 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
     </div>
 </div>
 
-<?php if ( !isset($resultInfo) ) {?>
+<?php if ( !isset($resultInfo) ) :?>
 <div class="container cont-support">
     <div class="row">
         <div class="col-lg-3 col-xs-12 item">
             <div class="icon">
                 <i class="iconfont">&#xe702;</i>
             </div>
-            <h5><?= Html::a('内测分发', Url::to(['/docs/pre']))?></h5>
+            <h5><?= Html::a('内测分发', Url::to(['pre']))?></h5>
             <p>
                 <?php if(is_array($pre)):?>
                     <?php foreach($pre as $value):?>
-                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["/docs/{$value->helpInfo->platform}/{$value->id}"]))?>
+                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["{$value->helpInfo->platform}/{$value->id}"]))?>
                     <?php endforeach;?>
                 <?php else:?>
                     <?=$pre?>
@@ -43,11 +43,11 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
             <div class="icon">
                 <i class="iconfont">&#xe704;</i>
             </div>
-            <h5><?= Html::a('功能测试', Url::to(['/docs/fn']))?></h5>
+            <h5><?= Html::a('功能测试', Url::to(['fn']))?></h5>
             <p>
                 <?php if(is_array($fn)):?>
                     <?php foreach($fn as $value):?>
-                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["/docs/{$value->helpInfo->platform}/{$value->id}"]))?>
+                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["{$value->helpInfo->platform}/{$value->id}"]))?>
                     <?php endforeach;?>
                 <?php else:?>
                     <?=$fn?>
@@ -59,11 +59,11 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
             <div class="icon">
                 <i class="iconfont">&#xe701;</i>
             </div>
-            <h5><?= Html::a('兼容测试', Url::to(['/docs/cts']))?></h5>
+            <h5><?= Html::a('兼容测试', Url::to(['cts']))?></h5>
             <p>
                 <?php if(is_array($cts)):?>
                     <?php foreach($cts as $value):?>
-                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["/docs/{$value->helpInfo->platform}/{$value->id}"]))?>
+                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["{$value->helpInfo->platform}/{$value->id}"]))?>
                     <?php endforeach;?>
                 <?php else:?>
                     <?=$cts?>
@@ -76,11 +76,11 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
             <div class="icon">
                 <i class="iconfont">&#xe600;</i>
             </div>
-            <h5><?= Html::a('iTestin', Url::to(['/docs/itestin']))?></h5>
+            <h5><?= Html::a('iTestin', Url::to(['itestin']))?></h5>
             <p>
                 <?php if(is_array($itestin)):?>
                     <?php foreach($itestin as $value):?>
-                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["/docs/{$value->helpInfo->platform}/{$value->id}"]))?>
+                        <?=Html::a(mb_substr($value->title,0,20), Url::to(["{$value->helpInfo->platform}/{$value->id}"]))?>
                     <?php endforeach;?>
                 <?php else:?>
                     <?=$itestin?>
@@ -92,11 +92,11 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
             <div class="icon">
                 <i class="iconfont">&#xe789;</i>
             </div>
-            <h5><?= Html::a('A/B测试', Url::to(['/docs/abtest'])) ?></h5>
+            <h5><?= Html::a('A/B测试', Url::to(['abtest'])) ?></h5>
             <p>
                 <?php if (is_array($ab)): ?>
                     <?php foreach ($ab as $value): ?>
-                        <?= Html::a(mb_substr($value->title, 0, 20), Url::to(["/docs/{$value->helpInfo->platform}/{$value->id}"])) ?>
+                        <?= Html::a(mb_substr($value->title, 0, 20), Url::to(["{$value->helpInfo->platform}/{$value->id}"])) ?>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <?= $ab ?>
@@ -106,7 +106,7 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
     </div>
 </div>
 
-<?php }else{?>
+<?php else:?>
 
 <div class="container cont-support">
     <div class="row">
@@ -123,7 +123,7 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
             <ul class="sh-list" style="margin-top: 0px;">
                 <?php if(is_array($resultInfo)) {
                         foreach($resultInfo as $info) {
-                            echo "<li>" . Html::a(mb_substr($info->title,0,200), Url::to(['/docs/'.$info->helpInfo->platform.'/'.$info->id])) . "</li>";
+                            echo "<li>" . Html::a(mb_substr($info->title,0,200), Url::to([$info->helpInfo->platform.'/'.$info->id])) . "</li>";
                         }
                     } else {
                         echo $resultInfo;
@@ -133,6 +133,6 @@ $this->registerCssFile('/help/css/search.css', [AppAsset::className(), 'depends'
         </div>
     </div>
 </div>
-<?php }?>
+<?php endif;?>
 
 

@@ -4,11 +4,9 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 ?>
 <div class="container" style="margin-top: 50px;">
-<?php if (isset($_SERVER["HTTP_REFERER"])): ?>
 	<div class="page-header">
-		<?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a('返回', Url::to(['helpinfo/list']), ['class' => 'btn btn-primary']) ?>
 	</div>
-<?php endif; ?>
 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
     <input type="hidden" name="id" value="<?= $model->id?>">
 	<?= $form->field($model, 'classify')->textInput(['placeholder' => '分类'])->label(false) ?>

@@ -15,17 +15,17 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '@web/helpResource';
     public $css = [
-        'help/css/iconfont.css',
-        'help/css/footer.css',
-        'help/css/nav.css',
-        'help/css/font-awesome.min.css',
-        'help/css/main.css',
+        'css/iconfont.css',
+        'css/footer.css',
+        'css/nav.css',
+        'css/font-awesome.min.css',
+        'css/main.css',
     ];
 
     public $js = [
-        'help/js/nav.js',
+        'js/nav.js',
     ];
 
     public $depends = [

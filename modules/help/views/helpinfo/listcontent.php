@@ -2,12 +2,13 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
+
 $page = Yii::$app->request->get('page',1);
 ?>
 
 <div class="container content" style="margin-top: 50px;">
 <div class="page-header">
-    <?= Html::a('添加内容', ['addinfo'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('添加内容', ['add-info'], ['class' => 'btn btn-primary']) ?>
     <?= Html::a('返回',["list?page=$page"],['class' => 'btn btn-primary']) ?>
 </div>
 

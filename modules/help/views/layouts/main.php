@@ -18,8 +18,7 @@ AppAsset::register($this);
 <div class="wrapper" style="min-height: 600px;">
     <?= $content ?>
 </div>
-    
-<?= $this->render('/layouts/footer') ?>
+
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -5,8 +5,8 @@ use yii\helpers\Url;
 use app\modules\help\models\HelpContent;
 use \app\support\widgets\JsBlock;
 
-$this->registerJsFile('/help/js/common.js', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
-$this->registerCssFile('/help/css/help-content.css', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+$this->registerJsFile('/helpResource/js/common.js', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
+$this->registerCssFile('/helpResource/css/help-content.css', [AppAsset::className(), 'depends' => 'app\assets\help\AppAsset']);
 ?>
 <div class="container content" style="margin-top: 50px;">
 
@@ -25,15 +25,15 @@ $this->registerCssFile('/help/css/help-content.css', [AppAsset::className(), 'de
 					<?php foreach($content as $s):?>
 						<?php if($platform == 'pre'): ?>
 							<li>
-								<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/pre/{$s->id}"])?>"><?= $s->title?></a>
+								<a id="c<?=$s->id?>" href="<?= Url::to(["pre/{$s->id}"])?>"><?= $s->title?></a>
 							</li>
 						<?php elseif($platform == 'apm'): ?>
 							<li>
-								<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/crash/{$s->id}"])?>"><?= $s->title?></a>
+								<a id="c<?=$s->id?>" href="<?= Url::to(["crash/{$s->id}"])?>"><?= $s->title?></a>
 							</li>
 						<?php else:?>
 	                        <li>
-	                        	<a id="c<?=$s->id?>" href="<?= Url::to(["/docs/{$platform}/{$s->id}"])?>"><?= $s->title?></a>
+	                        	<a id="c<?=$s->id?>" href="<?= Url::to(["{$platform}/{$s->id}"])?>"><?= $s->title?></a>
 	                        </li>
 	                    <?php endif;?>
 					<?php endforeach;?>

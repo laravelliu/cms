@@ -60,8 +60,8 @@ dd,dl,dt{margin:0}
 .next-list li .act,.next-list li .act i,.next-list li a:hover,.next-list li a:hover i{color:#08c}
 .next-list li .iconfont{color:#78808d;vertical-align:middle;padding-right:10px;font-size:28px}
 .next-list li:first-child{margin-left:154px}
-.arrow_up_down{display:inline-block;width:9px;height:5px;background:url(../../images/arrow_down.png) no-repeat;margin-left:1px}
-.open .arrow_up_down{display:inline-block;width:9px;height:5px;background:url(../../images/arrow_up.png) no-repeat}
+.arrow_up_down{display:inline-block;width:9px;height:5px;background:url(../images/arrow_down.png) no-repeat;margin-left:1px}
+.open .arrow_up_down{display:inline-block;width:9px;height:5px;background:url(../images/arrow_up.png) no-repeat}
 
 .login-nav .btn-blue{
     margin: 12px 0px 12px 20px;

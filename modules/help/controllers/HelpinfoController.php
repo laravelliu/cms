@@ -8,19 +8,28 @@ use yii\data\ActiveDataProvider;
 use app\modules\help\models\HelpInfo;
 use app\modules\help\models\HelpContent;
 use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
+use app\support\filter\LoginFilter;
 
 /**
  * AppInfoController implements the CRUD actions for AppInfo model.
  */
 class HelpinfoController extends BaseController
 {
-    public $enableCsrfValidation = false;
-
-
     public function behaviors()
     {
-        return parent::behaviors();
+        $default = [
+            'login' => [
+                'class' => LoginFilter::className(),
+                'failUrl' => '/login',
+                'except' =>[
+                    'index','show'
+                ]
+            ]
+        ];
+
+        $append = $this->appendBehaviors();
+
+        return array_merge($default,$append);
     }
 
     /**
@@ -28,7 +37,7 @@ class HelpinfoController extends BaseController
      * @return string
      * @author: liuFangShuo
      */
-    public function actionHelpall()
+    public function actionIndex()
     {
         $contentModel = new HelpContent();
         $InfoModel = new HelpInfo();
@@ -131,10 +140,8 @@ class HelpinfoController extends BaseController
      * @return string
      * @author: liuFangShuo
      */
-    public function actionAddclassify()
+    public function actionAddClassify()
     {
-        //$this->checklogin();
-
         $model = new HelpInfo();
         $hidden = Yii::$app->request->post('id', null);
 
@@ -182,10 +189,8 @@ class HelpinfoController extends BaseController
      * @return string
      * @throws \Exception
      */
-    public function actionAddinfo()
+    public function actionAddInfo()
     {
-        //$this->checklogin();
-
         $data = HelpInfo::find()->orderBy('sort asc')->all();
         $data = ArrayHelper::map($data,'id','classify');
         $model = new HelpContent();
@@ -218,8 +223,6 @@ class HelpinfoController extends BaseController
      */
     public function actionEdit()
     {
-        //$this->checklogin();
-
         $model = new HelpContent();
         $hidden = Yii::$app->request->post('id');
 
@@ -288,10 +291,8 @@ class HelpinfoController extends BaseController
      * 内容列表
      * @return string
      */
-    public function actionShowcontent()
+    public function actionShowContent()
     {
-        //$this->checklogin();
-
         $id = Yii::$app->request->get('id');
         $model = new HelpContent();
         $dataProvider = new ActiveDataProvider([
@@ -312,7 +313,7 @@ class HelpinfoController extends BaseController
     /**
      * 二级分类
      */
-    public function actionSelplat()
+    public function actionSelectPlat()
     {
         $plat = Yii::$app->request->get('id');
         $data = HelpInfo::findAll(['platform' => $plat]);
@@ -331,12 +332,8 @@ class HelpinfoController extends BaseController
      */
     public function actionUpload()
     {
-        //$this->checkLogin();
-
-        $save_path = dirname(dirname(dirname(dirname(__FILE__)))) . '/web/help/simditor/attached/';
-        //$save_url = dirname($_SERVER['PHP_SELF']).'Web/kindeditor/attached/';
-        $save_url = Yii::$app->request->hostInfo . '/help/simditor/attached/';
-        //$save_path = realpath($save_path) . '/';
+        $save_path = dirname(dirname(dirname(dirname(__FILE__)))) . '/web/helpResource/simditor/attached/';
+        $save_url = Yii::$app->request->hostInfo . '/helpResource/simditor/attached/';
 
         //最大文件大小
         $max_size = 1000000;
@@ -458,21 +455,6 @@ class HelpinfoController extends BaseController
             exit;
         }
 
-    }
-
-    /**
-     * 登录
-     * @return bool
-     * @throws NotFoundHttpException
-     */
-    private function checklogin()
-    {
-        parent::_checkLogin();
-
-        if (!in_array(Yii::$app->user->identity->user['email'], Yii::$app->params['helpinfoEmails'])) {
-            throw new NotFoundHttpException('无访问权限');
-        }
-    	return true;
     }
 
 }

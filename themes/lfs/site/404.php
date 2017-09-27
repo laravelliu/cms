@@ -35,8 +35,8 @@ $this->params['breadcrumbs'][] = '404';
                             <img src="<?=$this->theme->baseUrl?>/images/404.png" alt="images">
                         </div>
                         <div class="content-404">
-                            <h3>Looks Like Something Went Wrong!</h3>
-                            <p>The page you were looking for is not here. Maybe you want to perform a search?</p>
+                            <h3>好像哪里出了问题!</h3>
+                            <p>你想找的页面不在这里。 也许你要搜索一下?</p>
 
                             <div class="widget widget_search">
                                 <form class="search-form">

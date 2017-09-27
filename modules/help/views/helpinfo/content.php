@@ -1,58 +1,23 @@
 <?php
-use app\assets\help\AppAsset;
+use app\assets\help\EditorAsset;
 use app\support\widgets\JsBlock;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
-AppAsset::addCss($this,'/help/simditor/styles/simditor.css');
-AppAsset::addCss($this,'/help/simditor/styles/simditor-html.css');
-AppAsset::addCss($this,'/help/simditor/styles/help-content.css');
-AppAsset::addCss($this,'/help/simditor/styles/simditor-markdown.css');
-
-AppAsset::addJs($this,'/help/simditor/scripts/module.js');
-AppAsset::addJs($this,'/help/simditor/scripts/hotkeys.js');
-AppAsset::addJs($this,'/help/simditor/scripts/uploader.js');
-AppAsset::addJs($this,'/help/simditor/scripts/simditor.js');
-AppAsset::addJs($this,'/help/simditor/scripts/beautify-html.js');
-AppAsset::addJs($this,'/help/simditor/scripts/simditor-html.js');
-AppAsset::addJs($this,'/help/simditor/scripts/marked.js');
-AppAsset::addJs($this,'/help/simditor/scripts/to-markdown.js');
-AppAsset::addJs($this,'/help/simditor/scripts/simditor-markdown.js');
-AppAsset::addJs($this,'/help/simditor/scripts/simditor-marked.js');
-AppAsset::addJs($this,'/help/simditor/scripts/simditor-dropzone.js');
-
-
+EditorAsset::register($this);
 ?>
-<!--<script type="text/javascript" src="/simditor/scripts/jquery-3.0.0.js"></script>
--->
-<!--<script type="text/javascript" src="/simditor/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="/simditor/scripts/module.js"></script>
-<script type="text/javascript" src="/simditor/scripts/hotkeys.js"></script>
-<script type="text/javascript" src="/simditor/scripts/uploader.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor.js"></script>
-
-<script type="text/javascript" src="/simditor/scripts/beautify-html.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-html.js"></script>
-
-<script type="text/javascript" src="/simditor/scripts/marked.js"></script>
-<script type="text/javascript" src="/simditor/scripts/to-markdown.js"></script>
-
-<script type="text/javascript" src="/simditor/scripts/simditor-markdown.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-marked.js"></script>
-<script type="text/javascript" src="/simditor/scripts/simditor-dropzone.js"></script>-->
 
 <div class="container content" style="margin-top: 50px;">
-<?php if (isset($_SERVER["HTTP_REFERER"])): ?>
 <div class="page-header">
-    <?= Html::a('返回', $_SERVER["HTTP_REFERER"], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a('返回分类', Url::to(['helpinfo/list']), ['class' => 'btn btn-primary']) ?>
 </div>
-<?php endif; ?>
 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 <?= $form->field($model, 'cid[]')->dropDownList(['pre' => 'pre', 'apm' => 'APM', 'fn' => '众测', 'cts' => '云测', 'itestin' => 'itestin', 'abtest' => 'abtest'],
     [
         'prompt'=>'选择平台',
         'onchange'=>'
-            $("#sel_2").css("display","block");$.get("selplat?id='.'"+$(this).val(),function(data){
+            $("#sel_2").css("display","block");$.get("select-plat?id='.'"+$(this).val(),function(data){
                 $("#sel_2").html(data);
             });',
     ])->label(false); ?>
@@ -82,7 +47,7 @@ AppAsset::addJs($this,'/help/simditor/scripts/simditor-dropzone.js');
         placeholder: '这里输入文字...',
         toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', '|', 'blockquote', 'code', 'table', 'link', 'image', '|', 'hr', 'indent', 'outdent', 'alignment', '|',  'markdown', 'html' ],
         upload : {
-            url : '/help/helpinfo/upload', //文件上传的接口地址
+            url : '<?=Url::to(['helpinfo/upload'])?>', //文件上传的接口地址
             params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
             fileKey: 'fileData', //服务器端获取文件数据的参数名
             connectionCount: 3,
