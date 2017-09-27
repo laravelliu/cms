@@ -72,7 +72,13 @@ dd,dl,dt{margin:0}
     border-color: #22a4e5;
     color: #22a4e5;
 }
-@media screen and (max-width:767px){.phone-nav{display:block;height:43px;background-color:#222;width:100%;padding-top:7px;overflow:hidden}
+.dropdown-menu{
+    margin-top: 0;
+    min-width: 150px;
+}
+
+@media screen and (max-width:767px){
+    .phone-nav{display:block;height:43px;background-color:#222;width:100%;padding-top:7px;overflow:hidden}
 .nav-btn{width:35px;height:35px;background-color:#08c;margin-left:10px;position:relative;float:left}
 .nav-in{width:auto}
 .out{padding:0}
@@ -118,12 +124,3 @@ dd,dl,dt{margin:0}
 .trs0{-webkit-transform:translate(0,0);-moz-transform:translate(0,0);transform:translate(0,0)}
 .trs-100{-webkit-transform:translate(-100%,0);-moz-transform:translate(-100%,0);transform:translate(-100%,0)}
 }
-
-/*右侧悬浮*/
-.bar{position:fixed;right:0;bottom:123px;margin-top:-85px}
-.bar1,.bar2,.bar3{width:40px;height:146px;margin-top:2px;cursor:pointer;display:block}
-.bar1{background:url(/themes/image/bar1.png) no-repeat;background-size: cover;}
-.bar2{background:url(/themes/image/bar2.png) no-repeat;background-size: cover;position:relative}
-.bar3{background:url(/themes/image/bar3.png) no-repeat;background-size: cover;position:relative}
-.tel{display:block;width:120px;height:146px;background:url(/themes/image/bar3H.png) no-repeat;transform:translateX(40px);-moz-transform:translateX(40px);-webkit-transform:translateX(40px);transition:.4s;-moz-transition:.4s;-webkit-transition:.4s}
-.bar3:hover .tel{transform:translateX(-80px);-moz-transform:translateX(-80px);-webkit-transform:translateX(-80px)}

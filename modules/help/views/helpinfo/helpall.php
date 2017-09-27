@@ -27,7 +27,7 @@ $this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), '
             <div class="icon">
                 <i class="iconfont">&#xe702;</i>
             </div>
-            <h5><?= Html::a('内测分发', Url::to(['pre']))?></h5>
+            <h5><?= Html::a('内测分发', Url::to(['/help/pre']))?></h5>
             <p>
                 <?php if(is_array($pre)):?>
                     <?php foreach($pre as $value):?>
@@ -43,7 +43,7 @@ $this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), '
             <div class="icon">
                 <i class="iconfont">&#xe704;</i>
             </div>
-            <h5><?= Html::a('功能测试', Url::to(['fn']))?></h5>
+            <h5><?= Html::a('功能测试', Url::to(['/help/fn']))?></h5>
             <p>
                 <?php if(is_array($fn)):?>
                     <?php foreach($fn as $value):?>
@@ -59,7 +59,7 @@ $this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), '
             <div class="icon">
                 <i class="iconfont">&#xe701;</i>
             </div>
-            <h5><?= Html::a('兼容测试', Url::to(['cts']))?></h5>
+            <h5><?= Html::a('兼容测试', Url::to(['/help/cts']))?></h5>
             <p>
                 <?php if(is_array($cts)):?>
                     <?php foreach($cts as $value):?>
@@ -76,7 +76,7 @@ $this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), '
             <div class="icon">
                 <i class="iconfont">&#xe600;</i>
             </div>
-            <h5><?= Html::a('iTestin', Url::to(['itestin']))?></h5>
+            <h5><?= Html::a('iTestin', Url::to(['/help/itestin']))?></h5>
             <p>
                 <?php if(is_array($itestin)):?>
                     <?php foreach($itestin as $value):?>
@@ -92,7 +92,7 @@ $this->registerCssFile('/helpResource/css/search.css', [AppAsset::className(), '
             <div class="icon">
                 <i class="iconfont">&#xe789;</i>
             </div>
-            <h5><?= Html::a('A/B测试', Url::to(['abtest'])) ?></h5>
+            <h5><?= Html::a('A/B测试', Url::to(['/help/abtest'])) ?></h5>
             <p>
                 <?php if (is_array($ab)): ?>
                     <?php foreach ($ab as $value): ?>
