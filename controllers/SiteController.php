@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\CompanyModel;
+use app\models\ContactAR;
 use app\models\RegisterForm;
 use Yii;
 use yii\base\Exception;
@@ -67,7 +68,8 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new ContactAR();
+        return $this->render('index',['model' => $model]);
     }
 
     /**

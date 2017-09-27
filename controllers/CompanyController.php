@@ -10,7 +10,10 @@ namespace app\controllers;
 
 use app\models\CategoryAR;
 use app\models\CompanyModel;
+use app\models\ContactAR;
 use Yii;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class CompanyController extends BaseController
 {
@@ -41,6 +44,32 @@ class CompanyController extends BaseController
 
         $this->_data['companyInfo'] = $companyInfo;
         return $this->render('contact', $this->_data);
+    }
+
+
+    /**
+     * 保存表单
+     * @author: liuFangShuo
+     */
+    public function actionSaveContact()
+    {
+        if(Yii::$app->request->isAjax){
+            $model = new ContactAR();
+            $model->load($post = Yii::$app->request->post());
+
+            if(!empty(ActiveForm::validate($model))){
+                return $this->ajaxReturn(ActiveForm::validate($model),200);
+            }
+
+            if ($model->validate()) {
+                if($model->save()){
+                    return $this->ajaxReturn([],0);
+                }
+            }
+        }
+
+        return false;
+
     }
 
     /**

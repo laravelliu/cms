@@ -1,6 +1,7 @@
 <?php
 use app\assets\lfs\IndexAsset;
 use app\support\widgets\JsBlock;
+use yii\widgets\ActiveForm;
 
 $this->registerJsFile($this->theme->baseUrl . '/js/owl.carousel.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
 $this->registerJsFile($this->theme->baseUrl . '/js/jquery-validate.js',[IndexAsset::className(), 'depends' => 'app\assets\lfs\IndexAsset']);
@@ -577,30 +578,61 @@ $location = explode(',',$mainAddress['localtion']);
                 <h2 class="flat-title-section title-center">Request a quick quote.</h2>
                 <p class="text-center">Fill out the form to get your quote within the hour. We guaranty safe and timley<br>product delivery either for your personal travel or your products.</p>
                 <div class="flat-divider d20px"></div>
-                <form id="contactform" method="post" action="./contact/contact-process.php">
+                <?php $form = ActiveForm::begin([
+                        'id' => 'contactform',
+                        'method' => 'post',
+                        'action' => ['/company/save-contact'],
+                        'fieldConfig' => [
+                            'template' => "<p>{input}</p>{error}"
+                        ]
+                ])?>
                     <div class="row">
                         <div class="col-md-6">
-                            <p><input name="author" type="text" value="" placeholder="Location" required="required"></p>
-
-                            <p><input id="email" name="email" type="email" value="" placeholder="To Destination" required="required"></p>
-
-                            <p><select class="wpcf7-form-control wpcf7-select"><option value="Cargo">Cargo</option><option value="Person">Person</option></select></p>
-
-                            <p><input id="phone" name="phone" type="text" value="" placeholder="Phone Number" required="required"></p>
+                            <?= $form->field($model,'name')->textInput(['placeholder' => '留下您的大名'])->label(false)?>
+                            <?= $form->field($model,'email')->textInput(['placeholder' => '有邮箱可以留一下'])->label(false)?>
+                            <?= $form->field($model,'type')->dropDownList(Yii::$app->params['contactType'],['placeholder' => '选择您的需求'])->label(false)?>
+                            <?= $form->field($model,'phone')->textInput(['placeholder' => '电话联系您'])->label(false)?>
                         </div><!-- /.col-md-6 -->
-
                         <div class="col-md-6">
-                            <p><textarea name="comment" placeholder="Comment" required="required"></textarea></p>
-                                    <span class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Get a quote">
-                                    </span>
+                            <?= $form->field($model,'content')->textarea(['placeholder' => '简单描述您的需求'])->label(false)?>
+                            <span class="form-submit">
+                                <input name="submit" type="button" id="submit" class="submit" value="快速联系">
+                            </span>
                         </div><!-- /.col-md-6 -->
                     </div><!-- /.row -->
-                </form>
+                <?php ActiveForm::end();?>
+
             </div><!-- /.col-md-8 -->
         </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.flat-row -->
 
 <?php JsBlock::begin()?>
-        var local = {'h':<?=$location[0]?>,'w':<?=$location[1]?>};
+        <script>
+            var local = {'h':<?=$location[0]?>,'w':<?=$location[1]?>};
+            $('#submit').click(function () {
+                var form = $('#contactform');
+
+                if (form.find('.has-error').length) {
+                    return false;
+                }
+
+                $.ajax({
+                    url    : form.attr('action'),
+                    type   : 'post',
+                    data   : form.serialize(),
+                    dataType:'json',
+
+                    success: function (data) {
+
+                       if (0 == data['code']) {
+                           alert('提交成功');
+                       } else {
+
+                       }
+                    }
+                });
+            });
+
+        </script>
 <?php JsBlock::end()?>
