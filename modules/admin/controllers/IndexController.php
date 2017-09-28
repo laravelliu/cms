@@ -7,6 +7,7 @@ namespace app\modules\admin\controllers;
  */
 use app\models\ConfigAR;
 use app\models\ConfigModel;
+use app\models\SliderAR;
 use Yii;
 
 class IndexController extends BaseController
@@ -42,11 +43,27 @@ class IndexController extends BaseController
     }
 
     /**
-     * 轮播图
+     * 轮播图列表
      * @author: liuFangShuo
      */
-    public function actionHomeImage()
+    public function actionHomeSlider()
     {
-        return $this->render('images');
+
+        $model = new SliderAR();
+        $slider = $model::find()->where(['is_deleted' => STATUS_FALSE])->orderBy(['update_time' => SORT_DESC, 'is_show' => SORT_DESC])->asArray()->all();
+
+        $this->_data['sliderList'] = $slider;
+        return $this->render('images', $this->_data);
+    }
+
+    /**
+     * 添加轮播图
+     * @author: liuFangShuo
+     */
+    public function actionAddSlider()
+    {
+        $model = new SliderAR();
+        $this->_data['model'] = $model;
+        return $this->render('add-slider',$this->_data);
     }
 }

@@ -49,11 +49,11 @@ $c = Yii::$app->controller->id;
                     <li <?php if($action == '/admin/page/add'):?>class="active"<?php endif;?>><a href="<?=Url::to(['/admin/page/add'])?>">添加单页</a></li>
                 </ul>
             </li>
-            <li <?php if(($action == '/admin/index/setting')||($action == '/admin/index/home-image')):?>class="active" <?php endif;?>>
+            <li <?php if(($action == '/admin/index/setting')||($action == '/admin/index/home-slider')):?>class="active" <?php endif;?>>
                 <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">网站设置</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li <?php if($action == '/admin/index/setting'):?>class="active"<?php endif;?>><a href="<?=Url::to(['/admin/index/setting'])?>">基础信息</a></li>
-                    <li <?php if($action == '/admin/index/home-image'):?>class="active"<?php endif;?>><a href="<?=Url::to(['/admin/index/home-image'])?>">轮播图</a></li>
+                    <li <?php if($action == '/admin/index/home-slider'):?>class="active"<?php endif;?>><a href="<?=Url::to(['/admin/index/home-slider'])?>">轮播图</a></li>
                 </ul>
             </li>
 
