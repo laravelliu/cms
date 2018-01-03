@@ -8,6 +8,7 @@
 define('THEME_NAME', 'lfs');  //主题名称
 define('NEED_REDIS', true);     //是否需要redis
 
+/******邮箱设置******/
 define('EMAIL_SERVICE',1);
 define('EMAIL_USER',1);
 define('EMAIL_PWD',1);

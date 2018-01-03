@@ -21,6 +21,7 @@ class BaseController extends BasicController
     public function behaviors()
     {
 
+        //登录中间件
         $default = [
             'login' => [
                 'class' => LoginFilter::className(),
