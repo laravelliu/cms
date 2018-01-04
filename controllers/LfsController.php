@@ -38,7 +38,7 @@ class LfsController extends \yii\web\Controller
         $curl = new curl\Curl();
         $response = $curl->get($this->url . $code . "&sign=" . $sign);
 
-        $xml = simplexml_load_string($response);
-        var_dump($xml);exit;
+        //$xml = simplexml_load_string($response);
+        var_dump($response);exit;
     }
 }
