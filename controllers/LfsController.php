@@ -27,8 +27,8 @@ var_dump($code);exit;
     {
         $arr = [];
         $code = Yii::$app->request->get('code',null);
-        $sign = Yii::$app->request->get('sign',null);
-       /* $arr[] = $code;
+
+        $arr[] = $code;
         $arr[] = $this->key;
 
         sort($arr);
@@ -38,10 +38,27 @@ var_dump($code);exit;
         //转码utf-8
         $encode = mb_detect_encoding($str, array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
         $str_encode = mb_convert_encoding($str, 'UTF-8', $encode);
+        $md5Str = strtoupper(md5($str_encode));
+        $md5Arr = [];
 
-        var_dump(md5($str_encode));
-        $sign = base64_encode(strtoupper(md5($str_encode)));
-        $sign = str_replace('+','%2B',$sign);*/
+        for ($i=0;$i<16;$i++) {
+
+            $j = $i*2;
+            $num = hexdec($md5Str[$j].$md5Str[$j+1]);
+
+            if ($num >127) {
+                $num =  $num-256;
+            }
+           $md5Arr[] = $num;
+        }
+
+        $b='';
+        foreach ($md5Arr as $v){
+            $b .= chr($v);
+        }
+
+        $sign = base64_encode($b);
+        $sign = str_replace('+','%2B',$sign);
 
         $curl = new curl\Curl();
         $response = $curl->get($this->url . $code . "&sign=" . $sign);
@@ -58,6 +75,13 @@ var_dump($code);exit;
         return $bytes;
     }
 
+    public function getByteOr(array $lfs=[]){
+        $str = '';
+        foreach ($lfs as $v){
+            $str .= chr($v);
+        }
+        return $str;
+    }
     public  function toStr($bytes) {
         $str = '';
         foreach($bytes as $ch) {
