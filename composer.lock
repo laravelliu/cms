@@ -411,16 +411,16 @@
         },
         {
             "name": "linslin/yii2-curl",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/linslin/Yii2-Curl.git",
-                "reference": "1725afa34bdbc0c85565d6b37b704953e727ddc4"
+                "reference": "492ffc03e78458357210d692f36a0cd74a888825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/1725afa34bdbc0c85565d6b37b704953e727ddc4",
-                "reference": "1725afa34bdbc0c85565d6b37b704953e727ddc4",
+                "url": "https://files.phpcomposer.com/files/linslin/Yii2-Curl/492ffc03e78458357210d692f36a0cd74a888825.zip",
+                "reference": "492ffc03e78458357210d692f36a0cd74a888825",
                 "shasum": ""
             },
             "require": {
@@ -458,7 +458,7 @@
                 "restful",
                 "yii2"
             ],
-            "time": "2017-07-24T09:17:39+00:00"
+            "time": "2017-10-23T07:43:10+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
