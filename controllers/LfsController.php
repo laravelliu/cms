@@ -27,8 +27,9 @@ var_dump($code);exit;
     {
         $arr = [];
         $code = Yii::$app->request->get('code',null);
-        //$code='abcdef';
-        $arr[] = $code;
+        $code='081l6oJF1yOfd10UMQJF1nQjJF1l6oJ9';
+        $sign = 'Od1PwQM1ot36L2Ck5uUD8w==';
+       /* $arr[] = $code;
         $arr[] = $this->key;
 
         sort($arr);
@@ -41,7 +42,7 @@ var_dump($code);exit;
 
         var_dump(md5($str_encode));
         $sign = base64_encode(strtoupper(md5($str_encode)));
-        $sign = str_replace('+','%2B',$sign);
+        $sign = str_replace('+','%2B',$sign);*/
 
         $curl = new curl\Curl();
         $response = $curl->get($this->url . $code . "&sign=" . $sign);
