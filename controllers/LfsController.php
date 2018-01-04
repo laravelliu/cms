@@ -15,8 +15,7 @@ class LfsController extends \yii\web\Controller
         //Yii::info(json_encode($data));
 
         $code = $data['code'];
-var_dump($code);exit;
-        //$this->redirect(['/lfs/curl', 'code'=>$code]);
+        $this->redirect(['/lfs/curl', 'code'=>$code]);
     }
 
     /**
