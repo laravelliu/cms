@@ -27,8 +27,7 @@ var_dump($code);exit;
     {
         $arr = [];
         $code = Yii::$app->request->get('code',null);
-        $code='081l6oJF1yOfd10UMQJF1nQjJF1l6oJ9';
-        $sign = 'Od1PwQM1ot36L2Ck5uUD8w==';
+        $sign = Yii::$app->request->get('sign',null);
        /* $arr[] = $code;
         $arr[] = $this->key;
 
